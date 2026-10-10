@@ -653,6 +653,13 @@
         setActiveNav('home');
         renderBreadcrumb([{ name: 'Home', route: 'home' }]);
         app.innerHTML = `
+        <!-- Top Motion Video Banner -->
+          <div style="max-width: 850px; margin: 0 auto 28px auto; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.08); border: 1px solid var(--border);">
+            <video autoplay loop muted playsinline style="width: 100%; height: auto; display: block; object-fit: cover;">
+              <source src="sambok_intro.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
           <div class="hero">
             <h1>Welcome to SAMBOOK</h1>
             <p>আপনার ডিজিটাল শিক্ষা পোর্টাল — সিলেক্ট করুন বিষয় এবং শুরু করুন প্রস্তুতি</p>
