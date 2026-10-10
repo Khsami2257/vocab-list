@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vocabulary: The Parrot's Tale</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --syn-color: #059669;
+      --syn-bg: #ecfdf5;
+      --ant-color: #dc2626;
+      --ant-bg: #fef2f2;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      padding: 35px 20px;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 25px; }
+    header h1 { font-size: 2.2rem; font-weight: 700; color: #1e1b4b; }
+    header p { color: var(--text-muted); font-size: 1rem; margin-top: 5px; }
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      background: #fff;
+      padding: 14px 20px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+    .search-box {
+      flex: 1;
+      min-width: 250px;
+      position: relative;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+      outline: none;
+      font-family: inherit;
+    }
+    .search-box input:focus { border-color: var(--primary); }
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+    .stats {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: #eef2ff;
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .vocab-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .word-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 10px;
+    }
+    .word-text { font-size: 1.25rem; font-weight: 700; color: #1e293b; }
+    .meaning-badge {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: #f5f3ff;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .section-block {
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.88rem;
+    }
+    .synonyms { background: var(--syn-bg); border-left: 4px solid var(--syn-color); }
+    .antonyms { background: var(--ant-bg); border-left: 4px solid var(--ant-color); }
+    .section-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .synonyms .section-title { color: var(--syn-color); }
+    .antonyms .section-title { color: var(--ant-color); }
+    .tags { color: #334155; line-height: 1.4; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Vocabulary Masterlist</h1>
+      <p>Unit 1: The Parrot's Tale — Complete Synonyms & Antonyms</p>
+    </header>
+
+    <div class="controls">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search words or Bengali meanings..." oninput="renderVocab()">
+      </div>
+      <div class="stats" id="wordCount">Showing: 72 Words</div>
+    </div>
+
+    <div class="vocab-grid" id="vocabGrid"></div>
+  </div>
+
+  <script>
+    const vocabData = [
+      { word: "Unlettered", meaning: "অশিক্ষিত", syn: "Illiterate, uneducated, untaught, ignorant", ant: "Literate, educated, learned, scholarly" },
+      { word: "Scripture", meaning: "ধর্মগ্রন্থ", syn: "Holy text, sacred writing, gospel, doctrine", ant: "Secular writing, non-religious text" },
+      { word: "Hopped (Hop)", meaning: "তিড়িং-বিড়িং লাফানো", syn: "Jumped, leaped, skipped, bounced", ant: "Walked, stood, stayed" },
+      { word: "Devour", meaning: "গ্রাস করা", syn: "Consume, swallow, eat greedily, gorge", ant: "Abstain, nibble, vomit" },
+      { word: "Summon", meaning: "তলব করা / ডেকে পাঠানো", syn: "Call, cite, convene, invoke", ant: "Dismiss, discharge, send away" },
+      { word: "Deliberate", meaning: "আলোচনা-পরামর্শ করা", syn: "Discuss, consult, contemplate, ponder", ant: "Disregard, rush, overlook" },
+      { word: "Ponder", meaning: "গভীরভাবে ভাবা", syn: "Meditate, reflect, consider, brood", ant: "Ignore, forget, disregard" },
+      { word: "Ignorance", meaning: "অজ্ঞতা", syn: "Illiteracy, unawareness, incomprehension", ant: "Knowledge, awareness, intelligence, wisdom" },
+      { word: "Straw and twigs", meaning: "খড়কুটো ও ডালপালা", syn: "Dried stalks & branches, dry grass, brushwood", ant: "Solid timber, logs, masonry" },
+      { word: "Royal", meaning: "রাজকীয়", syn: "Regal, kingly, majestic, imperial", ant: "Common, plebeian, lowly, ordinary" },
+      { word: "Scholar", meaning: "পণ্ডিতবর্গ", syn: "Intellectual, academic, savant, learned person", ant: "Ignoramus, novice, illiterate person" },
+      { word: "Goldsmith", meaning: "স্বর্ণকার / স্যাকরা", syn: "Jeweler, metalsmith, silversmith", ant: "Layman, non-craftsman" },
+      { word: "Gilded cage", meaning: "সোনার খাঁচা", syn: "Gold-coated cage, ornate enclosure", ant: "Plain cage, wilderness, open freedom" },
+      { word: "Exquisite", meaning: "অপূর্ব / অনবদ্য", syn: "Beautiful, elegant, magnificent, delicate", ant: "Crude, ugly, poor, ordinary, flawed" },
+      { word: "Workmanship", meaning: "কারুশিল্প / হাতের কাজ", syn: "Craftsmanship, artistry, skill, handiwork", ant: "Clumsiness, incompetence, amateurism" },
+      { word: "Delighted", meaning: "আনন্দিত", syn: "Pleased, thrilled, glad, joyful, overjoyed", ant: "Displeased, depressed, sad, sorrowful" },
+      { word: "A pinch", meaning: "এক চিমটি", syn: "Tiny bit, dash, nip, morsel", ant: "Heap, chunk, abundance, large amount" },
+      { word: "Snuff", meaning: "গুঁড়ো তামাক বা নস্যি", syn: "Powdered tobacco, inhalant", ant: "N/A" },
+      { word: "Scribes", meaning: "অনুলিপিকার / লেখকদল", syn: "Copyists, clerks, writers, secretaries", ant: "Readers, original authors" },
+      { word: "Veritable", meaning: "আক্ষরিক অর্থেই / প্রকৃত", syn: "Real, genuine, authentic, actual, true", ant: "False, unreal, fabricated, sham" },
+      { word: "Wages", meaning: "পারিশ্রমিক", syn: "Salary, pay, earnings, remuneration", ant: "Penalty, fine, debt, deduction" },
+      { word: "Bullocks", meaning: "বলদ / গরুর গাড়ি", syn: "Oxen, steers, bovines, draft animals", ant: "N/A" },
+      { word: "Merrily", meaning: "আনন্দে / হাসিমুখে", syn: "Happily, cheerfully, joyfully, gleefully", ant: "Sadly, gloomily, sorrowfully" },
+      { word: "Maintenance", meaning: "রক্ষণাবেক্ষণ", syn: "Upkeep, preservation, servicing, care", ant: "Neglect, destruction, deterioration" },
+      { word: "Crew", meaning: "কর্মীদল", syn: "Team, squad, unit, gang, group", ant: "Individual, loner, solo worker" },
+      { word: "Personnel", meaning: "কর্মীবৃন্দ", syn: "Staff, workforce, employees, manpower", ant: "Management, leadership, employers" },
+      { word: "Cushioned", meaning: "আয়েশি / পরম আরামদায়ক", syn: "Padded, comfortable, luxurious, soft", ant: "Harsh, rough, austere, hard" },
+      { word: "Detractors", meaning: "সমালোচক / নিন্দুক", syn: "Critics, slanderers, defamers, disparagers", ant: "Supporters, admirers, praisers" },
+      { word: "Resorting", meaning: "আশ্রয় নিচ্ছে", syn: "Turning to, adopting, employing, using", ant: "Avoiding, shunning, refraining" },
+      { word: "Slander", meaning: "নিন্দা / অপবাদ", syn: "Defamation, calumny, smear, slur, libel", ant: "Praise, compliment, tribute" },
+      { word: "Pace", meaning: "গতি", syn: "Speed, tempo, velocity, rate, momentum", ant: "Slowness, stagnation, halt, inertia" },
+      { word: "Courtiers", meaning: "দরবারী / পারিষদবর্গ", syn: "Attendants, lords, nobles, followers", ant: "Commoners, peasants, outsiders" },
+      { word: "Struck up", meaning: "বাজাতে শুরু করল", syn: "Began playing, commenced, initiated", ant: "Ceased, halted, terminated, stopped" },
+      { word: "Percussion", meaning: "ঘাতবাদ্য / বাদ্যযন্ত্র", syn: "Drumming, impact rhythm, beats, strike", ant: "Silence, stillness, muteness" },
+      { word: "Chanted", meaning: "উচ্চস্বরে পাঠ করল", syn: "Recited, intoned, sang, proclaimed", ant: "Whispered, muttered, kept silent" },
+      { word: "Mantras", meaning: "মন্ত্র", syn: "Chants, hymns, incantations, sacred verses", ant: "N/A" },
+      { word: "Numerous", meaning: "অসংখ্য", syn: "Countless, many, myriad, abundant", ant: "Few, scarce, limited, rare" },
+      { word: "Negligible", meaning: "নগণ্য / উপেক্ষণীয়", syn: "Trivial, minor, insignificant, trifling", ant: "Significant, major, substantial, vital" },
+      { word: "Fault-finder", meaning: "দোষত্রুটি খোঁজা ব্যক্তি", syn: "Critic, carper, caviler, detractor", ant: "Praiser, supporter, admirer, fan" },
+      { word: "Lurking", meaning: "ওত পেতে থাকা", syn: "Skulking, prowling, lying in wait, hiding", ant: "Emerging, appearing in public" },
+      { word: "Startled", meaning: "চমকে উঠল", syn: "Alarmed, surprised, shocked, astonished", ant: "Calmed, composed, undisturbed" },
+      { word: "Demonstration", meaning: "প্রদর্শন / নমুনা", syn: "Exhibition, presentation, display, show", ant: "Concealment, disguise, hiding" },
+      { word: "Grain", meaning: "দানাশস্য", syn: "Cereal, seed, kernel, morsel", ant: "Whole mass, large chunk" },
+      { word: "Reams", meaning: "কাগজের রিম / তা", syn: "Stacks, bundles, heaps, piles of sheets", ant: "Single sheet, scrap, shred" },
+      { word: "Torn", meaning: "ছিঁড়ে ফেলা", syn: "Ripped, shredded, split, ruptured", ant: "Mended, repaired, whole, fixed" },
+      { word: "Quill", meaning: "পালকের কলম", syn: "Feather pen, shaft, plume", ant: "N/A" },
+      { word: "Screeching", meaning: "কর্কশ চিৎকার", syn: "Shrieking, squawking, screaming, yelping", ant: "Whispering, murmuring, quiet" },
+      { word: "Mounted", meaning: "আরোহণ করল / চড়ল", syn: "Climbed on, boarded, ascended, scaled", ant: "Dismounted, stepped down, descended" },
+      { word: "Entrusted", meaning: "দায়িত্বপ্রাপ্ত", syn: "Assigned, empowered, charged, delegated", ant: "Discharged, divested, relieved" },
+      { word: "Mischief-makers", meaning: "উপদ্রবকারী / বিশৃঙ্খলাকারী", syn: "Troublemakers, rogues, disruptors", ant: "Peacemakers, law-abiders, conformists" },
+      { word: "Predictably", meaning: "অনুমানযোগ্যভাবেই", syn: "Expectedly, foreseeably, naturally", ant: "Unexpectedly, surprisingly" },
+      { word: "Innate", meaning: "সহজাত", syn: "Inborn, inherent, intuitive, instinctive", ant: "Acquired, learned, artificial" },
+      { word: "Flutter", meaning: "ডানা ঝাপটানো", syn: "Flap, vibrate, quiver, ripple", ant: "Freeze, hold steady, rest" },
+      { word: "Reprehensible", meaning: "নিন্দনীয়", syn: "Disgraceful, blameworthy, deplorable", ant: "Commendable, praiseworthy, creditable" },
+      { word: "Feeble", meaning: "দুর্বল", syn: "Weak, frail, faint, powerless, delicate", ant: "Strong, robust, mighty, powerful" },
+      { word: "Impudence", meaning: "ঔদ্ধত্য / বেয়াদবি", syn: "Insolence, cheek, rudeness, disrespect", ant: "Politeness, courtesy, respect" },
+      { word: "Furnace", meaning: "কামারের চুল্লি", syn: "Forge, kiln, boiler, fiery hearth", ant: "Freezer, refrigerator, cooler" },
+      { word: "Bellows", meaning: "হাপর", syn: "Air blower, pneumatic pump, blower", ant: "N/A" },
+      { word: "Anvil", meaning: "নেহাই", syn: "Iron block, strike block, iron forge base", ant: "N/A" },
+      { word: "Thunderous", meaning: "বজ্রনির্ঘোষ / প্রচণ্ড শব্দে", syn: "Deafening, booming, roaring, powerful", ant: "Quiet, faint, inaudible, whispered" },
+      { word: "Trimmed", meaning: "ছেঁটে দেওয়া হলো", syn: "Clipped, pruned, sheared, cut back", ant: "Grown out, lengthened, expanded" },
+      { word: "Flourished", meaning: "উন্নতি লাভ করল / রমরমা হলো", syn: "Thrived, prospered, boomed, succeeded", ant: "Declined, decayed, failed, withered" },
+      { word: "Bedecked", meaning: "সজ্জিত করল / শোভিত হলো", syn: "Adorned, decorated, embellished, decked", ant: "Stripped, bare, defaced" },
+      { word: "Godforsaken", meaning: "অভিশপ্ত / হতভাগা", syn: "Wretched, desolate, cursed, miserable", ant: "Blessed, joyful, cheerful" },
+      { word: "Cavalry", meaning: "অশ্বারোহী সৈন্য", syn: "Horse soldiers, mounted troops, troopers", ant: "Infantry (পদাতিক সৈন্য)" },
+      { word: "Squeak", meaning: "ক্ষীণ চিঁ-চিঁ শব্দ", syn: "Peep, faint cry, chirp, squeal", ant: "Roar, thunder, bellow, boom" },
+      { word: "Rustling", meaning: "খসখস আওয়াজ", syn: "Crinkling, crackling, whisper, swishing", ant: "Dead silence, utter stillness" },
+      { word: "Sighed", meaning: "দীর্ঘশ্বাস ফেলল", syn: "Gasped, exhaled heavily, moaned", ant: "Cheered, rejoiced, laughed" },
+      { word: "Southerly", meaning: "দক্ষিণা", syn: "Southern, southward, south-blowing", ant: "Northerly, northward" },
+      { word: "Budding", meaning: "মুকুলিত / নতুন কুঁড়িতে ভরা", syn: "Sprouting, blossoming, emerging, blooming", ant: "Withering, wilting, decaying" },
+      { word: "Wistful", meaning: "উদাসীন / আকাঙ্ক্ষাপূর্ণ", syn: "Longing, pensive, nostalgic, yearning", ant: "Cheerful, content, joyful" },
+      { word: "Melancholy", meaning: "বিষাদ", syn: "Sadness, sorrow, gloom, depression, woe", ant: "Joy, happiness, cheerfulness" }
+    ];
+
+    function renderVocab() {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const grid = document.getElementById('vocabGrid');
+      grid.innerHTML = "";
+
+      const filtered = vocabData.filter(item => 
+        item.word.toLowerCase().includes(query) ||
+        item.meaning.toLowerCase().includes(query) ||
+        item.syn.toLowerCase().includes(query) ||
+        item.ant.toLowerCase().includes(query)
+      );
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'vocab-card';
+        card.innerHTML = `
+          <div class="word-header">
+            <span class="word-text">${item.word}</span>
+            <span class="meaning-badge">${item.meaning}</span>
+          </div>
+          <div class="section-block synonyms">
+            <div class="section-title">✦ Synonyms</div>
+            <div class="tags">${item.syn}</div>
+          </div>
+          <div class="section-block antonyms">
+            <div class="section-title">✕ Antonyms</div>
+            <div class="tags">${item.ant}</div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      document.getElementById('wordCount').innerText = `Showing: ${filtered.length} Words`;
+    }
+
+    // Initial Load
+    renderVocab();
+  </script>
+</body>
+</html>
