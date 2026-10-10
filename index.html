@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vocabulary: The Parrot's Tale</title>
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>SAMBOOK - Digital Study Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #4f46e5;
+      --primary-gradient: linear-gradient(135deg, #ec4899 0%, #8b5cf6 50%, #10b981 100%);
       --bg: #f8fafc;
       --card-bg: #ffffff;
       --text-main: #0f172a;
@@ -17,19 +20,224 @@
       --ant-color: #dc2626;
       --ant-bg: #fef2f2;
       --border: #e2e8f0;
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+      --shadow-hover: 0 15px 30px -5px rgba(79, 70, 229, 0.12);
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: 'Poppins', 'Hind Siliguri', sans-serif;
       background: var(--bg);
       color: var(--text-main);
-      padding: 35px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-    .container { max-width: 1200px; margin: 0 auto; }
-    header { text-align: center; margin-bottom: 25px; }
-    header h1 { font-size: 2.2rem; font-weight: 700; color: #1e1b4b; }
-    header p { color: var(--text-muted); font-size: 1rem; margin-top: 5px; }
+
+    /* Navbar */
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .brand-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      border: none;
+      background: #f1f5f9;
+      color: #334155;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      background: #4f46e5;
+      color: #ffffff;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      flex: 1;
+      width: 100%;
+    }
+
+    /* Hero / Header */
+    .hero {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* Breadcrumbs */
+    .breadcrumb-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    .breadcrumb-nav span {
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb-nav span:hover {
+      color: var(--primary);
+    }
+
+    .breadcrumb-nav .active-crumb {
+      color: var(--text-main);
+      font-weight: 600;
+      cursor: default;
+    }
+
+    /* Selection Cards (Subjects / Papers / Chapters) */
+    .grid-selection {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+      margin-top: 15px;
+    }
+
+    .select-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px 22px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .select-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--primary-gradient);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .select-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: #cbd5e1;
+    }
+
+    .select-card:hover::before {
+      opacity: 1;
+    }
+
+    .card-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    .select-card h3 {
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .select-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .card-badge {
+      margin-top: auto;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: #eef2ff;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    /* Controls Bar (Vocab Search) */
     .controls {
       display: flex;
       justify-content: space-between;
@@ -39,15 +247,17 @@
       padding: 14px 20px;
       border-radius: 12px;
       border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      margin-bottom: 25px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 24px;
       flex-wrap: wrap;
     }
+
     .search-box {
       flex: 1;
       min-width: 250px;
       position: relative;
     }
+
     .search-box input {
       width: 100%;
       padding: 10px 14px 10px 38px;
@@ -57,7 +267,12 @@
       outline: none;
       font-family: inherit;
     }
-    .search-box input:focus { border-color: var(--primary); }
+
+    .search-box input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+
     .search-icon {
       position: absolute;
       left: 12px;
@@ -65,37 +280,55 @@
       transform: translateY(-50%);
       color: var(--text-muted);
     }
+
     .stats {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 600;
       color: var(--primary);
       background: #eef2ff;
       padding: 6px 14px;
       border-radius: 20px;
     }
+
+    /* Vocab Grid & Cards */
     .vocab-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 20px;
     }
+
     .vocab-card {
       background: #fff;
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 18px;
       border: 1px solid var(--border);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-sm);
       display: flex;
       flex-direction: column;
       gap: 12px;
+      transition: all 0.2s ease;
     }
+
+    .vocab-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
     .word-header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
       border-bottom: 1px solid #f1f5f9;
       padding-bottom: 10px;
+      gap: 8px;
     }
-    .word-text { font-size: 1.25rem; font-weight: 700; color: #1e293b; }
+
+    .word-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
     .meaning-badge {
       font-size: 0.88rem;
       font-weight: 600;
@@ -103,45 +336,216 @@
       background: #f5f3ff;
       padding: 2px 8px;
       border-radius: 6px;
+      border: 1px solid #ede9fe;
     }
+
     .section-block {
       border-radius: 8px;
       padding: 8px 12px;
       font-size: 0.88rem;
     }
-    .synonyms { background: var(--syn-bg); border-left: 4px solid var(--syn-color); }
-    .antonyms { background: var(--ant-bg); border-left: 4px solid var(--ant-color); }
+
+    .synonyms {
+      background: var(--syn-bg);
+      border-left: 4px solid var(--syn-color);
+    }
+
+    .antonyms {
+      background: var(--ant-bg);
+      border-left: 4px solid var(--ant-color);
+    }
+
     .section-title {
       font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
       margin-bottom: 3px;
     }
+
     .synonyms .section-title { color: var(--syn-color); }
     .antonyms .section-title { color: var(--ant-color); }
-    .tags { color: #334155; line-height: 1.4; }
+    .tags { color: #334155; line-height: 1.45; }
+
+    /* ICT Lecture View Styles */
+    .lecture-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .lecture-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 26px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .lecture-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .lecture-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1e1b4b;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .time-badge {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #6366f1;
+      background: #eef2ff;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .lecture-content ul {
+      list-style-type: none;
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .lecture-content li {
+      position: relative;
+      padding-left: 24px;
+      line-height: 1.7;
+      color: #334155;
+      font-size: 0.98rem;
+    }
+
+    .lecture-content li::before {
+      content: '•';
+      position: absolute;
+      left: 6px;
+      color: var(--primary);
+      font-size: 1.4rem;
+      line-height: 1.2;
+    }
+
+    .highlight-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-top: 12px;
+      font-size: 0.95rem;
+    }
+
+    .math-formula {
+      font-family: 'Poppins', monospace;
+      font-weight: 600;
+      color: #4338ca;
+      background: #eef2ff;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-block;
+      margin: 2px 0;
+    }
+
+    .base-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 0.93rem;
+    }
+
+    .base-table th, .base-table td {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    .base-table th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 700;
+    }
+
+    .base-table tr:hover {
+      background: #f8fafc;
+    }
+
+    /* Empty state */
+    .empty-state {
+      background: #fff;
+      border-radius: 16px;
+      padding: 50px 20px;
+      text-align: center;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    .empty-state h3 {
+      font-size: 1.3rem;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+
+    /* Footer */
+    footer {
+      background: #ffffff;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 18px 20px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+
+    @media (max-width: 640px) {
+      .nav-container { flex-direction: column; gap: 12px; }
+      .container { padding: 20px 14px; }
+      .hero h1 { font-size: 1.6rem; }
+      .vocab-grid { grid-template-columns: 1fr; }
+      .lecture-card { padding: 18px; }
+    }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <header>
-      <h1>Vocabulary Masterlist</h1>
-      <p>Unit 1: The Parrot's Tale — Complete Synonyms & Antonyms</p>
-    </header>
-
-    <div class="controls">
-      <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="searchInput" placeholder="Search words or Bengali meanings..." oninput="renderVocab()">
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="brand" onclick="navigateTo('home')">
+        <img src="sambok_logo-removebg-preview.png" alt="SAMBOOK Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/44?text=SB'">
+        <div class="brand-title">SAMBOOK</div>
       </div>
-      <div class="stats" id="wordCount">Showing: 72 Words</div>
+      <div class="nav-links">
+        <button class="nav-btn" id="btn-home" onclick="navigateTo('home')">Home</button>
+        <button class="nav-btn" id="btn-english" onclick="navigateTo('english')">English</button>
+        <button class="nav-btn" id="btn-ict" onclick="navigateTo('ict')">ICT</button>
+      </div>
     </div>
+  </nav>
 
-    <div class="vocab-grid" id="vocabGrid"></div>
-  </div>
+  <!-- Content Container -->
+  <main class="container">
+    <div id="breadcrumb" class="breadcrumb-nav"></div>
+    <div id="app-view"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 <strong>SAMBOOK</strong> — Smart Education Portal by KH SAMI. All Rights Reserved.</p>
+  </footer>
 
   <script>
+    // 72 Complete Vocabulary Words for Lesson 2
     const vocabData = [
       { word: "Unlettered", meaning: "অশিক্ষিত", syn: "Illiterate, uneducated, untaught, ignorant", ant: "Literate, educated, learned, scholarly" },
       { word: "Scripture", meaning: "ধর্মগ্রন্থ", syn: "Holy text, sacred writing, gospel, doctrine", ant: "Secular writing, non-religious text" },
@@ -217,19 +621,399 @@
       { word: "Melancholy", meaning: "বিষাদ", syn: "Sadness, sorrow, gloom, depression, woe", ant: "Joy, happiness, cheerfulness" }
     ];
 
-    function renderVocab() {
-      const query = document.getElementById('searchInput').value.trim().toLowerCase();
-      const grid = document.getElementById('vocabGrid');
-      grid.innerHTML = "";
+    // ICT Chapters Data
+    const ictChapters = [
+      { id: 1, title: "Chapter 1: তথ্য ও যোগাযোগ প্রযুক্তি বিশ্ব ও বাংলাদেশ প্রেক্ষিত", desc: "ভার্চুয়াল রিয়েলিটি, কৃত্রিম বুদ্ধিমত্তা, বায়োমেট্রিক্স, ন্যানোটেকনোলজি ও ক্রায়োসার্জারি।" },
+      { id: 2, title: "Chapter 2: কমিউনিকেশন সিস্টেমস ও নেটওয়ার্কিং", desc: "ডাটা ট্রান্সমিশন মোড, মিডিয়া, ওয়্যারলেস নেটওয়ার্ক (WiFi, Bluetooth), নেটওয়ার্ক টপোলজি ও ক্লাউড কম্পিউটিং।" },
+      { id: 3, title: "Chapter 3: সংখ্যা পদ্ধতি ও ডিজিটাল ডিভাইস", desc: "সংখ্যা পদ্ধতি (পজিশনাল ও নন-পজিশনাল), রূপান্তর (Decimal to Binary, Octal, Hexadecimal) ও ডিজিটাল ডিভাইস।" },
+      { id: 4, title: "Chapter 4: ওয়েব ডিজাইন পরিচিতি এবং HTML", desc: "ওয়েবসাইট কাঠামো, HTML ট্যাগস, টেবিল, হাইপারলিংক ও ইমেজ যুক্ত করার নিয়ম।" },
+      { id: 5, title: "Chapter 5: প্রোগ্রামিং ভাষা (C Programming)", desc: "অ্যালগরিদম, ফ্লোচার্ট, সি প্রোগ্রামিং স্ট্রাকচার, লুপ ও কন্ডিশনাল স্টেটমেন্ট।" }
+    ];
 
-      const filtered = vocabData.filter(item => 
-        item.word.toLowerCase().includes(query) ||
-        item.meaning.toLowerCase().includes(query) ||
-        item.syn.toLowerCase().includes(query) ||
-        item.ant.toLowerCase().includes(query)
-      );
+    function setActiveNav(route) {
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById(`btn-${route.split('/')[0]}`);
+      if (activeBtn) activeBtn.classList.add('active');
+    }
 
-      filtered.forEach(item => {
+    function renderBreadcrumb(parts) {
+      const bc = document.getElementById('breadcrumb');
+      bc.innerHTML = parts.map((p, idx) => {
+        const isLast = idx === parts.length - 1;
+        return isLast 
+          ? `<span class="active-crumb">${p.name}</span>`
+          : `<span onclick="navigateTo('${p.route}')">${p.name}</span> <span>/</span>`;
+      }).join('');
+    }
+
+    function navigateTo(route) {
+      const app = document.getElementById('app-view');
+
+      if (route === 'home') {
+        setActiveNav('home');
+        renderBreadcrumb([{ name: 'Home', route: 'home' }]);
+        app.innerHTML = `
+          <div class="hero">
+            <h1>Welcome to SAMBOOK</h1>
+            <p>আপনার ডিজিটাল শিক্ষা পোর্টাল — সিলেক্ট করুন বিষয় এবং শুরু করুন প্রস্তুতি</p>
+          </div>
+          <div class="grid-selection">
+            <div class="select-card" onclick="navigateTo('english')">
+              <div class="card-icon">📖</div>
+              <h3>English</h3>
+              <p>English 1st Paper (Textbook Vocabularies & Synonyms) এবং 2nd Paper (Grammar & Writing)।</p>
+              <div class="card-badge">2 Papers Available</div>
+            </div>
+            <div class="select-card" onclick="navigateTo('ict')">
+              <div class="card-icon">💻</div>
+              <h3>ICT</h3>
+              <p>উচ্চ মাধ্যমিক তথ্য ও যোগাযোগ প্রযুক্তি (Chapter 1 থেকে Chapter 5 সম্পূর্ণ সিলেবাস ও লেকচার নোট)।</p>
+              <div class="card-badge">5 Chapters Available</div>
+            </div>
+          </div>
+        `;
+      } 
+      else if (route === 'english') {
+        setActiveNav('english');
+        renderBreadcrumb([
+          { name: 'Home', route: 'home' },
+          { name: 'English', route: 'english' }
+        ]);
+        app.innerHTML = `
+          <div class="hero">
+            <h1>English Department</h1>
+            <p>আপনার পছন্দের পেপার নির্বাচন করুন</p>
+          </div>
+          <div class="grid-selection">
+            <div class="select-card" onclick="navigateTo('english-1st')">
+              <div class="card-icon">📚</div>
+              <h3>English 1st Paper</h3>
+              <p>Unit 1: The Parrot's Tale এর সকল ৭২টি শব্দের বাংলা অর্থ, Synonyms এবং Antonyms সম্পূর্ণ তালিকা।</p>
+              <div class="card-badge">72 Words • Lesson 2</div>
+            </div>
+            <div class="select-card" onclick="navigateTo('english-2nd')">
+              <div class="card-icon">✍️</div>
+              <h3>English 2nd Paper</h3>
+              <p>Grammar Items, Right Forms of Verbs, Prepositions, Modifiers এবং Composition সেকশন।</p>
+              <div class="card-badge">Grammar & Writing</div>
+            </div>
+          </div>
+        `;
+      }
+      else if (route === 'english-1st') {
+        setActiveNav('english');
+        renderBreadcrumb([
+          { name: 'Home', route: 'home' },
+          { name: 'English', route: 'english' },
+          { name: '1st Paper (Lesson 2)', route: 'english-1st' }
+        ]);
+        app.innerHTML = `
+          <div class="hero">
+            <h1>The Parrot's Tale</h1>
+            <p>Unit One: Education and Life — Lesson 2 (Complete 72 Vocabularies)</p>
+          </div>
+
+          <div class="controls">
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="vocabSearch" placeholder="Search word, meaning, synonym or antonym..." oninput="handleVocabSearch(this.value)">
+            </div>
+            <div class="stats" id="vocabStats">Showing: ${vocabData.length} Words</div>
+          </div>
+
+          <div class="vocab-grid" id="vocabGridContainer"></div>
+        `;
+        renderVocabList(vocabData);
+      }
+      else if (route === 'english-2nd') {
+        setActiveNav('english');
+        renderBreadcrumb([
+          { name: 'Home', route: 'home' },
+          { name: 'English', route: 'english' },
+          { name: '2nd Paper', route: 'english-2nd' }
+        ]);
+        app.innerHTML = `
+          <div class="hero">
+            <h1>English 2nd Paper</h1>
+            <p>HSC English Grammar, Structure & Practice Sheets</p>
+          </div>
+          <div class="empty-state">
+            <div style="font-size: 3rem; margin-bottom: 12px;">📝</div>
+            <h3>English 2nd Paper Content Coming Soon</h3>
+            <p>খুব শীঘ্রই এখানে Grammar Rules, Right Form of Verbs, Preposition এবং Writing Part যুক্ত করা হবে।</p>
+          </div>
+        `;
+      }
+      else if (route === 'ict') {
+        setActiveNav('ict');
+        renderBreadcrumb([
+          { name: 'Home', route: 'home' },
+          { name: 'ICT', route: 'ict' }
+        ]);
+        app.innerHTML = `
+          <div class="hero">
+            <h1>তথ্য ও যোগাযোগ প্রযুক্তি (ICT)</h1>
+            <p>অধ্যায়ভিত্তিক লেকচার শিট, হ্যান্ডনোট এবং গুরুত্বপূর্ণ বিষয়সমূহ</p>
+          </div>
+          <div class="grid-selection">
+            ${ictChapters.map(ch => `
+              <div class="select-card" onclick="navigateTo('ict-chapter-${ch.id}')">
+                <div class="card-icon">⚡</div>
+                <h3>${ch.title}</h3>
+                <p>${ch.desc}</p>
+                <div class="card-badge">Chapter ${ch.id}</div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+      else if (route === 'ict-chapter-3') {
+        setActiveNav('ict');
+        renderBreadcrumb([
+          { name: 'Home', route: 'home' },
+          { name: 'ICT', route: 'ict' },
+          { name: 'Chapter 3', route: 'ict-chapter-3' }
+        ]);
+        app.innerHTML = `
+          <div class="hero">
+            <h1>অধ্যায় ৩: সংখ্যা পদ্ধতি ও ডিজিটাল ডিভাইস</h1>
+            <p>লেকচার এবং স্টাডি নোটস তালিকা</p>
+          </div>
+          <div class="grid-selection">
+            <div class="select-card" onclick="navigateTo('ict-ch3-lecture-1')">
+              <div class="card-icon">📝</div>
+              <h3>Lecture 1: সংখ্যা পদ্ধতির প্রাথমিক ধারণা ও রূপান্তর</h3>
+              <p>অধ্যায় পরিচিতি, স্থানিক ও অস্থানিক সংখ্যা পদ্ধতি, ৪টি রূপ (Decimal, Binary, Octal, Hexadecimal) এবং রূপান্তর।</p>
+              <div class="card-badge">Lecture 1 • Active Note</div>
+            </div>
+          </div>
+        `;
+      }
+      else if (route === 'ict-ch3-lecture-1') {
+        setActiveNav('ict');
+        renderBreadcrumb([
+          { name: 'Home', route: 'home' },
+          { name: 'ICT', route: 'ict' },
+          { name: 'Chapter 3', route: 'ict-chapter-3' },
+          { name: 'Lecture 1', route: 'ict-ch3-lecture-1' }
+        ]);
+        app.innerHTML = `
+          <div class="hero">
+            <h1>Lecture 1: সংখ্যা পদ্ধতি (Number System)</h1>
+            <p>অধ্যায় ৩ — সংখ্যা পদ্ধতি ও ডিজিটাল ডিভাইস • সম্পূর্ণ ক্লাস নোট</p>
+          </div>
+
+          <div class="lecture-container">
+
+            <!-- Card 1 -->
+            <div class="lecture-card">
+              <div class="lecture-card-header">
+                <div class="lecture-title">১. অধ্যায় পরিচিতি</div>
+                
+              </div>
+              <div class="lecture-content">
+                <ul>
+                  <li><strong>অধ্যায়ের নাম:</strong> অধ্যায় ৩ – সংখ্যা পদ্ধতি ও ডিজিটাল ডিভাইস।</li>
+                  <li>
+                    <strong>প্রধান দুটি অংশ:</strong>
+                    <div class="highlight-box">
+                      <p><strong>১. প্রথম অংশ:</strong> সংখ্যা পদ্ধতি (Number System)</p>
+                      <p><strong>২. দ্বিতীয় অংশ:</strong> ডিজিটাল ডিভাইস (Digital Devices)</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="lecture-card">
+              <div class="lecture-card-header">
+                <div class="lecture-title">২. সংখ্যা পদ্ধতির প্রকারভেদ (স্থানীয় মানের ভিত্তিতে)</div>
+                
+              </div>
+              <div class="lecture-content">
+                <ul>
+                  <li>
+                    <strong>স্থানিক বা পজিশনাল সংখ্যা পদ্ধতি (Positional Number System): </strong>
+                    <p style="margin-top: 4px;">যে সংখ্যা পদ্ধতি স্থানীয় মান (একক, দশক, শতক ইত্যাদি) মেনে চলে।</p>
+                    <p><strong>যেমন:</strong> দশমিক (Decimal), বাইনারি (Binary), অক্টাল (Octal), হেক্সাডেসিমেল (Hexadecimal)।</p>
+                    <div class="highlight-box">
+                      <strong>উদাহরণ:</strong> ১২৫ সংখ্যাটিতে—<br>
+                      • ৫ এর স্থানীয় মান = <span class="math-formula">5 × 10⁰ = 5</span><br>
+                      • ২ এর স্থানীয় মান = <span class="math-formula">2 × 10¹ = 20</span><br>
+                      • ১ এর স্থানীয় মান = <span class="math-formula">1 × 10² = 100</span>
+                    </div>
+                  </li>
+                  <li style="margin-top: 10px;">
+                    <strong>অস্থানিক বা নন-পজিশনাল সংখ্যা পদ্ধতি (Non-Positional Number System): </strong>
+                    <p style="margin-top: 4px;">যে সংখ্যা পদ্ধতি স্থানীয় মান মেনে চলে না।</p>
+                    <div class="highlight-box">
+                      <strong>উদাহরণ:</strong> রোমান সংখ্যা পদ্ধতি (যেমন: <span class="math-formula">XXI = ২১</span> কিন্তু সাধারণ স্থানীয় মানের নিয়মে তা ১১০১ নির্দেশ করে, যা মিলে না)।
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="lecture-card">
+              <div class="lecture-card-header">
+                <div class="lecture-title">৩. পজিশনাল সংখ্যা পদ্ধতির প্রধান ৪টি রূপ</div>
+                
+              </div>
+              <div class="lecture-content">
+                <p style="margin-bottom: 12px; font-weight: 500; color: #1e293b;">
+                  📌 <strong>ভিত্তি বা Base:</strong> কোনো সংখ্যা পদ্ধতিতে ব্যবহৃত মোট মৌলিক চিহ্নের সংখ্যাকে তার ভিত্তি বা Base বলে।
+                </p>
+                <table class="base-table">
+                  <thead>
+                    <tr>
+                      <th>সংখ্যা পদ্ধতি</th>
+                      <th>ভিত্তি (Base)</th>
+                      <th>মৌলিক চিহ্ন বা অংকসমূহ</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>দশমিক (Decimal)</strong></td>
+                      <td>১০</td>
+                      <td>০, ১, ২, ৩, ৪, ৫, ৬, ৭, ৮, ৯ (মোট ১০টি)</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><strong>বাইনারি (Binary)</strong></td>
+                      <td>২</td>
+                      <td>০, ১ (মোট ২টি)। বাইনারির প্রতিটি অংককে <strong>বিট (Bit - Binary Digit)</strong> বলা হয়।</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><strong>অক্টাল (Octal)</strong></td>
+                      <td>৮</td>
+                      <td>০, ১, ২, ৩, ৪, ৫, ৬, ৭ (মোট ৮টি)</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><strong>হেক্সাডেসিমেল (Hexadecimal)</strong></td>
+                      <td>১৬</td>
+                      <td>০ থেকে ৯ পর্যন্ত ১০টি এবং পরবর্তী মানগুলোর জন্য ৬টি ইংরেজি বড় হাতের অক্ষর:<br>
+                        <span class="math-formula">A=10, B=11, C=12, D=13, E=14, F=15</span>
+                      </td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="lecture-card">
+              <div class="lecture-card-header">
+                <div class="lecture-title">৪. সংখ্যা পদ্ধতির রূপান্তর (Conversion)</div>
+                
+              </div>
+              <div class="lecture-content">
+                <ul>
+                  <li>
+                    <strong style="font-size: 1.05rem; color: #4338ca;">ক) দশমিক থেকে বাইনারি (Decimal to Binary):</strong>
+                    <p style="margin-top: 5px;">
+                      <strong>পূর্ণসংখ্যার ক্ষেত্রে:</strong> সংখ্যাটিকে ক্রমাগত ২ দিয়ে ভাগ করতে হবে এবং ভাগশেষগুলো সংরক্ষণ করতে হবে । ভাগফল ০ না হওয়া পর্যন্ত এই প্রক্রিয়া চলবে।
+                    </p>
+                    <p style="margin-top: 5px;">
+                      ভাগশেষগুলো <strong>নিচ থেকে উপরে</strong> সাজিয়ে লিখতে হয় (সবার নিচেরটি <strong>MSB - Most Significant Bit</strong> এবং ওপরেরটি <strong>LSB - Least Significant Bit</strong>) ।
+                    </p>
+                    <div class="highlight-box">
+                      <strong>উদাহরণ :</strong><br>
+                      <span class="math-formula">(99)₁₀ = (1100011)₂</span>
+                    </div>
+                  </li>
+
+                  <li style="margin-top: 16px;">
+                    <strong style="font-size: 1.05rem; color: #4338ca;">খ) দশমিক থেকে অক্টাল (Decimal to Octal): </strong>
+                    <p style="margin-top: 5px;">
+                      <strong>পূর্ণসংখ্যার ক্ষেত্রে:</strong> সংখ্যাটিকে ক্রমাগত ৮ দিয়ে ভাগ করে ভাগশেষগুলো নিচ থেকে উপরে সাজাতে হবে (<strong>MSD - Most Significant Digit</strong> থেকে <strong>LSD - Least Significant Digit</strong>) ।
+                    </p>
+                    <div class="highlight-box">
+                      <strong>উদাহরণ :</strong><br>
+                      <span class="math-formula">(469)₁₀ = (725)₈</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Card 5: Homework Section -->
+            <div class="lecture-card" style="border: 2px dashed #6366f1; background: #fafafa; margin-top: 20px;">
+              <div class="lecture-card-header">
+                <div class="lecture-title">📝 বাড়ির কাজ (Homework Practice - 20 Questions)</div>
+              </div>
+              <div class="lecture-content">
+                <div style="margin-bottom: 20px;">
+                  <h4 style="color: #4338ca; margin-bottom: 8px;">ক) দশমিক থেকে বাইনারিতে রূপান্তর করো (Decimal to Binary):</h4>
+                  <p style="font-size: 0.95rem; line-height: 1.8; color: #1e293b;">
+                    <strong>১.</strong> (35)₁₀ &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <strong>২.</strong> (48)₁₀ &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <strong>৩.</strong> (67)₁₀ &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <strong>৪.</strong> (75)₁₀ &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <strong>৫.</strong> (84)₁₀<br>
+                    <strong>৬.</strong> (105)₁₀ &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <strong>৭.</strong> (120)₁₀ &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <strong>৮.</strong> (156)₁₀ &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <strong>৯.</strong> (189)₁₀ &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <strong>১০.</strong> (215)₁₀
+                  </p>
+                </div>
+
+                <div>
+                  <h4 style="color: #4338ca; margin-bottom: 8px;">খ) দশমিক থেকে অক্টালে রূপান্তর করো (Decimal to Octal):</h4>
+                  <p style="font-size: 0.95rem; line-height: 1.8; color: #1e293b;">
+                    <strong>১.</strong> (55)₁₀ &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <strong>২.</strong> (92)₁₀ &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <strong>৩.</strong> (115)₁₀ &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <strong>৪.</strong> (145)₁₀ &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <strong>৫.</strong> (178)₁₀<br>
+                    <strong>৬.</strong> (230)₁₀ &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <strong>৭.</strong> (312)₁₀ &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <strong>৮.</strong> (385)₁₀ &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <strong>৯.</strong> (420)₁₀ &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <strong>১০.</strong> (550)₁₀
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        `;
+      }
+      else if (route.startsWith('ict-chapter-')) {
+        const chNum = parseInt(route.replace('ict-chapter-', ''));
+        const chapter = ictChapters.find(c => c.id === chNum);
+        setActiveNav('ict');
+        renderBreadcrumb([
+          { name: 'Home', route: 'home' },
+          { name: 'ICT', route: 'ict' },
+          { name: `Chapter ${chNum}`, route }
+        ]);
+        app.innerHTML = `
+          <div class="hero">
+            <h1>${chapter ? chapter.title : `Chapter ${chNum}`}</h1>
+            <p>${chapter ? chapter.desc : ''}</p>
+          </div>
+          <div class="empty-state">
+            <div style="font-size: 3rem; margin-bottom: 12px;">💡</div>
+            <h3>Chapter ${chNum} Handnotes & Questions</h3>
+            <p>এই অধ্যায়ের লেকচার ও প্র্যাকটিস শিট খুব শীঘ্রই যুক্ত করা হবে।</p>
+          </div>
+        `;
+      }
+    }
+
+    function renderVocabList(items) {
+      const container = document.getElementById('vocabGridContainer');
+      const stats = document.getElementById('vocabStats');
+      if (!container) return;
+
+      container.innerHTML = "";
+      items.forEach(item => {
         const card = document.createElement('div');
         card.className = 'vocab-card';
         card.innerHTML = `
@@ -246,14 +1030,25 @@
             <div class="tags">${item.ant}</div>
           </div>
         `;
-        grid.appendChild(card);
+        container.appendChild(card);
       });
 
-      document.getElementById('wordCount').innerText = `Showing: ${filtered.length} Words`;
+      if (stats) stats.innerText = `Showing: ${items.length} Words`;
     }
 
-    // Initial Load
-    renderVocab();
+    function handleVocabSearch(query) {
+      const q = query.trim().toLowerCase();
+      const filtered = vocabData.filter(item => 
+        item.word.toLowerCase().includes(q) ||
+        item.meaning.toLowerCase().includes(q) ||
+        item.syn.toLowerCase().includes(q) ||
+        item.ant.toLowerCase().includes(q)
+      );
+      renderVocabList(filtered);
+    }
+
+    // Initialize Home
+    navigateTo('home');
   </script>
 </body>
 </html>
