@@ -1105,11 +1105,10 @@ function toggleAnswer(ansId, btn) {
     }
   });
 function renderEnglishLectures() {
-  const container = document.getElementById('mainContent') || document.querySelector('.main-content') || document.getElementById('app') || document.querySelector('main');
-  if (!container) return;
+  const app = document.getElementById('app-view');
+  if (!app) return;
 
-  container.innerHTML = `
-  <div id="breadcrumb" class="breadcrumb" style="max-width: 800px; margin: 15px auto 0 auto; padding: 0 15px;"></div>
+  app.innerHTML = `
     <div class="hero">
       <h1>English 1st Paper</h1>
       <p>HSC English 1st Paper Interactive Lectures & Vocabulary Bank</p>
@@ -1134,10 +1133,10 @@ function renderEnglishLectures() {
 }
 
 function renderEnglishLesson1() {
-  const container = document.getElementById('mainContent') || document.querySelector('.main-content') || document.getElementById('app') || document.querySelector('main');
-  if (!container) return;
+  const app = document.getElementById('app-view');
+  if (!app) return;
 
-  container.innerHTML = `
+  app.innerHTML = `
     <div class="hero">
       <h1>The Parrot's Tale</h1>
       <p>Unit One: Education and Life – Lesson 2 (Complete 72 Vocabularies)</p>
@@ -1224,6 +1223,9 @@ function logoutTeacher() {
 
 function renderTeacherDashboard() {
   const container = document.getElementById('teacher-portal-view');
+  const mainCont = document.getElementById('mainContent') || document.querySelector('.main-content') || document.getElementById('app');
+  if (mainCont) mainCont.style.display = 'none';
+  if (container) container.style.display = 'block';
   if (!container) return;
 
   const isLogged = localStorage.getItem('sambook_teacher_logged') === 'true';
