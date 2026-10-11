@@ -639,14 +639,15 @@
     }
 
     function renderBreadcrumb(parts) {
-      const bc = document.getElementById('breadcrumb');
-      bc.innerHTML = parts.map((p, idx) => {
-        const isLast = idx === parts.length - 1;
-        return isLast 
-          ? `<span class="active-crumb">${p.name}</span>`
-          : `<span onclick="navigateTo('${p.route}')">${p.name}</span> <span>/</span>`;
-      }).join('');
-    }
+  const bc = document.getElementById('breadcrumb');
+  if (!bc) return;
+  bc.innerHTML = parts.map((p, idx) => {
+    const isLast = idx === parts.length - 1;
+    return isLast
+      ? `<span class="active-crumb">${p.name}</span>`
+      : `<span onclick="navigateTo('${p.route}')">${p.name}</span> <span>/</span>`;
+  }).join('');
+}
 function toggleAnswer(ansId, btn) {
   const ansEl = document.getElementById(ansId);
   if (ansEl.style.display === 'none' || ansEl.style.display === '') {
@@ -730,25 +731,19 @@ function toggleAnswer(ansId, btn) {
         renderBreadcrumb([
           { name: 'Home', route: 'home' },
           { name: 'English', route: 'english' },
-          { name: '1st Paper (Lesson 2)', route: 'english-1st' }
+          { name: 'English 1st Paper', route: 'english-1st' }
         ]);
-        app.innerHTML = `
-          <div class="hero">
-            <h1>The Parrot's Tale</h1>
-            <p>Unit One: Education and Life — Lesson 2 (Complete 72 Vocabularies)</p>
-          </div>
-
-          <div class="controls">
-            <div class="search-box">
-              <span class="search-icon">🔍</span>
-              <input type="text" id="vocabSearch" placeholder="Search word, meaning, synonym or antonym..." oninput="handleVocabSearch(this.value)">
-            </div>
-            <div class="stats" id="vocabStats">Showing: ${vocabData.length} Words</div>
-          </div>
-
-          <div class="vocab-grid" id="vocabGridContainer"></div>
-        `;
-        renderVocabList(vocabData);
+        renderEnglishLectures();
+      }
+      else if (route === 'english-lec1') {
+        setActiveNav('english');
+        renderBreadcrumb([
+          { name: 'Home', route: 'home' },
+          { name: 'English', route: 'english' },
+          { name: 'English 1st Paper', route: 'english-1st' },
+          { name: 'Lecture 01', route: 'english-lec1' }
+        ]);
+        renderEnglishLesson1();
       }
       else if (route === 'english-2nd') {
         setActiveNav('english');
@@ -1109,6 +1104,55 @@ function toggleAnswer(ansId, btn) {
       navigateTo('home', false);
     }
   });
+function renderEnglishLectures() {
+  const container = document.getElementById('mainContent') || document.querySelector('.main-content') || document.getElementById('app') || document.querySelector('main');
+  if (!container) return;
+
+  container.innerHTML = `
+  <div id="breadcrumb" class="breadcrumb" style="max-width: 800px; margin: 15px auto 0 auto; padding: 0 15px;"></div>
+    <div class="hero">
+      <h1>English 1st Paper</h1>
+      <p>HSC English 1st Paper Interactive Lectures & Vocabulary Bank</p>
+    </div>
+    <div style="max-width: 800px; margin: 30px auto; padding: 0 15px;">
+      <div onclick="navigateTo('english-lec1')" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 22px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.04); transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.04)';">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="background: #eef2ff; color: #4f46e5; width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700;">
+            01
+          </div>
+          <div>
+            <h3 style="margin: 0; font-size: 1.15rem; color: #1e293b;">Lecture 01 : Unit 1 (Lesson 2)</h3>
+            <p style="margin: 4px 0 0 0; font-size: 0.88rem; color: #64748b;">The Parrot's Tale – Complete 72 Vocabularies, Synonyms & Antonyms</p>
+          </div>
+        </div>
+        <div style="color: #4f46e5; font-weight: 600; font-size: 0.95rem;">
+          View Lesson →
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderEnglishLesson1() {
+  const container = document.getElementById('mainContent') || document.querySelector('.main-content') || document.getElementById('app') || document.querySelector('main');
+  if (!container) return;
+
+  container.innerHTML = `
+    <div class="hero">
+      <h1>The Parrot's Tale</h1>
+      <p>Unit One: Education and Life – Lesson 2 (Complete 72 Vocabularies)</p>
+    </div>
+    <div class="controls">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="vocabSearch" placeholder="Search word, meaning, synonym or antonym..." oninput="handleVocabSearch(this.value)">
+      </div>
+      <div class="stats" id="vocabStats">Showing: ${vocabData.length} Words</div>
+    </div>
+    <div class="vocab-grid" id="vocabGridContainer"></div>
+  `;
+  renderVocabList(vocabData);
+}
   /* --- TEACHER PANEL & STUDENT REPORT CARD LOGIC --- */
 const TEACHER_AUTH = {
   user: "kh sami",
