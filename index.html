@@ -530,6 +530,7 @@
         <button class="nav-btn" id="btn-home" onclick="navigateTo('home')">Home</button>
         <button class="nav-btn" id="btn-english" onclick="navigateTo('english')">English</button>
         <button class="nav-btn" id="btn-ict" onclick="navigateTo('ict')">ICT</button>
+        <button class="nav-btn" id="btn-teacher" onclick="navigateTo('teacher')">👨‍🏫 টিচার পোর্টাল</button>
       </div>
     </div>
   </nav>
@@ -646,9 +647,25 @@
           : `<span onclick="navigateTo('${p.route}')">${p.name}</span> <span>/</span>`;
       }).join('');
     }
-
-    function navigateTo(route) {
-      const app = document.getElementById('app-view');
+function toggleAnswer(ansId, btn) {
+  const ansEl = document.getElementById(ansId);
+  if (ansEl.style.display === 'none' || ansEl.style.display === '') {
+    ansEl.style.display = 'block';
+    btn.innerText = 'উত্তর লুকান ▲';
+    btn.style.background = '#e2e8f0';
+    btn.style.color = '#334155';
+  } else {
+    ansEl.style.display = 'none';
+    btn.innerText = 'উত্তর দেখুন ▼';
+    btn.style.background = '#4f46e5';
+    btn.style.color = '#ffffff';
+  }
+}
+    function navigateTo(route, addToHistory = true) {
+  if (addToHistory) {
+    history.pushState({ route: route }, '', '#' + route);
+  }
+  const app = document.getElementById('app-view');
 
       if (route === 'home') {
         setActiveNav('home');
@@ -955,38 +972,56 @@
                 <div class="lecture-title">📝 বাড়ির কাজ (Homework Practice - 20 Questions)</div>
               </div>
               <div class="lecture-content">
-                <div style="margin-bottom: 20px;">
-                  <h4 style="color: #4338ca; margin-bottom: 8px;">ক) দশমিক থেকে বাইনারিতে রূপান্তর করো (Decimal to Binary):</h4>
-                  <p style="font-size: 0.95rem; line-height: 1.8; color: #1e293b;">
-                    <strong>১.</strong> (35)<sub>10</sub> &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <strong>২.</strong> (48)<sub>10</sub> &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <strong>৩.</strong> (67)<sub>10</sub> &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <strong>৪.</strong> (75)<sub>10</sub> &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <strong>৫.</strong> (84)<sub>10</sub><br>
-                    <strong>৬.</strong> (105)<sub>10</sub> &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <strong>৭.</strong> (120)<sub>10</sub> &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <strong>৮.</strong> (156)<sub>10</sub> &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <strong>৯.</strong> (189)<sub>10</sub> &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <strong>১০.</strong> (215)<sub>10</sub>
-                  </p>
-                </div>
+  <div style="margin-bottom: 20px;">
+              <h4 style="color: #4338ca; margin-bottom: 8px;">A) Decimal to Binary Conversion:</h4>
+              <p style="font-size: 0.95rem; line-height: 1.8; color: #1e293b;">
+                <strong>1.</strong> (35)<sub>10</sub> &nbsp;|&nbsp; 
+                <strong>2.</strong> (50)<sub>10</sub> &nbsp;|&nbsp; 
+                <strong>3.</strong> (95)<sub>10</sub> &nbsp;|&nbsp; 
+                <strong>4.</strong> (105)<sub>10</sub> &nbsp;|&nbsp; 
+                <strong>5.</strong> (127)<sub>10</sub><br>
+                <strong>6.</strong> (170)<sub>10</sub> &nbsp;|&nbsp; 
+                <strong>7.</strong> (215)<sub>10</sub> &nbsp;|&nbsp; 
+                <strong>8.</strong> (291)<sub>10</sub> &nbsp;|&nbsp; 
+                <strong>9.</strong> (440)<sub>10</sub> &nbsp;|&nbsp; 
+                <strong>10.</strong> (859)<sub>10</sub>
+              </p>
+            </div>
 
-                <div>
-                  <h4 style="color: #4338ca; margin-bottom: 8px;">খ) দশমিক থেকে অক্টালে রূপান্তর করো (Decimal to Octal):</h4>
-                  <p style="font-size: 0.95rem; line-height: 1.8; color: #1e293b;">
-                    <strong>১.</strong> (55)<sub>10</sub> &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <strong>২.</strong> (92)<sub>10</sub> &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <strong>৩.</strong> (115)<sub>10</sub> &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <strong>৪.</strong> (145)<sub>10</sub> &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <strong>৫.</strong> (178)<sub>10</sub><br>
-                    <strong>৬.</strong> (230)<sub>10</sub> &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <strong>৭.</strong> (312)<sub>10</sub> &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <strong>৮.</strong> (385)<sub>10</sub> &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <strong>৯.</strong> (420)<sub>10</sub> &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <strong>১০.</strong> (550)<sub>10</sub>
-                  </p>
-                </div>
-              </div>
+            <div>
+              <h4 style="color: #4338ca; margin-bottom: 8px;">B) Decimal to Octal Conversion:</h4>
+              <p style="font-size: 0.95rem; line-height: 1.8; color: #1e293b;">
+                <strong>1.</strong> (55)<sub>10</sub> &nbsp;|&nbsp; 
+                <strong>2.</strong> (92)<sub>10</sub> &nbsp;|&nbsp; 
+                <strong>3.</strong> (115)<sub>10</sub> &nbsp;|&nbsp; 
+                <strong>4.</strong> (145)<sub>10</sub> &nbsp;|&nbsp; 
+                <strong>5.</strong> (178)<sub>10</sub><br>
+                <strong>6.</strong> (230)<sub>10</sub> &nbsp;|&nbsp; 
+                <strong>7.</strong> (312)<sub>10</sub> &nbsp;|&nbsp; 
+                <strong>8.</strong> (385)<sub>10</sub> &nbsp;|&nbsp; 
+                <strong>9.</strong> (420)<sub>10</sub> &nbsp;|&nbsp; 
+                <strong>10.</strong> (550)<sub>10</sub>
+              </p>
+            </div>
+
+            <!-- Answer Toggle Button -->
+            <div style="margin-top: 18px; text-align: center;">
+              <button onclick="toggleAnswer('hw-answers', this)" 
+                      style="background: #4f46e5; color: #fff; border: none; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-family: inherit; cursor: pointer; transition: 0.2s;">
+                উত্তর দেখুন ▼
+              </button>
+            </div>
+
+            <!-- Hidden Answer Box -->
+            <div id="hw-answers" style="display: none; margin-top: 16px; padding: 16px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1; font-size: 0.92rem; line-height: 1.8; color: #1e293b;">
+              <p style="font-weight: bold; color: #4338ca; margin-bottom: 6px;">A) Decimal to Binary Answers:</p>
+              1. (100011)<sub>2</sub> &nbsp;|&nbsp; 2. (110010)<sub>2</sub> &nbsp;|&nbsp; 3. (1011111)<sub>2</sub> &nbsp;|&nbsp; 4. (1101001)<sub>2</sub> &nbsp;|&nbsp; 5. (1111111)<sub>2</sub><br>
+              6. (10101010)<sub>2</sub> &nbsp;|&nbsp; 7. (11010111)<sub>2</sub> &nbsp;|&nbsp; 8. (100100011)<sub>2</sub> &nbsp;|&nbsp; 9. (110111000)<sub>2</sub> &nbsp;|&nbsp; 10. (1101011011)<sub>2</sub>
+
+              <p style="font-weight: bold; color: #4338ca; margin-top: 12px; margin-bottom: 6px;">B) Decimal to Octal Answers:</p>
+              1. (67)<sub>8</sub> &nbsp;|&nbsp; 2. (134)<sub>8</sub> &nbsp;|&nbsp; 3. (163)<sub>8</sub> &nbsp;|&nbsp; 4. (221)<sub>8</sub> &nbsp;|&nbsp; 5. (262)<sub>8</sub><br>
+              6. (346)<sub>8</sub> &nbsp;|&nbsp; 7. (470)<sub>8</sub> &nbsp;|&nbsp; 8. (601)<sub>8</sub> &nbsp;|&nbsp; 9. (644)<sub>8</sub> &nbsp;|&nbsp; 10. (1046)<sub>8</sub>
+            </div>
             </div>
 
           </div>
@@ -1013,6 +1048,15 @@
           </div>
         `;
       }
+      else if (route === 'teacher') {
+      setActiveNav('teacher');
+      renderBreadcrumb([
+        { name: 'Home', route: 'home' },
+        { name: 'Teacher Portal', route: 'teacher' }
+      ]);
+      app.innerHTML = `<div id="teacher-portal-view" style="max-width: 700px; margin: 0 auto; padding: 10px;"></div>`;
+      renderTeacherDashboard();
+    }
     }
 
     function renderVocabList(items) {
@@ -1056,7 +1100,232 @@
     }
 
     // Initialize Home
-    navigateTo('home');
-  </script>
+  navigateTo('home');
+
+  window.addEventListener('popstate', function (event) {
+    if (event.state && event.state.route) {
+      navigateTo(event.state.route, false);
+    } else {
+      navigateTo('home', false);
+    }
+  });
+  /* --- TEACHER PANEL & STUDENT REPORT CARD LOGIC --- */
+const TEACHER_AUTH = {
+  user: "kh sami",
+  pass: "Secret26"
+};
+
+// LocalStorage theke homework dates load kora, na thakle default 10-10-26
+function getSavedHomeworkDates() {
+  const saved = localStorage.getItem('sambook_hw_dates');
+  if (saved) {
+    try { return JSON.parse(saved); } catch(e) {}
+  }
+  return ["10-10-26"];
+}
+
+function saveHomeworkDates(dates) {
+  localStorage.setItem('sambook_hw_dates', JSON.stringify(dates));
+}
+
+function addNewHomeworkDate() {
+  const input = document.getElementById('new-hw-date-input');
+  if (!input || !input.value.trim()) return;
+
+  const rawDate = input.value.trim();
+  let formattedDate = rawDate;
+
+  // Jodi date picker format (YYYY-MM-DD) hoy, sheitake DD-MM-YY te convert kora
+  if (rawDate.includes('-') && rawDate.split('-')[0].length === 4) {
+    const parts = rawDate.split('-');
+    formattedDate = `${parts[2]}-${parts[1]}-${parts[0].slice(-2)}`;
+  }
+
+  const currentDates = getSavedHomeworkDates();
+  if (!currentDates.includes(formattedDate)) {
+    currentDates.unshift(formattedDate);
+    saveHomeworkDates(currentDates);
+    renderTeacherDashboard();
+  } else {
+    alert('Ei date ti already list-e ache!');
+  }
+}
+
+function deleteHomeworkDate(dateStr) {
+  if (!confirm(`${dateStr} tarikh-er record ti list theke delete korte chan?`)) return;
+  let currentDates = getSavedHomeworkDates();
+  currentDates = currentDates.filter(d => d !== dateStr);
+  saveHomeworkDates(currentDates);
+  renderTeacherDashboard();
+}
+
+function handleTeacherLogin(e) {
+  e.preventDefault();
+  const u = document.getElementById('tp-username').value.trim().toLowerCase();
+  const p = document.getElementById('tp-password').value.trim();
+  const err = document.getElementById('tp-login-error');
+
+  if (u === TEACHER_AUTH.user && p === TEACHER_AUTH.pass) {
+    localStorage.setItem('sambook_teacher_logged', 'true');
+    renderTeacherDashboard();
+  } else {
+    if (err) err.style.display = 'block';
+  }
+}
+
+function logoutTeacher() {
+  localStorage.removeItem('sambook_teacher_logged');
+  renderTeacherDashboard();
+}
+
+function renderTeacherDashboard() {
+  const container = document.getElementById('teacher-portal-view');
+  if (!container) return;
+
+  const isLogged = localStorage.getItem('sambook_teacher_logged') === 'true';
+
+  if (!isLogged) {
+    container.innerHTML = `
+      <div style="max-width: 380px; margin: 40px auto; padding: 28px; background: #ffffff; border-radius: 18px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; border: 1px solid #e2e8f0;">
+        <div style="font-size: 2.5rem; margin-bottom: 10px;">🔐</div>
+        <h3 style="margin-bottom: 6px; color: #1e293b; font-size: 1.3rem;">Teacher Portal</h3>
+        <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 22px;">লগইন করতে আপনার আইডি ও পাসওয়ার্ড দিন</p>
+        <form onsubmit="handleTeacherLogin(event)">
+          <input type="text" id="tp-username" placeholder="User ID" required style="width: 100%; padding: 12px 14px; margin-bottom: 12px; border: 1px solid #cbd5e1; border-radius: 9px; font-size: 0.95rem; box-sizing: border-box; outline: none;">
+          <input type="password" id="tp-password" placeholder="Password" required style="width: 100%; padding: 12px 14px; margin-bottom: 12px; border: 1px solid #cbd5e1; border-radius: 9px; font-size: 0.95rem; box-sizing: border-box; outline: none;">
+          <div id="tp-login-error" style="display: none; color: #ef4444; font-size: 0.85rem; margin-bottom: 12px; font-weight: 500;">ভুল ইউজার আইডি বা পাসওয়ার্ড!</div>
+          <button type="submit" style="width: 100%; padding: 12px; background: #4f46e5; color: #fff; border: none; border-radius: 9px; font-weight: 600; cursor: pointer; font-size: 0.95rem;">লগইন করুন</button>
+        </form>
+      </div>
+    `;
+    return;
+  }
+
+  const allDates = getSavedHomeworkDates();
+  const historyListHTML = allDates.map(dateStr => `
+    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 16px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <div>
+        <span style="font-size: 0.82rem; color: #64748b; font-weight: 500; text-transform: uppercase;">Assignment Date:</span>
+        <div style="font-size: 1.15rem; font-weight: 700; color: #312e81; margin-top: 2px;">Homework : ${dateStr}</div>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <button onclick="generateHWStatus('done', '${dateStr}')" style="background: #10b981; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.88rem;">
+          ✓ Done
+        </button>
+        <button onclick="generateHWStatus('undone', '${dateStr}')" style="background: #ef4444; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.88rem;">
+          ✗ Undone
+        </button>
+        <button onclick="deleteHomeworkDate('${dateStr}')" title="Delete Date" style="background: transparent; color: #94a3b8; border: none; font-size: 1.1rem; cursor: pointer; padding: 4px 6px;">
+          🗑️
+        </button>
+      </div>
+    </div>
+  `).join('');
+
+  container.innerHTML = `
+    <div style="background: #ffffff; border-radius: 18px; padding: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 14px; margin-bottom: 20px;">
+        <div>
+          <h3 style="color: #1e293b; margin: 0; font-size: 1.3rem;">📊 স্টুডেন্ট রিপোর্ট কার্ড</h3>
+          <p style="font-size: 0.88rem; color: #64748b; margin: 4px 0 0 0;">শিক্ষার্থী: <strong style="color: #312e81;">Tasfiya Liana</strong></p>
+        </div>
+        <button onclick="logoutTeacher()" style="background: #fee2e2; color: #dc2626; border: none; padding: 7px 14px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer;">লগআউট</button>
+      </div>
+
+      <!-- Add New Homework Bar -->
+      <div style="background: #f1f5f9; border-radius: 12px; padding: 14px; margin-bottom: 20px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+        <span style="font-size: 0.88rem; font-weight: 600; color: #334155;">নতুন তারিখ যোগ করুন:</span>
+        <input type="text" id="new-hw-date-input" placeholder="যেমন: 15-10-26" style="padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem; outline: none; flex: 1; min-width: 140px;">
+        <button onclick="addNewHomeworkDate()" style="background: #4f46e5; color: white; border: none; padding: 8px 18px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer;">
+          + Add Date
+        </button>
+      </div>
+
+      <!-- All Homework History List -->
+      <div style="margin-bottom: 20px;">
+        <h4 style="font-size: 0.95rem; color: #475569; margin-bottom: 12px; font-weight: 600;">অ্যাসাইনমেন্ট ট্র্যাকিং হিস্ট্রি:</h4>
+        ${historyListHTML}
+      </div>
+
+      <!-- Result Container -->
+      <div id="tp-message-box" style="display: none;"></div>
+    </div>
+  `;
+}
+
+function generateHWStatus(status, dateStr) {
+  const box = document.getElementById('tp-message-box');
+  if (!box) return;
+
+  const motivationalQuotes = [
+    "প্রতিটি দিনের ছোট ছোট নিয়মিত প্রচেষ্টাই ভবিষ্যতে বড় সফলতায় রূপান্তরিত হয়।",
+    "সাফল্য কোনো কাকতালীয় ঘটনা নয়; এটি কঠোর পরিশ্রম ও শেখার প্রতি ভালোবাসার ফল।",
+    "আজকের অনুশীলনই আগামীকালের আত্মবিশ্বাস তৈরি করে। এগিয়ে চলো!",
+    "ধারাবাহিকতাই মেধার চেয়ে বেশি শক্তিশালী। তোমার এই অগ্রগতি ধরে রাখো!"
+  ];
+  const randomQuote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+
+  if (status === 'done') {
+    const studentDoneMsg = `অভিনন্দন তাসফিয়া লিয়ানা! 🎉\nতুমি আজকের (${dateStr}) হোমওয়ার্ক সময়মতো সম্পন্ন করেছ। খুব ভালো কাজ!\n\n💡 অনুপ্রেরণা: "${randomQuote}"\nতোমার এই সুন্দর ধারাবাহিকতা বজায় রাখো, তুমি অনেক দূর এগিয়ে যাবে! 🚀\n— শিক্ষক (KH SAMI)`;
+
+    box.innerHTML = `
+      <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 12px; padding: 16px; margin-top: 15px;">
+        <div style="font-weight: 700; color: #065f46; font-size: 0.95rem; margin-bottom: 8px;">🎉 স্টুডেন্ট মেসেজ (Done & Motivation)</div>
+        <div id="msg-text-done" style="white-space: pre-line; background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #d1fae5; font-size: 0.9rem; color: #1e293b; line-height: 1.6;">${studentDoneMsg}</div>
+        <div style="display: flex; gap: 10px; margin-top: 12px;">
+          <button onclick="copyToClipboard('msg-text-done', this)" style="flex: 1; background: #059669; color: white; border: none; padding: 9px; border-radius: 7px; font-weight: 600; cursor: pointer;">📋 Copy Text</button>
+          <button onclick="sendToWhatsApp('msg-text-done')" style="flex: 1; background: #25d366; color: white; border: none; padding: 9px; border-radius: 7px; font-weight: 600; cursor: pointer;">💬 Send to WhatsApp</button>
+        </div>
+      </div>
+    `;
+  } else {
+    const studentAlertMsg = `সতর্কবার্তা: তাসফিয়া লিয়ানা!\nতুমি আজকের (${dateStr}) নির্ধারিত হোমওয়ার্কটি সম্পন্ন করোনি, যা কাম্য নয়।\n\nপড়াশোনায় ফাঁকি দিলে কিন্তু নিজের লক্ষ্য অর্জন কঠিন হয়ে পড়বে। কালকের ক্লাসের আগে অবশ্যই এটি শেষ করে আমাকে দেখাবে! নিজের ভালোর জন্য পড়াশোনায় নিয়মিত হও।\n— শিক্ষক (KH SAMI)`;
+
+    const guardianMsg = `আসসালামু আলাইকুম।\nতাসফিয়া লিয়ানার অভিভাবকের অবগতির জন্য জানানো যাচ্ছে যে, সে আজকের (${dateStr}) নির্ধারিত হোমওয়ার্কটি সম্পন্ন করেনি।\n\nপড়াশোনার নিয়মিত অগ্রগতি এবং কাঙ্ক্ষিত ফলাফলের স্বার্থে প্রতিদিনের পড়া নিয়মিত রাখা অত্যন্ত জরুরি। বাসায় ওকে একটু তদারকি করার জন্য বিনীত অনুরোধ করা হলো।\n— শিক্ষক (KH SAMI)`;
+
+    box.innerHTML = `
+      <!-- Student Alert -->
+      <div style="background: #fff1f2; border: 1px solid #fecdd3; border-radius: 12px; padding: 16px; margin-top: 15px;">
+        <div style="font-weight: 700; color: #9f1239; font-size: 0.95rem; margin-bottom: 8px;">⚠️ ১. স্টুডেন্ট অ্যালার্ট মেসেজ (Warning)</div>
+        <div id="msg-text-alert" style="white-space: pre-line; background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #ffe4e6; font-size: 0.9rem; color: #1e293b; line-height: 1.6;">${studentAlertMsg}</div>
+        <div style="display: flex; gap: 10px; margin-top: 12px;">
+          <button onclick="copyToClipboard('msg-text-alert', this)" style="flex: 1; background: #e11d48; color: white; border: none; padding: 9px; border-radius: 7px; font-weight: 600; cursor: pointer;">📋 Copy Text</button>
+          <button onclick="sendToWhatsApp('msg-text-alert')" style="flex: 1; background: #25d366; color: white; border: none; padding: 9px; border-radius: 7px; font-weight: 600; cursor: pointer;">💬 Send to WhatsApp</button>
+        </div>
+      </div>
+
+      <!-- Guardian Notice -->
+      <div style="background: #fefce8; border: 1px solid #fef08a; border-radius: 12px; padding: 16px; margin-top: 15px;">
+        <div style="font-weight: 700; color: #854d0e; font-size: 0.95rem; margin-bottom: 8px;">📢 ২. অভিভাবকের জন্য নোটিশ (Guardian Notice)</div>
+        <div id="msg-text-guardian" style="white-space: pre-line; background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #fef9c3; font-size: 0.9rem; color: #1e293b; line-height: 1.6;">${guardianMsg}</div>
+        <div style="display: flex; gap: 10px; margin-top: 12px;">
+          <button onclick="copyToClipboard('msg-text-guardian', this)" style="flex: 1; background: #ca8a04; color: white; border: none; padding: 9px; border-radius: 7px; font-weight: 600; cursor: pointer;">📋 Copy Text</button>
+          <button onclick="sendToWhatsApp('msg-text-guardian')" style="flex: 1; background: #25d366; color: white; border: none; padding: 9px; border-radius: 7px; font-weight: 600; cursor: pointer;">💬 Send to WhatsApp</button>
+        </div>
+      </div>
+    `;
+  }
+
+  box.style.display = 'block';
+  box.scrollIntoView({ behavior: 'smooth' });
+}
+
+function copyToClipboard(elementId, btn) {
+  const text = document.getElementById(elementId).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const originalText = btn.innerText;
+    btn.innerText = '✓ Copied!';
+    setTimeout(() => {
+      btn.innerText = originalText;
+    }, 2000);
+  });
+}
+
+function sendToWhatsApp(elementId) {
+  const text = document.getElementById(elementId).innerText;
+  const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+}
+</script>
 </body>
 </html>
