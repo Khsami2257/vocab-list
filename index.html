@@ -1159,16 +1159,19 @@ const TEACHER_AUTH = {
 };
 
 // LocalStorage theke homework dates load kora, na thakle default 10-10-26
+// LocalStorage theke homework data load kora (date ebong status soho)
 function getSavedHomeworkDates() {
-  const saved = localStorage.getItem('sambook_hw_dates');
+  const saved = localStorage.getItem('sambook_hw_data_v2');
   if (saved) {
     try { return JSON.parse(saved); } catch(e) {}
   }
-  return ["10-10-26"];
+  return [
+    { date: "10-10-26", status: "pending" }
+  ];
 }
 
-function saveHomeworkDates(dates) {
-  localStorage.setItem('sambook_hw_dates', JSON.stringify(dates));
+function saveHomeworkDates(dataList) {
+  localStorage.setItem('sambook_hw_data_v2', JSON.stringify(dataList));
 }
 
 function addNewHomeworkDate() {
@@ -1178,16 +1181,16 @@ function addNewHomeworkDate() {
   const rawDate = input.value.trim();
   let formattedDate = rawDate;
 
-  // Jodi date picker format (YYYY-MM-DD) hoy, sheitake DD-MM-YY te convert kora
   if (rawDate.includes('-') && rawDate.split('-')[0].length === 4) {
     const parts = rawDate.split('-');
     formattedDate = `${parts[2]}-${parts[1]}-${parts[0].slice(-2)}`;
   }
 
-  const currentDates = getSavedHomeworkDates();
-  if (!currentDates.includes(formattedDate)) {
-    currentDates.unshift(formattedDate);
-    saveHomeworkDates(currentDates);
+  const currentList = getSavedHomeworkDates();
+  const exists = currentList.some(item => item.date === formattedDate);
+  if (!exists) {
+    currentList.unshift({ date: formattedDate, status: "pending" });
+    saveHomeworkDates(currentList);
     renderTeacherDashboard();
   } else {
     alert('Ei date ti already list-e ache!');
@@ -1195,11 +1198,22 @@ function addNewHomeworkDate() {
 }
 
 function deleteHomeworkDate(dateStr) {
-  if (!confirm(`${dateStr} tarikh-er record ti list theke delete korte chan?`)) return;
-  let currentDates = getSavedHomeworkDates();
-  currentDates = currentDates.filter(d => d !== dateStr);
-  saveHomeworkDates(currentDates);
+  if (!confirm(`${dateStr} tarikh-er record ti delete korte chan?`)) return;
+  let currentList = getSavedHomeworkDates();
+  currentList = currentList.filter(item => item.date !== dateStr);
+  saveHomeworkDates(currentList);
   renderTeacherDashboard();
+}
+
+function setHWStatus(dateStr, newStatus) {
+  let currentList = getSavedHomeworkDates();
+  const target = currentList.find(item => item.date === dateStr);
+  if (target) {
+    target.status = newStatus;
+    saveHomeworkDates(currentList);
+  }
+  renderTeacherDashboard();
+  generateHWStatus(newStatus, dateStr);
 }
 
 function handleTeacherLogin(e) {
@@ -1247,26 +1261,38 @@ function renderTeacherDashboard() {
     return;
   }
 
-  const allDates = getSavedHomeworkDates();
-  const historyListHTML = allDates.map(dateStr => `
+ const allData = getSavedHomeworkDates();
+  const historyListHTML = allData.map(item => {
+    let statusBadge = `<span style="background: #f1f5f9; color: #64748b; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">⏳ পেন্ডিং</span>`;
+    if (item.status === 'done') {
+      statusBadge = `<span style="background: #dcfce7; color: #15803d; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">✓ সম্পন্ন (Done)</span>`;
+    } else if (item.status === 'undone') {
+      statusBadge = `<span style="background: #fee2e2; color: #b91c1c; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">✗ অসম্পূর্ণ (Undone)</span>`;
+    }
+
+    return `
     <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 16px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
       <div>
-        <span style="font-size: 0.82rem; color: #64748b; font-weight: 500; text-transform: uppercase;">Assignment Date:</span>
-        <div style="font-size: 1.15rem; font-weight: 700; color: #312e81; margin-top: 2px;">Homework : ${dateStr}</div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 0.82rem; color: #64748b; font-weight: 500; text-transform: uppercase;">Assignment Date:</span>
+          ${statusBadge}
+        </div>
+        <div style="font-size: 1.15rem; font-weight: 700; color: #312e81; margin-top: 4px;">Homework : ${item.date}</div>
       </div>
       <div style="display: flex; gap: 8px; align-items: center;">
-        <button onclick="generateHWStatus('done', '${dateStr}')" style="background: #10b981; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.88rem;">
+        <button onclick="setHWStatus('${item.date}', 'done')" style="background: ${item.status === 'done' ? '#059669' : '#10b981'}; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.88rem; box-shadow: ${item.status === 'done' ? '0 0 0 2px #047857' : 'none'};">
           ✓ Done
         </button>
-        <button onclick="generateHWStatus('undone', '${dateStr}')" style="background: #ef4444; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.88rem;">
+        <button onclick="setHWStatus('${item.date}', 'undone')" style="background: ${item.status === 'undone' ? '#b91c1c' : '#ef4444'}; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.88rem; box-shadow: ${item.status === 'undone' ? '0 0 0 2px #991b1b' : 'none'};">
           ✗ Undone
         </button>
-        <button onclick="deleteHomeworkDate('${dateStr}')" title="Delete Date" style="background: transparent; color: #94a3b8; border: none; font-size: 1.1rem; cursor: pointer; padding: 4px 6px;">
+        <button onclick="deleteHomeworkDate('${item.date}')" title="Delete Date" style="background: transparent; color: #94a3b8; border: none; font-size: 1.1rem; cursor: pointer; padding: 4px 6px;">
           🗑️
         </button>
       </div>
     </div>
-  `).join('');
+    `;
+  }).join('');
 
   container.innerHTML = `
     <div style="background: #ffffff; border-radius: 18px; padding: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
