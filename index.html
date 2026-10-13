@@ -25,6 +25,126 @@
       --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
       --shadow-hover: 0 15px 30px -5px rgba(79, 70, 229, 0.12);
     }
+    /* Dark Mode Theme Variables */
+    body.dark-mode {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --syn-bg: #064e3b;
+      --ant-bg: #7f1d1d;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    body.dark-mode .navbar,
+    body.dark-mode .select-card,
+    body.dark-mode .vocab-card,
+    body.dark-mode .lecture-card,
+    body.dark-mode .controls,
+    body.dark-mode footer {
+      background: #1e293b;
+      border-color: #334155;
+      color: #f8fafc;
+    }
+
+    body.dark-mode .hero h1,
+    body.dark-mode .select-card h3,
+    body.dark-mode .lecture-title,
+    body.dark-mode .word-text {
+      color: #f8fafc;
+    }
+
+    body.dark-mode .search-box input {
+      background: #0f172a;
+      border-color: #334155;
+      color: #f8fafc;
+    }
+
+    body.dark-mode .highlight-box,
+    body.dark-mode .base-table th,
+    body.dark-mode .base-table td {
+      background: #0f172a;
+      border-color: #334155;
+      color: #e2e8f0;
+    }
+
+    body.dark-mode .tags {
+      color: #cbd5e1;
+    }
+body.dark-mode .lecture-content li,
+    body.dark-mode .lecture-content p,
+    body.dark-mode .lecture-content strong,
+    body.dark-mode .lecture-content span {
+      color: #e2e8f0 !important;
+    }
+
+    body.dark-mode .highlight-box {
+      background: #0f172a !important;
+      border-color: #334155 !important;
+      color: #f1f5f9 !important;
+    }
+
+    body.dark-mode .highlight-box strong {
+      color: #ffffff !important;
+    }
+    /* Homework Card & Answer Box Dark Theme */
+    body.dark-mode .lecture-card[style*="dashed"] {
+      background: #1e293b !important;
+      border-color: #6366f1 !important;
+    }
+
+    body.dark-mode .lecture-card[style*="dashed"] h4,
+    body.dark-mode .lecture-card[style*="dashed"] p,
+    body.dark-mode .lecture-card[style*="dashed"] strong {
+      color: #e2e8f0 !important;
+    }
+
+    body.dark-mode #hw-answers {
+      background: #0f172a !important;
+      border-color: #334155 !important;
+      color: #cbd5e1 !important;
+    }
+
+    body.dark-mode #hw-answers p {
+      color: #818cf8 !important;
+    }
+    /* Math Formula Dark Mode Fix */
+    body.dark-mode .math-formula {
+      background: rgba(99, 102, 241, 0.2) !important;
+      color: #818cf8 !important;
+      border: 1px solid rgba(99, 102, 241, 0.4);
+    }
+    body.dark-mode .nav-btn {
+      background: #334155;
+      color: #e2e8f0;
+    }
+
+    body.dark-mode .nav-btn:hover,
+    body.dark-mode .nav-btn.active {
+      background: #4f46e5;
+      color: #ffffff;
+    }
+
+    /* Dark Mode Toggle Button */
+    .theme-toggle-btn {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 12px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    body.dark-mode .theme-toggle-btn {
+      background: #334155;
+      border-color: #475569;
+      color: #f8fafc;
+    }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -526,11 +646,12 @@
         <img src="sambok_logo-removebg-preview.png" alt="SAMBOOK Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/44?text=SB'">
         <div class="brand-title">SAMBOOK</div>
       </div>
-      <div class="nav-links">
+     <div class="nav-links">
         <button class="nav-btn" id="btn-home" onclick="navigateTo('home')">Home</button>
         <button class="nav-btn" id="btn-english" onclick="navigateTo('english')">English</button>
         <button class="nav-btn" id="btn-ict" onclick="navigateTo('ict')">ICT</button>
         <button class="nav-btn" id="btn-teacher" onclick="navigateTo('teacher')">👨‍🏫 টিচার পোর্টাল</button>
+        <button class="theme-toggle-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">🌙</button>
       </div>
     </div>
   </nav>
@@ -744,6 +865,26 @@ function toggleAnswer(ansId, btn) {
           { name: 'Lecture 01', route: 'english-lec1' }
         ]);
         renderEnglishLesson1();
+      }
+else if (route === 'english-lec1-exam') {
+        setActiveNav('english');
+        renderBreadcrumb([
+          { name: 'Home', route: 'home' },
+          { name: 'English', route: 'english' },
+          { name: 'English 1st Paper', route: 'english-1st' },
+          { name: 'Vocabulary Mastery Exam', route: 'english-lec1-exam' }
+        ]);
+        startVocabExam(0); // 0 mane Goal 1 (First 20 words)
+      }
+      else if (route === 'english-lec2') {
+        setActiveNav('english');
+        renderBreadcrumb([
+          { name: 'Home', route: 'home' },
+          { name: 'English', route: 'english' },
+          { name: 'English 1st Paper', route: 'english-1st' },
+          { name: 'Lecture 02', route: 'english-lec2' }
+        ]);
+        renderEnglishLesson2();
       }
       else if (route === 'english-2nd') {
         setActiveNav('english');
@@ -1111,23 +1252,49 @@ function renderEnglishLectures() {
   app.innerHTML = `
     <div class="hero">
       <h1>English 1st Paper</h1>
-      <p>HSC English 1st Paper Interactive Lectures & Vocabulary Bank</p>
+      <p>HSC English 1st Paper Interactive Lectures & Comprehensive Study Materials</p>
     </div>
-    <div style="max-width: 800px; margin: 30px auto; padding: 0 15px;">
-      <div onclick="navigateTo('english-lec1')" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 22px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.04); transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.04)';">
+    <div style="max-width: 800px; margin: 30px auto; padding: 0 15px; display: flex; flex-direction: column; gap: 16px;">
+      
+      <!-- Lecture 01 Card with Dual Buttons -->
+      <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 22px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); flex-wrap: wrap; gap: 15px;">
         <div style="display: flex; align-items: center; gap: 16px;">
           <div style="background: #eef2ff; color: #4f46e5; width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700;">
             01
           </div>
           <div>
-            <h3 style="margin: 0; font-size: 1.15rem; color: #1e293b;">Lecture 01 : Unit 1 (Lesson 2)</h3>
-            <p style="margin: 4px 0 0 0; font-size: 0.88rem; color: #64748b;">The Parrot's Tale – Complete 72 Vocabularies, Synonyms & Antonyms</p>
+            <h3 style="margin: 0; font-size: 1.15rem; color: var(--text-main);">Lecture 01 : Unit 1 (Lesson 2)</h3>
+            <p style="margin: 4px 0 0 0; font-size: 0.88rem; color: var(--text-muted);">The Parrot's Tale – Complete 72 Vocabularies, Synonyms & Antonyms</p>
           </div>
         </div>
-        <div style="color: #4f46e5; font-weight: 600; font-size: 0.95rem;">
-          View Lesson →
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <button onclick="navigateTo('english-lec1')" style="background: #4f46e5; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.88rem; font-family: inherit; transition: 0.2s;">
+            View Lesson →
+          </button>
+          <button onclick="navigateTo('english-lec1-exam')" style="background: #ec4899; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.88rem; font-family: inherit; transition: 0.2s; box-shadow: 0 2px 8px rgba(236,72,153,0.3);">
+            📝 Exam (20 MCQs)
+          </button>
         </div>
       </div>
+
+      <!-- Lecture 02 Card -->
+      <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 22px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); flex-wrap: wrap; gap: 15px;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="background: #fdf2f8; color: #db2777; width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700;">
+            02
+          </div>
+          <div>
+            <h3 style="margin: 0; font-size: 1.15rem; color: var(--text-main);">Lecture 02 : Unit 1 (Lesson 1)</h3>
+            <p style="margin: 4px 0 0 0; font-size: 0.88rem; color: var(--text-muted);">Myths of Bengal – I Have Seen Bengal's Face, Behula & Word Meanings</p>
+          </div>
+        </div>
+        <div>
+          <button onclick="navigateTo('english-lec2')" style="background: #db2777; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.88rem; font-family: inherit; transition: 0.2s;">
+            View Lesson →
+          </button>
+        </div>
+      </div>
+
     </div>
   `;
 }
@@ -1151,6 +1318,456 @@ function renderEnglishLesson1() {
     <div class="vocab-grid" id="vocabGridContainer"></div>
   `;
   renderVocabList(vocabData);
+}
+let currentExamScore = 0;
+/* --- SMART VOCABULARY MCQ EXAM ENGINE (GOAL & ERROR-TARGETED RETAKE) --- */
+
+let examCurrentBatchIndex = 0; // 0: 1-20, 1: 21-40, 2: 41-60, 3: 61-72
+let examActiveQuestions = [];
+let examWrongQuestions = [];
+let examScore = 0;
+let examAnsweredCount = 0;
+let isRetakeMode = false;
+
+// Goal Batches Configuration
+const examBatches = [
+  { name: "Goal 1", rangeText: "Words 01 - 20", start: 0, end: 20 },
+  { name: "Goal 2", rangeText: "Words 21 - 40", start: 20, end: 40 },
+  { name: "Goal 3", rangeText: "Words 41 - 60", start: 40, end: 60 },
+  { name: "Goal 4", rangeText: "Words 61 - 72", start: 60, end: 72 }
+];
+
+function startVocabExam(batchIdx = 0, customQuestionList = null) {
+  examCurrentBatchIndex = batchIdx;
+  const batch = examBatches[batchIdx];
+
+  if (customQuestionList) {
+    examActiveQuestions = customQuestionList;
+    isRetakeMode = true;
+  } else {
+    isRetakeMode = false;
+    const targetWords = vocabData.slice(batch.start, batch.end);
+    examActiveQuestions = [];
+
+    // Prottek word-er jonno 1ta Synonym ebong 1ta Antonym banano
+    targetWords.forEach((item, i) => {
+      // 1. Synonym Question
+      if (item.syn && item.syn !== "N/A") {
+        const correctSyn = item.syn.split(',')[0].trim();
+        const otherWords = vocabData.filter(v => v.word !== item.word && v.syn && v.syn !== "N/A");
+        const shuffledOthers = [...otherWords].sort(() => 0.5 - Math.random());
+        const w1 = shuffledOthers[0].syn.split(',')[0].trim();
+        const w2 = shuffledOthers[1] ? shuffledOthers[1].syn.split(',')[0].trim() : "Trivial";
+        const w3 = item.ant && item.ant !== "N/A" ? item.ant.split(',')[0].trim() : "Ordinary";
+        const optionsSyn = [correctSyn, w1, w2, w3].sort(() => 0.5 - Math.random());
+
+        examActiveQuestions.push({
+          qId: `q-${i}-syn`,
+          word: item.word,
+          meaning: item.meaning,
+          type: "Synonym",
+          correctAns: correctSyn,
+          options: optionsSyn
+        });
+      }
+
+      // 2. Antonym Question
+      if (item.ant && item.ant !== "N/A") {
+        const correctAnt = item.ant.split(',')[0].trim();
+        const otherWords = vocabData.filter(v => v.word !== item.word && v.ant && v.ant !== "N/A");
+        const shuffledOthers = [...otherWords].sort(() => 0.5 - Math.random());
+        const w1 = shuffledOthers[0].ant.split(',')[0].trim();
+        const w2 = shuffledOthers[1] ? shuffledOthers[1].ant.split(',')[0].trim() : "Significant";
+        const w3 = item.syn && item.syn !== "N/A" ? item.syn.split(',')[0].trim() : "Genuine";
+        const optionsAnt = [correctAnt, w1, w2, w3].sort(() => 0.5 - Math.random());
+
+        examActiveQuestions.push({
+          qId: `q-${i}-ant`,
+          word: item.word,
+          meaning: item.meaning,
+          type: "Antonym",
+          correctAns: correctAnt,
+          options: optionsAnt
+        });
+      }
+    });
+
+    // Randomize all questions order
+    examActiveQuestions = examActiveQuestions.sort(() => 0.5 - Math.random());
+  }
+
+  examScore = 0;
+  examAnsweredCount = 0;
+  examWrongQuestions = [];
+
+  renderExamUI();
+}
+
+function renderExamUI() {
+  const app = document.getElementById('app-view');
+  if (!app) return;
+
+  const currentBatch = examBatches[examCurrentBatchIndex];
+  const totalQuestions = examActiveQuestions.length;
+
+  // Batch Switcher Tabs
+  const tabsHTML = examBatches.map((b, idx) => `
+    <button onclick="startVocabExam(${idx})" style="flex: 1; min-width: 130px; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border); font-family: inherit; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: 0.2s; background: ${idx === examCurrentBatchIndex ? '#4f46e5' : 'var(--card-bg)'}; color: ${idx === examCurrentBatchIndex ? '#ffffff' : 'var(--text-main)'};">
+      ${b.name}<br><span style="font-size: 0.76rem; opacity: 0.85;">${b.rangeText}</span>
+    </button>
+  `).join('');
+
+  app.innerHTML = `
+    <div class="hero">
+      <h1>🎯 Vocabulary Mastery Exam</h1>
+      <p>Unit 1 (Lesson 2): Synonym & Antonym Rapid Practice (Complete 72 Words)</p>
+    </div>
+
+    <!-- Goal Switcher Navigation -->
+    <div style="max-width: 850px; margin: 0 auto 20px auto; display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px;">
+      ${tabsHTML}
+    </div>
+
+    <!-- Exam Info Bar -->
+    <div style="max-width: 850px; margin: 0 auto 24px auto; background: var(--card-bg); border: 1px solid var(--border); padding: 16px 20px; border-radius: 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); flex-wrap: wrap; gap: 12px;">
+      <div>
+        <span style="font-weight: 700; color: var(--text-main); font-size: 1.1rem;">
+          ${isRetakeMode ? '🔄 Retake Session (Mistakes Only)' : `${currentBatch.name}:${currentBatch.rangeText}`}
+        </span>
+        <div style="font-size: 0.88rem; color: var(--text-muted); margin-top: 2px;">
+          Total Questions: <strong>${totalQuestions}</strong> (Each word has Synonym & Antonym)
+        </div>
+      </div>
+      <div id="live-score-badge" style="background: #eef2ff; color: #4f46e5; font-weight: 700; padding: 7px 18px; border-radius: 20px; font-size: 1rem;">
+        Score: 0 / ${totalQuestions}
+      </div>
+    </div>
+
+    <!-- Questions Container -->
+    <div style="max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px;">
+      ${examActiveQuestions.map((q, idx) => `
+        <div id="card-${q.qId}" class="lecture-card" style="border-radius: 14px; padding: 20px; border: 1px solid var(--border);">
+          <div style="margin-bottom: 14px;">
+            <div style="font-size: 1.05rem; font-weight: 700; color: var(--text-main);">
+              <span style="color: #4f46e5;">Q${idx + 1}.</span> What is the <span style="color: ${q.type === 'Synonym' ? '#059669' : '#dc2626'}; font-weight: 800;">[${q.type}]</span> of "<strong>${q.word}</strong>" <span style="font-weight: normal; font-size: 0.9rem; color: var(--text-muted);">(${q.meaning})</span>?
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px;">
+            ${q.options.map(opt => `
+              <button onclick="handleOptionSelect(this, '${q.qId}', '${encodeURIComponent(opt)}', '${encodeURIComponent(q.correctAns)}')" 
+                      class="exam-btn-${q.qId}"
+                      style="background: var(--bg); border: 1px solid var(--border); color: var(--text-main); padding: 12px 14px; border-radius: 10px; font-size: 0.94rem; font-weight: 500; text-align: left; cursor: pointer; transition: 0.2s; font-family: inherit;">
+                ${opt}
+              </button>
+            `).join('')}
+          </div>
+          <div id="feed-${q.qId}" style="display: none; margin-top: 12px; font-size: 0.9rem; font-weight: 600; padding: 8px 12px; border-radius: 8px;"></div>
+        </div>
+      `).join('')}
+    </div>
+
+    <!-- Final Result Box -->
+    <div id="exam-result-box" style="display: none; max-width: 850px; margin: 30px auto; padding: 28px; border-radius: 16px; text-align: center; background: var(--card-bg); border: 2px solid #4f46e5; box-shadow: var(--shadow-md);">
+    </div>
+  `;
+}
+
+function handleOptionSelect(btn, qId, chosenRaw, answerRaw) {
+  const chosen = decodeURIComponent(chosenRaw);
+  const correct = decodeURIComponent(answerRaw);
+  const card = document.getElementById(`card-${qId}`);
+  const feed = document.getElementById(`feed-${qId}`);
+
+  // Disable all buttons in this card
+  const allBtns = card.querySelectorAll(`.exam-btn-${qId}`);
+  allBtns.forEach(b => {
+    b.disabled = true;
+    b.style.cursor = 'default';
+  });
+
+  examAnsweredCount++;
+  const matchedQuestion = examActiveQuestions.find(q => q.qId === qId);
+
+  if (chosen.toLowerCase() === correct.toLowerCase()) {
+    examScore++;
+    btn.style.background = '#10b981';
+    btn.style.color = '#ffffff';
+    btn.style.borderColor = '#10b981';
+    feed.innerText = '✓ চমৎকার! সঠিক উত্তর।';
+    feed.style.background = '#ecfdf5';
+    feed.style.color = '#065f46';
+  } else {
+    btn.style.background = '#ef4444';
+    btn.style.color = '#ffffff';
+    btn.style.borderColor = '#ef4444';
+
+    // Highlight correct answer
+    allBtns.forEach(b => {
+      if (b.innerText.trim().toLowerCase() === correct.toLowerCase()) {
+        b.style.background = '#10b981';
+        b.style.color = '#ffffff';
+        b.style.borderColor = '#10b981';
+      }
+    });
+
+    feed.innerText = `✗ ভুল উত্তর! সঠিক উত্তর: "${correct}"`;
+    feed.style.background = '#fef2f2';
+    feed.style.color = '#991b1b';
+
+    // Save for targeted retake
+    if (matchedQuestion) {
+      examWrongQuestions.push(matchedQuestion);
+    }
+  }
+
+  feed.style.display = 'block';
+
+  // Update Live Score
+  const scoreBadge = document.getElementById('live-score-badge');
+  if (scoreBadge) {
+    scoreBadge.innerText = `Score: ${examScore} / ${examActiveQuestions.length}`;
+  }
+
+  // Check if exam completed
+  if (examAnsweredCount === examActiveQuestions.length) {
+    displayBatchResult();
+  }
+}
+
+function displayBatchResult() {
+  const resBox = document.getElementById('exam-result-box');
+  if (!resBox) return;
+
+  const total = examActiveQuestions.length;
+  const isAllCorrect = examScore === total;
+  const hasNextGoal = examCurrentBatchIndex < examBatches.length - 1;
+
+  resBox.style.display = 'block';
+  resBox.innerHTML = `
+    <div style="font-size: 3.2rem; margin-bottom: 8px;">${isAllCorrect ? '🏆' : '🎯'}</div>
+    <h2 style="color: var(--text-main); margin-bottom: 6px;">
+      ${isAllCorrect ? 'অসাধারণ! ১০০% পারফেক্ট স্কোর!' : 'পরীক্ষা সম্পন্ন হয়েছে!'}
+    </h2>
+    <p style="font-size: 1.3rem; font-weight: 700; color: ${isAllCorrect ? '#10b981' : '#f59e0b'}; margin-bottom: 10px;">
+      প্রাপ্ত স্কোর: ${examScore} / ${total}
+    </p>
+    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 22px;">
+      ${isAllCorrect 
+        ? 'তুমি এই সেকশনের সবগুলো সিনোনিম ও অ্যান্টনিম নিখুঁতভাবে আয়ত্ত করে ফেলেছ।' 
+        : `তোমার মোট ${examWrongQuestions.length} টি উত্তরে ভুল হয়েছিল। ভুলগুলো আবার প্র্যাকটিস করে ১০০% করে নাও!`}
+    </p>
+
+    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+      ${!isAllCorrect ? `
+        <button onclick="retakeWrongQuestionsOnly()" style="background: #ef4444; color: #fff; border: none; padding: 12px 24px; border-radius: 9px; font-weight: 700; cursor: pointer; font-family: inherit; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);">
+          🔄 Practice Mistakes (${examWrongQuestions.length} Wrong Questions)
+        </button>
+      ` : ''}
+
+      ${isAllCorrect && hasNextGoal ? `
+        <button onclick="startVocabExam(${examCurrentBatchIndex + 1})" style="background: #10b981; color: #fff; border: none; padding: 12px 26px; border-radius: 9px; font-weight: 700; cursor: pointer; font-family: inherit; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);">
+          🚀 Go for Next Goal (${examBatches[examCurrentBatchIndex + 1].name}) →
+        </button>
+      ` : ''}
+
+      <button onclick="startVocabExam(${examCurrentBatchIndex})" style="background: #4f46e5; color: #fff; border: none; padding: 12px 20px; border-radius: 9px; font-weight: 600; cursor: pointer; font-family: inherit;">
+        🔁 Restart This Goal
+      </button>
+
+      <button onclick="navigateTo('english-lec1')" style="background: var(--bg); border: 1px solid var(--border); color: var(--text-main); padding: 12px 20px; border-radius: 9px; font-weight: 600; cursor: pointer; font-family: inherit;">
+        📖 Read Lesson Again
+      </button>
+    </div>
+  `;
+
+  resBox.scrollIntoView({ behavior: 'smooth' });
+}
+
+function retakeWrongQuestionsOnly() {
+  if (examWrongQuestions.length === 0) return;
+  const listToRetake = [...examWrongQuestions];
+  startVocabExam(examCurrentBatchIndex, listToRetake);
+}
+function renderEnglishLesson2() {
+  const app = document.getElementById('app-view');
+  if (!app) return;
+
+  app.innerHTML = `
+    <div class="hero">
+      <h1>Myths of Bengal</h1>
+      <p>Unit One: Myths & Literature – Lesson 1 (Complete Teaching Material & Analysis)</p>
+    </div>
+
+    <div class="lecture-container" style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px;">
+
+      <!-- SECTION A -->
+      <div class="lecture-card">
+        <div class="lecture-card-header">
+          <div class="lecture-title">🌟 Section A: Warm-up Activity</div>
+        </div>
+        <div class="lecture-content">
+          <p><strong>1. What is a myth? Look up the meaning of the word in a dictionary or on the Internet.</strong></p>
+          <p style="margin-top: 6px; font-size: 1.02rem;">A myth is a traditional story, especially one concerning the early history of a people or explaining a natural or social phenomenon, typically involving supernatural beings or events.</p>
+          <p style="color: #f59e0b; font-style: italic; font-size: 0.92rem; margin-top: 4px;">মিথ বা পৌরাণিক কাহিনী হলো একটি ঐতিহ্যবাহী প্রাচীন গল্প, যা প্রধানত কোনো জাতির প্রারম্ভিক ইতিহাস বা কোনো প্রাকৃতিক বা সামাজিক ঘটনাকে অলৌকিক চরিত্র ও ঘটনার মাধ্যমে ব্যাখ্যা করে।</p>
+          <div class="highlight-box" style="border-left: 4px solid #3b82f6;">
+            <strong>শিক্ষকের নোট:</strong> শিক্ষার্থীদের বোঝাবেন যে 'Myth' নিছক রূপকথা নয়; এটি কোনো একটি সংস্কৃতির বিশ্বাস, মূল্যবোধ এবং আধ্যাত্মিক চেতনার গভীর প্রতিফলন।
+          </div>
+
+          <p style="margin-top: 18px;"><strong>2. What kind of <span style="color: #ef4444; font-weight: bold;">Myths (পৌরাণিক কাহিনী)</span> can we find in our culture?</strong></p>
+          <p style="margin-top: 6px; font-size: 1.02rem;">In our culture, we find various folk <span style="color: #ef4444; font-weight: bold;">Myths</span> and legends such as the tales of Behula and Lakhindar, Manasamangal, Chand Sadagar, Gazi Pir, and Khona.</p>
+          <p style="color: #f59e0b; font-style: italic; font-size: 0.92rem; margin-top: 4px;">আমাদের সংস্কৃতিতে আমরা বেহুলা-লখিন্দর, মনসামঙ্গল, চাঁদ সওদাগর, গাজী পীর এবং খনার বচনের মতো বিভিন্ন লোকগাথা ও পৌরাণিক কাহিনী দেখতে পাই।</p>
+          <div class="highlight-box" style="border-left: 4px solid #3b82f6;">
+            <strong>শিক্ষকের নোট:</strong> বাংলার কৃষি, নদীমাতৃক পরিবেশ এবং প্রকৃতির সাথে টিকে থাকার সংগ্রামের গল্প থেকেই এই চরিত্রগুলোর জন্ম হয়েছে।
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION B -->
+      <div class="lecture-card">
+        <div class="lecture-card-header">
+          <div class="lecture-title">📜 Section B: I Have Seen Bengal's Face</div>
+          <span class="time-badge">Poem by Jibanananda Das</span>
+        </div>
+        <div class="lecture-content">
+          <p style="margin-bottom: 16px; font-style: italic; color: var(--text-muted); font-size: 0.9rem;">Translated by Fakrul Alam</p>
+
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div>
+              <p style="font-weight: 600;">1. Because I have seen Bengal's face I will seek no more,</p>
+              <p style="color: #f59e0b; font-style: italic; font-size: 0.92rem;">বাংলার মুখ আমি দেখিয়াছি, তাই আমি পৃথিবীর রূপ খুঁজিতে যাই না আর।</p>
+            </div>
+            <div>
+              <p style="font-weight: 600;">2. The world has not anything more beautiful to show me.</p>
+              <p style="color: #f59e0b; font-style: italic; font-size: 0.92rem;">পৃথিবীর আর কোনো সৌন্দর্য আমাকে দেখানোর মতো অবশিষ্ট নেই।</p>
+            </div>
+            <div>
+              <p style="font-weight: 600;">3. Waking up in darkness, <span style="color: #ef4444; font-weight: bold;">Gazing (অপলক চেয়ে থেকে)</span> at the <span style="color: #ef4444; font-weight: bold;">fig-tree (ডুমুর গাছ)</span>, I <span style="color: #ef4444; font-weight: bold;">behold (দেখতে পাই)</span></p>
+              <p style="color: #f59e0b; font-style: italic; font-size: 0.92rem;">অন্ধকারে জেগে উঠে ডুমুরের গাছের দিকে অপলক চেয়ে দেখে আমি আবিষ্কার করি।</p>
+            </div>
+            <div>
+              <p style="font-weight: 600;">4. Dawn's <span style="color: #ef4444; font-weight: bold;">swallows (দোয়েল/সোয়ালো পাখি)</span> roosting under huge umbrella-like leaves.</p>
+              <p style="color: #f59e0b; font-style: italic; font-size: 0.92rem;">ভোরের দোয়েল পাখি ছাতার মতো বড় পাতার নিচে নীড়ে বসে আছে।</p>
+            </div>
+            <div>
+              <p style="font-weight: 600;">5. I look around me and discover a <span style="color: #ef4444; font-weight: bold;">leafy dome (ঘন পাতার আচ্ছাদন বা পল্লবের স্তূপ)</span>,</p>
+              <p style="color: #f59e0b; font-style: italic; font-size: 0.92rem;">চারিদিকে চেয়ে দেখি পল্লবের স্তূপ যেন এক পত্রঘন পাতার গম্বুজ।</p>
+            </div>
+            <div>
+              <p style="font-weight: 600;">6. Jaam, Kanthal, Bat, Hijol and Aswatha trees all in a <span style="color: #ef4444; font-weight: bold;">hush (নিস্তব্ধতা বা নিঝুম নীরবতা)</span>,</p>
+              <p style="color: #f59e0b; font-style: italic; font-size: 0.92rem;">জাম, কাঁঠাল, বট, হিজল ও অশ্বত্থ গাছগুলো সব নিস্তব্ধ হয়ে দাঁড়িয়ে আছে।</p>
+            </div>
+            <div>
+              <p style="font-weight: 600;">7. <span style="color: #ef4444; font-weight: bold;">Shadowing (ছায়া ফেলছে)</span> <span style="color: #ef4444; font-weight: bold;">clumps (ঝোপঝাড়)</span> of cactus and <span style="color: #ef4444; font-weight: bold;">zedoary (শটিবন)</span> bushes.</p>
+              <p style="color: #f59e0b; font-style: italic; font-size: 0.92rem;">ফণীমনসার ঝোপ এবং শটিবনের ওপর ছায়া ফেলেছে।</p>
+            </div>
+            <div>
+              <p style="font-weight: 600;">8. When long, long ago, Chand came in his <span style="color: #ef4444; font-weight: bold;">honeycombed (মৌচাকের মতো কুঠুরিময়/মধুকর)</span> boat</p>
+              <p style="color: #f59e0b; font-style: italic; font-size: 0.92rem;">বহু বহু কাল আগে যখন চাঁদ সওদাগর তাঁর মধুকর ডিঙা নিয়ে এসেছিলেন।</p>
+            </div>
+            <div>
+              <p style="font-weight: 600;">9. To a blue Hijal, Bat Tamal shade near the Champa, he too sighted</p>
+              <p style="color: #f59e0b; font-style: italic; font-size: 0.92rem;">চম্পার কাছে নীল হিজল, বট ও তমালের ছায়ায়, তিনিও অবলোকন করেছিলেন।</p>
+            </div>
+            <div>
+              <p style="font-weight: 600;">10. Bengal's <span style="color: #ef4444; font-weight: bold;">incomparable (অতুলনীয়)</span> beauty. One day, alas, in the Ganguri,</p>
+              <p style="color: #f59e0b; font-style: italic; font-size: 0.92rem;">বাংলার এই অতুলনীয় রূপ। হায়, একদিন তেমনি গাঙুড়ের জলে।</p>
+            </div>
+            <div>
+              <p style="font-weight: 600;">11. <span style="color: #ef4444; font-weight: bold;">On a raft (একটি ভেলায় চড়ে)</span>, as the <span style="color: #ef4444; font-weight: bold;">waning (ক্ষীয়মাণ/ম্রিয়মাণ)</span> moon sank on the river's <span style="color: #ef4444; font-weight: bold;">sandbanks (বালুচর)</span>,</p>
+              <p style="color: #f59e0b; font-style: italic; font-size: 0.92rem;">একটি ভেলায় ভেসে, যখন ক্ষীয়মাণ চাঁদের আলো নদীর বালুচরে মরে আসছিল।</p>
+            </div>
+            <div>
+              <p style="font-weight: 600;">12. Behula too saw countless aswaths bats besides golden ricefields</p>
+              <p style="color: #f59e0b; font-style: italic; font-size: 0.92rem;">বেহুলাও দেখেছিল সোনালি ধানক্ষেতের পাশে অসংখ্য অশ্বত্থ ও বটগাছ।</p>
+            </div>
+            <div>
+              <p style="font-weight: 600;">13. And heard the <span style="color: #ef4444; font-weight: bold;">thrush (শ্যামা পাখি)</span>'s soft song. One day, arriving in Amara,</p>
+              <p style="color: #f59e0b; font-style: italic; font-size: 0.92rem;">এবং শুনেছিল শ্যামা পাখির নরম মিষ্টি গান। একদিন অমরাবতীতে পৌছে।</p>
+            </div>
+            <div>
+              <p style="font-weight: 600;">14. Where gods held court, when she danced like a <span style="color: #ef4444; font-weight: bold;">desolate (রিক্ত/বিমর্ষ/ছিন্ন)</span> <span style="color: #ef4444; font-weight: bold;">wagtail (খঞ্জনা পাখি)</span>,</p>
+              <p style="color: #f59e0b; font-style: italic; font-size: 0.92rem;">যেখানে দেবতাদের সভা বসেছিল, যখন সে এক ছিন্ন খঞ্জনার মতো নেচেছিল।</p>
+            </div>
+            <div>
+              <p style="font-weight: 600;">15. Bengal's rivers, fields, flowers, <span style="color: #ef4444; font-weight: bold;">wailed (বিলাপ করেছিল)</span> like <span style="color: #ef4444; font-weight: bold;">strings (মালা/নূপুরের শিকল)</span> of bells on her feet.</p>
+              <p style="color: #f59e0b; font-style: italic; font-size: 0.92rem;">বাংলার নদী, মাঠ আর ফুল যেন তার পায়ের নূপুরের বা ঘুঙুরের মতো কেঁদে উঠেছিল।</p>
+            </div>
+          </div>
+
+          <div class="highlight-box" style="margin-top: 20px; border-left: 4px solid #10b981;">
+            <strong>শিক্ষকের ব্যাখ্যা (Summary & Poetic Essence):</strong> জীবনানন্দ দাশের এই সনেটটিতে বাংলার শাশ্বত প্রাকৃতিক রূপ ও বাংলার প্রাচীন পৌরাণিক গাথা (মনসামঙ্গল-এর চাঁদ সওদাগর ও বেহুলার কাহিনী) একাকার হয়ে গেছে। কবি বলছেন, যিনি বাংলার প্রকৃতির শ্যামল রূপ দেখেছেন, তাঁর পৃথিবীর অন্য কোনো সৌন্দর্য খোঁজার প্রয়োজন নেই। বেহুলার চরম দুঃখের মুহূর্তেও বাংলার নিসর্গ তার সঙ্গী ছিল এবং স্বর্গের দেবসভায় বেহুলার নৃত্যের সময় বাংলার প্রকৃতিই তার পায়ের নূপুর হয়ে অশ্রু ঝরিয়েছিল।
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION C -->
+      <div class="lecture-card">
+        <div class="lecture-card-header">
+          <div class="lecture-title">📖 Section C: Guessing Word Meanings</div>
+        </div>
+        <div class="lecture-content">
+          <table class="base-table">
+            <thead>
+              <tr>
+                <th>Word</th>
+                <th>Contextual Meaning (English)</th>
+                <th>বাংলা অর্থ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Gazing</strong></td><td>Looking steadily and intently with admiration</td><td>অপলক দৃষ্টিতে তাকিয়ে থাকা</td></tr>
+              <tr><td><strong>Roosting</strong></td><td>Resting or settling for the night like a bird</td><td>পাখির বাসায় বসে থাকা বা আশ্রয় নেওয়া</td></tr>
+              <tr><td><strong>Dome</strong></td><td>A rounded vault or canopy forming a roof</td><td>পাতার গম্বুজ বা আচ্ছাদন</td></tr>
+              <tr><td><strong>Hush</strong></td><td>A state of silence or quiet stillness</td><td>গভীর নীরবতা বা নিস্তব্ধতা</td></tr>
+              <tr><td><strong>Honeycombed</strong></td><td>Structured with chambers like a beehive</td><td>কুঠুরিময় (মধুকর ডিঙা)</td></tr>
+              <tr><td><strong>Waning</strong></td><td>Decreasing in size or light; diminishing</td><td>ক্ষীয়মাণ বা ক্ষীণ হয়ে আসা চাঁদ</td></tr>
+              <tr><td><strong>Desolate</strong></td><td>Unhappy, isolated, sorrowful, or broken</td><td>রিক্ত, নিঃসঙ্গ বা ছিন্নভিন্ন</td></tr>
+              <tr><td><strong>Wagtail</strong></td><td>A small, lively bird known for its tail movements (Khanjana)</td><td>খঞ্জনা পাখি</td></tr>
+              <tr><td><strong>Wailed</strong></td><td>Cried out in deep sorrow and lamentation</td><td>বিলাপ করে কেঁদে ওঠা</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SECTION D -->
+      <div class="lecture-card">
+        <div class="lecture-card-header">
+          <div class="lecture-title">🔍 Section D: Mythological Discussion & Research</div>
+        </div>
+        <div class="lecture-content">
+          <p><strong>1. Have you heard about Chand Saudagar and Behula before? Where is Ganguri and Amara?</strong></p>
+          <div class="highlight-box">
+            • <strong>Ganguri (গাঙুড়):</strong> The river along which Behula sailed on a raft carrying Lakhindar's dead body (গাঙুড় নদী)।<br>
+            • <strong>Amara (অমরাবতী):</strong> The heavenly dwelling place where gods held court (দেবতাদের স্বর্গীয় আবাসস্থল বা ইন্দ্রের সভা)।
+          </div>
+
+          <p style="margin-top: 14px;"><strong>2. Summary of Behula and Chand Saudagar:</strong></p>
+          <div class="highlight-box">
+            Chand Saudagar was a wealthy, stubborn merchant and an ardent devotee of Lord Shiva who refused to worship Manasa, the snake goddess. In revenge, Manasa killed his six sons and sank his trading boats. Later, Chand's youngest son, Lakhindar, married Behula. Despite Lakhindar being placed in an iron chamber, Manasa sent a snake to kill him on their wedding night. Behula placed Lakhindar's corpse on a banana raft and undertook a hazardous journey on the river Ganguri to Amara. Her devotion and dance moved the gods. Manasa restored Lakhindar's life and his brothers after Chand finally consented to offer flowers to Manasa.
+          </div>
+
+          <p style="margin-top: 14px;"><strong>3. The poem has fourteen lines. What are such poems called?</strong></p>
+          <p style="margin-top: 4px;">In English it is called a <strong>Sonnet</strong> (Petrarchan style: Octave and Sestet), and in Bangla it is called <strong>চতুর্দশপদী কবিতা</strong>।</p>
+        </div>
+      </div>
+
+      <!-- SECTION E & F -->
+      <div class="lecture-card">
+        <div class="lecture-card-header">
+          <div class="lecture-title">🌿 Section E & F: Imagery, Theme & Folk Heroine</div>
+        </div>
+        <div class="lecture-content">
+          <ul>
+            <li><strong>Visual Imagery:</strong> A leafy dome, dark dawn, huge umbrella-like leaves of the fig tree, blue Hijal shade, golden ricefields, waning moon.</li>
+            <li><strong>Auditory Imagery:</strong> The silence (hush) of the forest, the soft song of the thrush (শ্যামার নরম গান), and wailing sound of bells on Behula's feet.</li>
+            <li><strong>Trees & Birds:</strong> Fig-tree, Jaam, Kanthal, Bat, Hijol, Aswatha, Tamal, Cactus, Zedoary. Birds: Swallow/Magpie-robin (দোয়েল), Thrush (শ্যামা), Wagtail (খঞ্জনা)।</li>
+            <li><strong>Central Theme:</strong> The incomparable and eternal beauty of rural Bengal which surpasses all other wonders of the world (গ্রামবাংলার অতুলনীয় ও শাশ্বত রূপ)।</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  `;
 }
   /* --- TEACHER PANEL & STUDENT REPORT CARD LOGIC --- */
 const TEACHER_AUTH = {
@@ -1398,6 +2015,28 @@ function sendToWhatsApp(elementId) {
   const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
   window.open(url, '_blank');
 }
+function toggleTheme() {
+  const isDark = document.body.classList.toggle('dark-mode');
+  localStorage.setItem('sambook_theme', isDark ? 'dark' : 'light');
+  updateThemeIcon(isDark);
+}
+
+function updateThemeIcon(isDark) {
+  const btn = document.getElementById('theme-btn');
+  if (btn) {
+    btn.innerText = isDark ? '☀️' : '🌙';
+  }
+}
+
+// Page Load-e ager saved theme check kora
+(function initTheme() {
+  const savedTheme = localStorage.getItem('sambook_theme');
+  const isDark = savedTheme === 'dark';
+  if (isDark) {
+    document.body.classList.add('dark-mode');
+  }
+  updateThemeIcon(isDark);
+})();
 </script>
 </body>
 </html>
