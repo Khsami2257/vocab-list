@@ -891,20 +891,21 @@ else if (route === 'english-lec1-exam') {
         renderBreadcrumb([
           { name: 'Home', route: 'home' },
           { name: 'English', route: 'english' },
-          { name: '2nd Paper', route: 'english-2nd' }
+          { name: 'English 2nd Paper', route: 'english-2nd' }
         ]);
-        app.innerHTML = `
-          <div class="hero">
-            <h1>English 2nd Paper</h1>
-            <p>HSC English Grammar, Structure & Practice Sheets</p>
-          </div>
-          <div class="empty-state">
-            <div style="font-size: 3rem; margin-bottom: 12px;">📝</div>
-            <h3>English 2nd Paper Content Coming Soon</h3>
-            <p>খুব শীঘ্রই এখানে Grammar Rules, Right Form of Verbs, Preposition এবং Writing Part যুক্ত করা হবে।</p>
-          </div>
-        `;
+        renderEnglish2ndLectures();
       }
+      else if (route === 'eng2-lec1') {
+        setActiveNav('english');
+        renderBreadcrumb([
+          { name: 'Home', route: 'home' },
+          { name: 'English', route: 'english' },
+          { name: 'English 2nd Paper', route: 'english-2nd' },
+          { name: 'Lecture 01', route: 'eng2-lec1' }
+        ]);
+        renderEnglish2ndLesson1();
+      }
+
       else if (route === 'ict') {
         setActiveNav('ict');
         renderBreadcrumb([
@@ -1944,6 +1945,210 @@ function renderICTCh3Lecture2() {
     </div>
   `;
 }
+/* --- ENGLISH 2ND PAPER LOGIC --- */
+
+function renderEnglish2ndLectures() {
+  const app = document.getElementById('app-view');
+  if (!app) return;
+
+  app.innerHTML = `
+    <div class="hero">
+      <h1>English 2nd Paper</h1>
+      <p>HSC English Grammar Mastery & Contextual Application</p>
+    </div>
+    <div style="max-width: 800px; margin: 30px auto; padding: 0 15px; display: flex; flex-direction: column; gap: 16px;">
+      
+      <!-- Lecture 01 Card -->
+      <div onclick="navigateTo('eng2-lec1')" style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 22px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='none'">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="background: #ecfdf5; color: #059669; width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700;">
+            01
+          </div>
+          <div>
+            <h3 style="margin: 0; font-size: 1.15rem; color: var(--text-main);">Lecture 01: Identification of Parts of Speech</h3>
+            <p style="margin: 4px 0 0 0; font-size: 0.88rem; color: var(--text-muted);">বাক্য বিশ্লেষণ, ৮ প্রকার পদের ব্যবহার ও প্র্যাকটিস প্যাসেজ</p>
+          </div>
+        </div>
+        <div style="color: #059669; font-weight: 600; font-size: 0.95rem;">লেকচার দেখুন →</div>
+      </div>
+
+    </div>
+  `;
+}
+
+function renderEnglish2ndLesson1() {
+  const app = document.getElementById('app-view');
+  if (!app) return;
+
+  app.innerHTML = `
+    <div class="hero">
+      <h1>English 2nd Paper : Grammar</h1>
+      <p>Lecture 01: Master Parts of Speech through Sentence Breakdown</p>
+    </div>
+
+    <div class="lecture-container" style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px;">
+
+      <!-- Sentence Breakdown Section -->
+      <div class="lecture-card">
+        <div class="lecture-card-header">
+          <div class="lecture-title">🎯 ক্লাসের মূল বাক্য ও বিশ্লেষণ (Sentence Breakdown)</div>
+        </div>
+        <div class="lecture-content">
+          <div style="background: var(--bg); border: 2px dashed #4f46e5; padding: 18px; border-radius: 12px; font-size: 1.15rem; font-weight: 600; color: #4f46e5; text-align: center; margin-bottom: 20px;">
+            "Liana quickly passed the ball to Lami and she blasted the ball into the net for the winning goal. Hurrah!"
+          </div>
+
+          <table class="base-table">
+            <thead>
+              <tr>
+                <th style="width: 25%;">Parts of Speech</th>
+                <th style="width: 35%;">চিহ্নিত শব্দ (Words)</th>
+                <th>অর্থ ও ভূমিকা (Role)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Noun</strong></td>
+                <td><span class="math-formula">Liana</span>, <span class="math-formula">ball</span>, <span class="math-formula">Lami</span>, <span class="math-formula">net</span>, <span class="math-formula">goal</span></td>
+                <td>যেকোনো কিছুর নাম (ব্যক্তি, বস্তু বা স্থান)।</td>
+              </tr>
+              <tr>
+                <td><strong>Pronoun</strong></td>
+                <td><span class="math-formula">she</span></td>
+                <td>নাউনের (Liana) নামের পরিবর্তে বসেছে।</td>
+              </tr>
+              <tr>
+                <td><strong>Verb</strong></td>
+                <td><span class="math-formula">passed</span>, <span class="math-formula">blasted</span></td>
+                <td>কাজ বা অ্যাকশন বোঝায় (বল পাস করা ও জোরালো শট মারা)।</td>
+              </tr>
+              <tr>
+                <td><strong>Adjective</strong></td>
+                <td><span class="math-formula">the</span>, <span class="math-formula">winning</span></td>
+                <td>নাউন কেমন বা কেমন অবস্থা তা নির্দেশ করে।</td>
+              </tr>
+              <tr>
+                <td><strong>Adverb</strong></td>
+                <td><span class="math-formula">quickly</span></td>
+                <td>ভার্ব কেমনভাবে সম্পন্ন হচ্ছে (দ্রুতগতিতে)।</td>
+              </tr>
+              <tr>
+                <td><strong>Preposition</strong></td>
+                <td><span class="math-formula">to</span>, <span class="math-formula">into</span>, <span class="math-formula">for</span></td>
+                <td>নাউনের অবস্থান ও অন্যান্য শব্দের সাথে সংযোগ তৈরি করে।</td>
+              </tr>
+              <tr>
+                <td><strong>Conjunction</strong></td>
+                <td><span class="math-formula">and</span></td>
+                <td>দুটি ক্লজ বা বাক্যংশকে যুক্ত করেছে।</td>
+              </tr>
+              <tr>
+                <td><strong>Interjection</strong></td>
+                <td><span class="math-formula">Hurrah!</span></td>
+                <td>তীব্র আনন্দ ও মানসিক আবেগ প্রকাশ করে।</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="highlight-box" style="margin-top: 18px; border-left: 4px solid #f59e0b;">
+            💡 <strong>মনে রাখবে (Teacher's Special Note):</strong><br>
+            Article (<strong>A, An, The</strong>) মূলত Demonstrative <strong>Adjective</strong> হিসেবে কাজ করে; কারণ এগুলো নাউনের নির্দিষ্টতা বা অনির্দিষ্টতা প্রকাশ করে।
+          </div>
+        </div>
+      </div>
+
+      <!-- HOMEWORK SECTION -->
+      <div class="lecture-card" style="border: 2px solid #10b981; background: var(--card-bg);">
+        <div class="lecture-card-header" style="background: rgba(16, 185, 129, 0.1);">
+          <div class="lecture-title" style="color: #065f46;">📝 বাড়ির কাজ (Homework Practice)</div>
+          <span class="time-badge" style="background: #10b981; color: white;">Mandatory</span>
+        </div>
+        <div class="lecture-content">
+          <p style="font-weight: 600;">নিচের প্যাসেজটি পড়ো এবং ক্লাসে শেখানো নিয়মানুযায়ী ৮ প্রকার Parts of Speech আলাদা করে খাতায় ছক তৈরি করে লেখো:</p>
+
+          <div style="background: var(--bg); border-left: 5px solid #10b981; padding: 16px; border-radius: 8px; font-size: 1.05rem; line-height: 1.8; margin: 15px 0;">
+            <em>"Alas! The brilliant student suddenly failed in the final exam, but she bravely started her preparation again for a bright future."</em>
+          </div>
+
+          <div class="highlight-box">
+            <strong>নির্দেশনা:</strong><br>
+            ১. প্যাসেজের প্রতিটি শব্দ কোন Parts of Speech তা শনাক্ত করবে।<br>
+            ২. Article (The, A)-কে Adjective হিসেবে চিহ্নিত করবে।
+          </div>
+
+         <!-- Answer Button & Lock Mechanism -->
+          <div style="text-align: center; margin-top: 20px;">
+            <button onclick="toggleHwAnswerWithLock()" 
+                    style="background: #059669; color: white; border: none; padding: 10px 22px; border-radius: 8px; font-weight: 600; cursor: pointer; font-family: inherit; display: inline-flex; align-items: center; gap: 8px;">
+              🔍 সমাধান দেখুন / লুকান
+            </button>
+          </div>
+
+          <!-- Lock Warning Notice (যদি সময় না হয়ে থাকে) -->
+          <div id="hw-lock-notice" style="display: none; margin-top: 18px; padding: 16px; border-radius: 10px; background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #ef4444; text-align: center; font-size: 0.95rem;">
+          </div>
+
+          <!-- Actual Solution Box (সময় পার হলে দৃশ্যমান হবে) -->
+          <div id="hw-parts-ans" style="display: none; margin-top: 18px; padding: 18px; border-radius: 12px; background: var(--bg); border: 1px solid #10b981; box-shadow: var(--shadow-sm);">
+            <div style="color: #10b981; font-weight: 700; font-size: 1rem; margin-bottom: 12px;">
+              ✅ প্যাসেজটির সঠিক পার্টস অব স্পিচ ছক:
+            </div>
+            <ul style="margin: 0; padding-left: 22px; line-height: 1.9; color: var(--text-main); font-size: 0.95rem;">
+              <li><strong style="color: #3b82f6;">Noun:</strong> student, exam, preparation, future</li>
+              <li><strong style="color: #3b82f6;">Pronoun:</strong> she, her</li>
+              <li><strong style="color: #3b82f6;">Verb:</strong> failed, started</li>
+              <li><strong style="color: #3b82f6;">Adjective:</strong> The, brilliant, the, final, a, bright</li>
+              <li><strong style="color: #3b82f6;">Adverb:</strong> suddenly, bravely, again</li>
+              <li><strong style="color: #3b82f6;">Preposition:</strong> in, for</li>
+              <li><strong style="color: #3b82f6;">Conjunction:</strong> but</li>
+              <li><strong style="color: #3b82f6;">Interjection:</strong> Alas!</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  `;
+}
+/* --- HOMEWORK ANSWER UNLOCK & SCHEDULE LOGIC --- */
+
+// আনলক সময় লোড করা (ডিফল্ট: আগামীকাল সকাল ১০:০০)
+function getHwUnlockTime() {
+  const saved = localStorage.getItem('sambook_hw_unlock_time');
+  if (saved) return new Date(saved);
+  
+  // ডিফল্ট আগামীকাল সকাল ১০:০০ টা
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setHours(10, 0, 0, 0);
+  return tomorrow;
+}
+
+// বাটন ক্লিকে চেক করবে সময় হয়েছে কি না
+function toggleHwAnswerWithLock() {
+  const unlockTime = getHwUnlockTime();
+  const now = new Date();
+  const ansBox = document.getElementById('hw-parts-ans');
+  const lockNotice = document.getElementById('hw-lock-notice');
+
+  if (now < unlockTime) {
+    // সময় হয়নি — স্টুডেন্টকে সতর্কবার্তা দেখাবে
+    const dateFormatted = unlockTime.toLocaleDateString('bn-BD', { day: 'numeric', month: 'long', year: 'numeric' });
+    const timeFormatted = unlockTime.toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit', hour12: true });
+
+    if (ansBox) ansBox.style.display = 'none';
+    if (lockNotice) {
+      lockNotice.innerHTML = `🔒 <strong>হোমওয়ার্কের সমাধান এখনো লক করা আছে!</strong><br>এটি <strong>${dateFormatted}, ${timeFormatted}</strong>-এ স্বয়ংক্রিয়ভাবে উন্মুক্ত হবে। ততক্ষণ পর্যন্ত নিজে সমাধান করার চেষ্টা করো!`;
+      lockNotice.style.display = lockNotice.style.display === 'none' ? 'block' : 'none';
+    }
+  } else {
+    // সময় পার হয়েছে — সমাধান উন্মুক্ত
+    if (lockNotice) lockNotice.style.display = 'none';
+    if (ansBox) {
+      ansBox.style.display = ansBox.style.display === 'none' ? 'block' : 'none';
+    }
+  }
+}
   /* --- TEACHER PANEL & STUDENT REPORT CARD LOGIC --- */
 const TEACHER_AUTH = {
   user: "kh sami",
@@ -2113,10 +2318,48 @@ function renderTeacherDashboard() {
 
       <!-- Result Container -->
       <div id="tp-message-box" style="display: none;"></div>
+      <!-- Homework Answer Release Time Section -->
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; margin-top: 20px;">
+        <div style="font-weight: 700; color: #1e293b; font-size: 1rem; margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">
+          ⏰ হোমওয়ার্ক সমাধান আনলক সময় (Answer Release Scheduler)
+        </div>
+        <p style="font-size: 0.85rem; color: #64748b; margin: 0 0 12px 0;">
+          শিক্ষার্থী নির্ধারিত সময়ের আগে সমাধান দেখতে পারবে না। সময় অতিক্রান্ত হলে অটোমেটিক আনলক হবে।
+        </p>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+          <input type="datetime-local" id="hw-unlock-input" style="padding: 9px 12px; border-radius: 8px; border: 1px solid #cbd5e1; background: #ffffff; color: #1e293b; font-family: inherit;">
+          <button onclick="saveNewHwUnlockTime()" style="background: #4f46e5; color: white; border: none; padding: 9px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; font-family: inherit;">
+            💾 সময় সেট করুন
+          </button>
+        </div>
+        <div id="hw-current-unlock-label" style="margin-top: 10px; font-size: 0.88rem; color: #059669; font-weight: 600;"></div>
+      </div>
     </div>
   `;
+  displayCurrentUnlockLabel();
+}
+/* --- HOMEWORK ANSWER TIME SCHEDULER FUNCTIONS --- */
+
+function saveNewHwUnlockTime() {
+  const input = document.getElementById('hw-unlock-input');
+  if (!input || !input.value) {
+    alert('অনুগ্রহ করে সঠিক তারিখ ও সময় নির্বাচন করুন।');
+    return;
+  }
+  localStorage.setItem('sambook_hw_unlock_time', new Date(input.value).toISOString());
+  displayCurrentUnlockLabel();
+  alert('হোমওয়ার্ক সমাধান আনলক করার সময় সফলভাবে আপডেট হয়েছে!');
 }
 
+function displayCurrentUnlockLabel() {
+  const label = document.getElementById('hw-current-unlock-label');
+  if (!label) return;
+  const current = getHwUnlockTime();
+  const dStr = current.toLocaleDateString('bn-BD', { day: 'numeric', month: 'long', year: 'numeric' });
+  const tStr = current.toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit', hour12: true });
+  label.innerHTML = `📌 বর্তমান আনলক সময়: <strong>${dStr}, ${tStr}</strong>`;
+}
 function generateHWStatus(status, dateStr) {
   const box = document.getElementById('tp-message-box');
   if (!box) return;
