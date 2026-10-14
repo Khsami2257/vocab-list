@@ -905,7 +905,16 @@ else if (route === 'english-lec1-exam') {
         ]);
         renderEnglish2ndLesson1();
       }
-
+else if (route === 'ict-lec3') {
+        setActiveNav('ict');
+        renderBreadcrumb([
+          { name: 'Home', route: 'home' },
+          { name: 'ICT', route: 'ict' },
+          { name: 'Chapter 03', route: 'ict' },
+          { name: 'Lecture 03', route: 'ict-lec3' }
+        ]);
+        renderIctChapter3Lesson3();
+      }
       else if (route === 'ict') {
         setActiveNav('ict');
         renderBreadcrumb([
@@ -953,6 +962,12 @@ else if (route === 'english-lec1-exam') {
           <h3>Lecture 2: বাইনারি ক্রম, ম্যাজিক সিরিজ ও হেক্সাডেসিমেল রূপান্তর</h3>
           <p>Decimal ক্রমের সাথে তুলনা, ১ ২ ৪ ৮ ১৬ ৩২ ৬৪ ম্যাজিক ট্রিকস এবং ৪-বিট গ্রুপিং</p>
           <div class="card-badge">Lecture 2 • Active Note</div>
+        </div>
+        <div class="select-card" onclick="navigateTo('ict-ch3-lecture-3')">
+          <div class="card-icon">🔢</div>
+          <h3>Lecture 3: ডেসিমেল রূপান্তর ও প্র্যাকটিস শিট</h3>
+          <p>পূর্ণাংশ ও ভগ্নাংশ রূপান্তর (বাইনারি, অক্টাল, হেক্সাডেসিমেল) এবং ১০টি লাইভ প্র্যাকটিস অঙ্ক</p>
+          <div class="card-badge">Lecture 3 • Live Task</div>
         </div>
           </div>
         `;
@@ -1180,6 +1195,16 @@ else if (route === 'english-lec1-exam') {
           { name: 'Lecture 2', route: 'ict-ch3-lecture-2' }
         ]);
         renderICTCh3Lecture2();
+      }
+      else if (route === 'ict-ch3-lecture-3') {
+        setActiveNav('ict');
+        renderBreadcrumb([
+          { name: 'Home', route: 'home' },
+          { name: 'ICT', route: 'ict' },
+          { name: 'Chapter 3', route: 'ict-chapter-3' },
+          { name: 'Lecture 3', route: 'ict-ch3-lecture-3' }
+        ]);
+        renderIctChapter3Lesson3();
       }
       else if (route.startsWith('ict-chapter-')) {
         const chNum = parseInt(route.replace('ict-chapter-', ''));
@@ -1787,7 +1812,7 @@ function renderEnglishLesson2() {
     </div>
   `;
 }
-function renderICTCh3Lecture2() {
+function renderICTCh3Lecture2() { 
   const app = document.getElementById('app-view');
   if (!app) return;
 
@@ -2418,6 +2443,138 @@ function displayCurrentUnlockLabel() {
   const dStr = current.toLocaleDateString('bn-BD', { day: 'numeric', month: 'long', year: 'numeric' });
   const tStr = current.toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit', hour12: true });
   label.innerHTML = `📌 বর্তমান আনলক সময়: <strong>${dStr}, ${tStr}</strong>`;
+}
+function renderIctChapter3Lesson3() {
+  const container = document.getElementById('app-view') || document.getElementById('mainContent') || document.getElementById('app');
+  if (!container) return;
+
+  container.innerHTML = `
+    <div style="max-width: 850px; margin: 0 auto; padding: 24px; font-family: inherit; color: var(--text-main, #1e293b);">
+      
+      <!-- Header -->
+      <div style="background: linear-gradient(135deg, #1e1b4b, #312e81); color: white; padding: 26px; border-radius: 16px; margin-bottom: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
+        <span style="background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">HSC ICT • Chapter 3 (সংখ্যা পদ্ধতি)</span>
+        <h2 style="margin: 10px 0 6px 0; font-size: 1.6rem;">লেকচার ০৩: ডেসিমেল থেকে বাইনারি, অক্টাল ও হেক্সাডেসিমেল রূপান্তর</h2>
+        <p style="margin: 0; font-size: 0.92rem; opacity: 0.85;">পূর্ণাংশ ও ভগ্নাংশের সমন্বিত নিয়ম এবং লাইভ প্র্যাকটিস শিট</p>
+      </div>
+
+     <!-- Core Rules Card with Exact Lecture Examples -->
+      <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 22px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+        <h3 style="margin-top: 0; color: #4f46e5; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+          📌 রূপান্তরের মূল নিয়মাবলী ও ক্লাসের উদাহরণ (Quick Revision)
+        </h3>
+        
+        <ul style="margin: 0 0 16px 0; padding-left: 20px; line-height: 1.8; font-size: 0.95rem; color: #334155;">
+          <li><strong>পূর্ণাংশের ক্ষেত্রে:</strong> টার্গেট বেস (২, ৮, বা ১৬) দিয়ে ক্রমাগত ভাগ করতে হবে এবং ভাগশেষগুলো নিচ থেকে উপরে সাজাতে হবে।</li>
+          <li><strong>ভগ্নাংশের ক্ষেত্রে:</strong> টার্গেট বেস (২, ৮, বা ১৬) দিয়ে ক্রমাগত গুণ করে পূর্ণ সংখ্যা অংশগুলো উপর থেকে নিচে সাজাতে হবে।</li>
+          <li><strong>MSB/LSB বনাম MSD/LSD নিয়ম:</strong>
+            <ul style="margin: 4px 0; padding-left: 18px;">
+              <li>শুধুমাত্র <strong>বাইনারির</strong> ক্ষেত্রে বিট হওয়ায় ব্যবহৃত হবে <strong>MSB / LSB</strong> (Most/Least Significant Bit)।</li>
+              <li>বাইনারি ছাড়া অন্য সব পদ্ধতিতে (<strong>ডেসিমেল, অক্টাল, হেক্সাডেসিমেল</strong>) ডিজিট হওয়ায় ব্যবহৃত হবে <strong>MSD / LSD</strong> (Most/Least Significant Digit)।</li>
+            </ul>
+          </li>
+          <li><strong>হেক্সাডেসিমেলের বিশেষ নিয়ম:</strong> পূর্ণ অংশ ১০ থেকে ১৫ হলে যথাক্রমে <strong>A, B, C, D, E, F</strong> লিখতে হবে (যেমন: ১৩ এর পরিবর্তে D)।</li>
+        </ul>
+
+        <!-- Class Lecture Screenshot Examples Box -->
+        <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; padding: 16px; margin-top: 10px;">
+          <div style="font-weight: 700; color: #0f172a; margin-bottom: 10px; font-size: 0.95rem;">
+            📖 ক্লাসে আলোচিত মূল উদাহরণসমূহ:
+          </div>
+
+          <!-- Example 1: Binary -->
+          <div style="margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px dashed #cbd5e1;">
+            <div style="font-weight: 600; color: #2563eb; font-size: 0.9rem;">১. ডেসিমেল হতে বাইনারি (বেস ২ গুণ):</div>
+            <div style="font-size: 0.88rem; color: #334155; margin-top: 3px;">
+              • ভগ্নাংশ: (0.375)<sub>10</sub> = (0.011)<sub>2</sub><br>
+              • সম্মিলিত রূপ: <strong>(99.375)<sub>10</sub> = (1100011.011)<sub>2</sub></strong>
+            </div>
+          </div>
+
+          <!-- Example 2: Octal -->
+          <div style="margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px dashed #cbd5e1;">
+            <div style="font-weight: 600; color: #059669; font-size: 0.9rem;">২. ডেসিমেল হতে অক্টাল (বেস ৮ গুণ):</div>
+            <div style="font-size: 0.88rem; color: #334155; margin-top: 3px;">
+              • ভগ্নাংশ: (0.046875)<sub>10</sub> = (0.03)<sub>8</sub><br>
+              • সম্মিলিত রূপ: <strong>(469.046875)<sub>10</sub> = (725.03)<sub>8</sub></strong>
+            </div>
+          </div>
+
+          <!-- Example 3: Hexadecimal -->
+          <div>
+            <div style="font-weight: 600; color: #7c3aed; font-size: 0.9rem;">৩. ডেসিমেল হতে হেক্সাডেসিমেল (বেস ১৬ গুণ):</div>
+            <div style="font-size: 0.88rem; color: #334155; margin-top: 3px;">
+              • ভগ্নাংশ: (0.850)<sub>10</sub> &asymp; (0.D99...)<sub>16</sub> <em>(যেখানে ১৩ এর পরিবর্তে D বসেছে)</em><br>
+              • সম্মিলিত রূপ: <strong>(850.850)<sub>10</sub> &asymp; (352.D99...)<sub>16</sub></strong>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 10 Practice Problems Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h3 style="margin: 0; font-size: 1.2rem; color: #0f172a;">📝 ক্লাসে প্র্যাকটিসের জন্য ১০টি অঙ্ক:</h3>
+        <span style="font-size: 0.85rem; color: #64748b; background: #f1f5f9; padding: 4px 10px; border-radius: 8px; font-weight: 600;">Next Class Live Task</span>
+      </div>
+
+      <!-- Practice Cards -->
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+          <div style="font-weight: 600; font-size: 1rem; color: #1e293b;">১. (45.375)<sub>10</sub> কে বাইনারিতে রূপান্তর করো।</div>
+          <div style="font-size: 0.9rem; color: #059669; margin-top: 8px;"><strong>উত্তরঃ</strong> (101101.011)<sub>2</sub> [MSB &rarr; LSB]</div>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+          <div style="font-weight: 600; font-size: 1rem; color: #1e293b;">২. (85.625)<sub>10</sub> কে বাইনারিতে রূপান্তর করো।</div>
+          <div style="font-size: 0.9rem; color: #059669; margin-top: 8px;"><strong>উত্তরঃ</strong> (1010101.101)<sub>2</sub> [MSB &rarr; LSB]</div>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+          <div style="font-weight: 600; font-size: 1rem; color: #1e293b;">৩. (108.8125)<sub>10</sub> কে বাইনারিতে রূপান্তর করো।</div>
+          <div style="font-size: 0.9rem; color: #059669; margin-top: 8px;"><strong>উত্তরঃ</strong> (1101100.1101)<sub>2</sub> [MSB &rarr; LSB]</div>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+          <div style="font-weight: 600; font-size: 1rem; color: #1e293b;">৪. (125.25)<sub>10</sub> কে অক্টালে রূপান্তর করো।</div>
+          <div style="font-size: 0.9rem; color: #059669; margin-top: 8px;"><strong>উত্তরঃ</strong> (175.2)<sub>8</sub> [MSD &rarr; LSD]</div>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+          <div style="font-weight: 600; font-size: 1rem; color: #1e293b;">৫. (248.625)<sub>10</sub> কে অক্টালে রূপান্তর করো।</div>
+          <div style="font-size: 0.9rem; color: #059669; margin-top: 8px;"><strong>উত্তরঃ</strong> (370.5)<sub>8</sub> [MSD &rarr; LSD]</div>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+          <div style="font-weight: 600; font-size: 1rem; color: #1e293b;">৬. (510.046875)<sub>10</sub> কে অক্টালে রূপান্তর করো।</div>
+          <div style="font-size: 0.9rem; color: #059669; margin-top: 8px;"><strong>উত্তরঃ</strong> (776.03)<sub>8</sub> [MSD &rarr; LSD]</div>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+          <div style="font-weight: 600; font-size: 1rem; color: #1e293b;">৭. (175.5)<sub>10</sub> কে হেক্সাডেসিমেলে রূপান্তর করো।</div>
+          <div style="font-size: 0.9rem; color: #059669; margin-top: 8px;"><strong>উত্তরঃ</strong> (AF.8)<sub>16</sub> [MSD &rarr; LSD]</div>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+          <div style="font-weight: 600; font-size: 1rem; color: #1e293b;">৮. (478.1875)<sub>10</sub> কে হেক্সাডেসিমেলে রূপান্তর করো।</div>
+          <div style="font-size: 0.9rem; color: #059669; margin-top: 8px;"><strong>উত্তরঃ</strong> (1DE.3)<sub>16</sub> [MSD &rarr; LSD]</div>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+          <div style="font-weight: 600; font-size: 1rem; color: #1e293b;">৯. (750.75)<sub>10</sub> কে হেক্সাডেসিমেলে রূপান্তর করো।</div>
+          <div style="font-size: 0.9rem; color: #059669; margin-top: 8px;"><strong>উত্তরঃ</strong> (2EE.C)<sub>16</sub> [MSD &rarr; LSD]</div>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+          <div style="font-weight: 600; font-size: 1rem; color: #1e293b;">১০. (365.8125)<sub>10</sub> কে হেক্সাডেসিমেলে রূপান্তর করো।</div>
+          <div style="font-size: 0.9rem; color: #059669; margin-top: 8px;"><strong>উত্তরঃ</strong> (16D.D)<sub>16</sub> [MSD &rarr; LSD]</div>
+        </div>
+
+      </div>
+
+    </div>
+  `;
 }
 function generateHWStatus(status, dateStr) {
   const box = document.getElementById('tp-message-box');
