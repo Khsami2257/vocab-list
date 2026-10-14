@@ -650,7 +650,7 @@ body.dark-mode .lecture-content li,
         <button class="nav-btn" id="btn-home" onclick="navigateTo('home')">Home</button>
         <button class="nav-btn" id="btn-english" onclick="navigateTo('english')">English</button>
         <button class="nav-btn" id="btn-ict" onclick="navigateTo('ict')">ICT</button>
-        <button class="nav-btn" id="btn-teacher" onclick="navigateTo('teacher')">👨‍🏫 টিচার পোর্টাল</button>
+        <button class="nav-btn" id="btn-teacher" onclick="navigateTo('teacher')">👨‍🏫 Teacher Portal</button>
         <button class="theme-toggle-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">🌙</button>
       </div>
     </div>
@@ -947,9 +947,16 @@ else if (route === 'english-lec1-exam') {
               <p>অধ্যায় পরিচিতি, স্থানিক ও অস্থানিক সংখ্যা পদ্ধতি, ৪টি রূপ (Decimal, Binary, Octal, Hexadecimal) এবং রূপান্তর।</p>
               <div class="card-badge">Lecture 1 • Active Note</div>
             </div>
+            <div class="select-card" onclick="navigateTo('ict-ch3-lecture-2')">
+          <div class="card-icon">⚡</div>
+          <h3>Lecture 2: বাইনারি ক্রম, ম্যাজিক সিরিজ ও হেক্সাডেসিমেল রূপান্তর</h3>
+          <p>Decimal ক্রমের সাথে তুলনা, ১ ২ ৪ ৮ ১৬ ৩২ ৬৪ ম্যাজিক ট্রিকস এবং ৪-বিট গ্রুপিং</p>
+          <div class="card-badge">Lecture 2 • Active Note</div>
+        </div>
           </div>
         `;
       }
+      
       else if (route === 'ict-ch3-lecture-1') {
         setActiveNav('ict');
         renderBreadcrumb([
@@ -1162,6 +1169,16 @@ else if (route === 'english-lec1-exam') {
 
           </div>
         `;
+      }
+      else if (route === 'ict-ch3-lecture-2') {
+        setActiveNav('ict');
+        renderBreadcrumb([
+          { name: 'Home', route: 'home' },
+          { name: 'ICT', route: 'ict' },
+          { name: 'Chapter 3', route: 'ict-chapter-3' },
+          { name: 'Lecture 2', route: 'ict-ch3-lecture-2' }
+        ]);
+        renderICTCh3Lecture2();
       }
       else if (route.startsWith('ict-chapter-')) {
         const chNum = parseInt(route.replace('ict-chapter-', ''));
@@ -1766,6 +1783,164 @@ function renderEnglishLesson2() {
         </div>
       </div>
 
+    </div>
+  `;
+}
+function renderICTCh3Lecture2() {
+  const app = document.getElementById('app-view');
+  if (!app) return;
+
+  app.innerHTML = `
+    <div class="hero">
+      <h1>অধ্যায় ৩: সংখ্যা পদ্ধতি ও ডিজিটাল ডিভাইস</h1>
+      <p>লেকচার ০২: বাইনারি ক্রম, ম্যাজিক ট্রিকস এবং ডেসিমাল হতে হেক্সাডেসিমেল রূপান্তর</p>
+    </div>
+
+    <div class="lecture-container" style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px;">
+
+      <!-- SECTION 1: Binary Sequence Comparison -->
+      <div class="lecture-card">
+        <div class="lecture-card-header">
+          <div class="lecture-title">১. ডেসিমাল ক্রমের সাথে তুলনা করে বাইনারি সংখ্যা সাজানো</div>
+        </div>
+        <div class="lecture-content">
+          <p>ডেসিমাল পদ্ধতিতে যেমন <strong>0 থেকে 9</strong> পর্যন্ত অংক শেষ হলে দুই অংকের ক্ষুদ্রতম সংখ্যা <strong>10</strong> আসে, ঠিক তেমনি বাইনারিতে কেবল <strong>0</strong> এবং <strong>1</strong> থাকায় খুব দ্রুত স্থান পরিবর্তন হয়।</p>
+          
+          <div class="highlight-box">
+            <strong>লক্ষ্য করো:</strong><br>
+            • 0 এর পর 1 আসে।<br>
+            • 1 এর পর আর কোনো নতুন অংক না থাকায় পরবর্তী সংখ্যা হয় <strong>10</strong> (দশ নয়, এক-শূন্য)।<br>
+            • তারপর <strong>11</strong>। এরপরে স্থান ফুরিয়ে গেলে তিন অংকের ক্ষুদ্রতম <strong>100</strong> আসে!
+          </div>
+
+          <table class="base-table" style="margin-top: 15px;">
+            <thead>
+              <tr>
+                <th>ডেসিমাল (Decimal)</th>
+                <th>বাইনারি ক্রম (Binary Sequence)</th>
+                <th>ব্যাখ্যা</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>0</td><td><span class="math-formula">0</span></td><td>একক ঘরের সর্বনিম্ন মান</td></tr>
+              <tr><td>1</td><td><span class="math-formula">1</span></td><td>একক ঘরের সর্বোচ্চ মান</td></tr>
+              <tr><td>2</td><td><span class="math-formula">10</span></td><td>অংক শেষ, তাই ২-অংকের শুরুতে ১ এবং ০</td></tr>
+              <tr><td>3</td><td><span class="math-formula">11</span></td><td>১০ এর সাথে ১ যোগ</td></tr>
+              <tr><td>4</td><td><span class="math-formula">100</span></td><td>১১ শেষ, তাই ৩-অংকের শুরুতে ১০০</td></tr>
+              <tr><td>5</td><td><span class="math-formula">101</span></td><td>১০০ + ১</td></tr>
+              <tr><td>6</td><td><span class="math-formula">110</span></td><td>১০১ + ১</td></tr>
+              <tr><td>7</td><td><span class="math-formula">111</span></td><td>তিন অংকের সর্বোচ্চ মান</td></tr>
+              <tr><td>8</td><td><span class="math-formula">1000</span></td><td>৪-অংকের সূচনা</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SECTION 2: 1 2 4 8 16 32 64 Magic Series -->
+      <div class="lecture-card">
+        <div class="lecture-card-header">
+          <div class="lecture-title">২. ডেসিমাল টু বাইনারি রূপান্তরের ম্যাজিক সিরিজ (১, ২, ৪, ৮, ১৬, ৩২, ৬৪)</div>
+        </div>
+        <div class="lecture-content">
+          <p>যে কোনো ডেসিমাল সংখ্যাকে সাধারণ ভাগের পরিবর্তে বাইনারি পজিশনাল ওয়েট বা দ্বিগুণ হওয়ার সিরিজ দিয়ে নিমেষেই বের করা যায়:</p>
+          
+          <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 15px 0;">
+            <span class="math-formula" style="font-size: 1.1rem; padding: 8px 14px;">64</span>
+            <span class="math-formula" style="font-size: 1.1rem; padding: 8px 14px;">32</span>
+            <span class="math-formula" style="font-size: 1.1rem; padding: 8px 14px;">16</span>
+            <span class="math-formula" style="font-size: 1.1rem; padding: 8px 14px;">8</span>
+            <span class="math-formula" style="font-size: 1.1rem; padding: 8px 14px;">4</span>
+            <span class="math-formula" style="font-size: 1.1rem; padding: 8px 14px;">2</span>
+            <span class="math-formula" style="font-size: 1.1rem; padding: 8px 14px;">1</span>
+          </div>
+
+          <div class="highlight-box">
+            <strong>কৌশল:</strong> প্রদত্ত সংখ্যাটি তৈরি করতে যেসব মানগুলো যোগ করতে হবে তাদের নিচে <strong>১ (ON)</strong> বসবে, আর যেগুলো লাগবে না তাদের নিচে <strong>০ (OFF)</strong> বসবে।
+          </div>
+
+          <p><strong>উদাহরণ ১:</strong> (25)₁₀ কে বাইনারিতে রূপান্তর করো।</p>
+          <p>আমরা জানি: 16 + 8 + 1 = 25</p>
+          <table class="base-table">
+            <thead>
+              <tr><th>১৬</th><th>৮</th><th>৪</th><th>২</th><th>১</th><th>বাইনারি মান</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td><strong>(11001)₂</strong></td></tr>
+            </tbody>
+          </table>
+
+          <p style="margin-top: 15px;"><strong>উদাহরণ ২:</strong> (53)₁₀ কে বাইনারিতে রূপান্তর করো।</p>
+          <p>আমরা জানি: 32 + 16 + 4 + 1 = 53</p>
+          <table class="base-table">
+            <thead>
+              <tr><th>৩২</th><th>১৬</th><th>৮</th><th>৪</th><th>২</th><th>১</th><th>বাইনারি মান</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td><strong>(110101)₂</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+     <!-- SECTION 3: Decimal to Hexadecimal (Divide by 16 Method) -->
+      <div class="lecture-card">
+        <div class="lecture-card-header">
+          <div class="lecture-title">৩. ডেসিমাল হতে হেক্সাডেসিমেল রূপান্তর (১৬ দিয়ে ক্রমাগত ভাগ পদ্ধতি)</div>
+        </div>
+        <div class="lecture-content">
+          <p>ডেসিমাল পূর্ণসংখ্যাকে হেক্সাডেসিমেলে রূপান্তর করতে হলে সংখ্যাটিকে এর বেস <strong>১৬ দিয়ে ক্রমাগত ভাগ</strong> করতে হয় এবং ভাগশেষগুলোকে সংরক্ষণ করতে হয়।</p>
+
+          <!-- MSD vs MSB Concept Box -->
+          <div class="highlight-box" style="border-left: 4px solid #f59e0b; background: rgba(245, 158, 11, 0.08); margin: 16px 0;">
+            <strong style="color: #f59e0b;">💡 গুরুত্বপূর্ণ ধারণা (MSD বনাম MSB):</strong><br>
+            বাইনারি বাদে অন্য যেকোনো সংখ্যা পদ্ধতির (ডেসিমাল, অকটাল, হেক্সাডেসিমেল) ক্ষেত্রে একক মানগুলোকে <strong>Digit (অংক)</strong> বলা হয়, তাই সেগুলোর ক্ষেত্রে ব্যবহৃত হয়:<br>
+            • <strong>MSD</strong> (Most Significant Digit - সর্বোচ্চ গুরুত্বের অংক)<br>
+            • <strong>LSD</strong> (Least Significant Digit - সর্বনিম্ন গুরুত্বের অংক)<br>
+            <span style="font-size: 0.9em; opacity: 0.9;">*(আর <strong>MSB / LSB</strong> ব্যবহৃত হয় শুধুমাত্র বাইনারির ক্ষেত্রে, কারণ সেখানে B মানে <strong>Bit</strong>)*।</span>
+          </div>
+
+          <div class="highlight-box">
+            <strong>মনে রাখবে (১০ থেকে ১৫ এর মান):</strong><br>
+            ভাগশেষ <strong>10</strong> হলে <strong style="color: #4f46e5;">A</strong>, <strong>11</strong> হলে <strong style="color: #4f46e5;">B</strong>, <strong>12</strong> হলে <strong style="color: #4f46e5;">C</strong>, <strong>13</strong> হলে <strong style="color: #4f46e5;">D</strong>, <strong>14</strong> হলে <strong style="color: #4f46e5;">E</strong> এবং <strong>15</strong> হলে <strong style="color: #4f46e5;">F</strong> লিখতে হবে।
+          </div>
+
+          <h4 style="color: #4f46e5; margin-top: 18px;">রূপান্তরের নিয়ম:</h4>
+          <ol style="margin-left: 20px; line-height: 1.8;">
+            <li>প্রদত্ত সংখ্যাকে ১৬ দিয়ে ভাগ করে <strong>ভাগফল</strong> নিচে এবং <strong>ভাগশেষ</strong> ডানপাশে লিখতে হবে।</li>
+            <li>ভাগফল ০ (শূন্য) না হওয়া পর্যন্ত ভাগ করার প্রক্রিয়া চলবে।</li>
+            <li>সবশেষে ভাগশেষগুলোকে <strong>নিচ থেকে ওপরের দিকে (MSD থেকে LSD)</strong> সাজিয়ে লিখতে হবে।</li>
+          </ol>
+
+          <p style="margin-top: 18px;"><strong>উদাহরণ ১:</strong> (247)₁₀ কে হেক্সাডেসিমেলে রূপান্তর করো।</p>
+          <table class="base-table">
+            <thead>
+              <tr><th>১৬ দ্বারা ভাগ</th><th>ভাগফল</th><th>ভাগশেষ (Hex Value)</th><th>দিক</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>247 ÷ 16</td><td>15</td><td>7</td><td>LSD (উপরে)</td></tr>
+              <tr><td>15 ÷ 16</td><td>0</td><td>15 ➔ <strong>F</strong></td><td>MSD (নিচে)</td></tr>
+            </tbody>
+          </table>
+          <div class="highlight-box" style="margin-top: 10px;">
+            নিচ থেকে উপরে সাজিয়ে পাই: <strong>(247)₁₀ = (F7)₁₆</strong>
+          </div>
+
+          <p style="margin-top: 18px;"><strong>উদাহরণ ২:</strong> (423)₁₀ কে হেক্সাডেসিমেলে রূপান্তর করো।</p>
+          <table class="base-table">
+            <thead>
+              <tr><th>১৬ দ্বারা ভাগ</th><th>ভাগফল</th><th>ভাগশেষ (Hex Value)</th><th>দিক</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>423 ÷ 16</td><td>26</td><td>7</td><td>LSD (উপরে)</td></tr>
+              <tr><td>26 ÷ 16</td><td>1</td><td>10 ➔ <strong>A</strong></td><td>↑</td></tr>
+              <tr><td>1 ÷ 16</td><td>0</td><td>1</td><td>MSD (নিচে)</td></tr>
+            </tbody>
+          </table>
+          <div class="highlight-box" style="margin-top: 10px;">
+            নিচ থেকে উপরে সাজিয়ে পাই: <strong>(423)₁₀ = (1A7)₁₆</strong>
+          </div>
+        </div>
+      </div>
     </div>
   `;
 }
