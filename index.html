@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="bn">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
   <link rel="icon" type="image/png" href="sambok_logo-removebg-preview.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --primary: #4f46e5;
@@ -25,6 +28,46 @@
       --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
       --shadow-hover: 0 15px 30px -5px rgba(79, 70, 229, 0.12);
     }
+
+    /* Goal Exam & Student Report Styles */
+    .exam-timer-badge {
+      background: #fee2e2;
+      color: #b91c1c;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.95rem;
+      border: 1px solid #fecaca;
+    }
+
+    .goal-card-locked {
+      opacity: 0.6;
+      filter: grayscale(0.8);
+      pointer-events: none;
+      cursor: not-allowed;
+      position: relative;
+    }
+
+    .report-chip {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .report-correct {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .report-wrong {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
     /* Dark Mode Theme Variables */
     body.dark-mode {
       --bg: #0f172a;
@@ -73,7 +116,8 @@
     body.dark-mode .tags {
       color: #cbd5e1;
     }
-body.dark-mode .lecture-content li,
+
+    body.dark-mode .lecture-content li,
     body.dark-mode .lecture-content p,
     body.dark-mode .lecture-content strong,
     body.dark-mode .lecture-content span {
@@ -89,6 +133,7 @@ body.dark-mode .lecture-content li,
     body.dark-mode .highlight-box strong {
       color: #ffffff !important;
     }
+
     /* Homework Card & Answer Box Dark Theme */
     body.dark-mode .lecture-card[style*="dashed"] {
       background: #1e293b !important;
@@ -110,12 +155,14 @@ body.dark-mode .lecture-content li,
     body.dark-mode #hw-answers p {
       color: #818cf8 !important;
     }
+
     /* Math Formula Dark Mode Fix */
     body.dark-mode .math-formula {
       background: rgba(99, 102, 241, 0.2) !important;
       color: #818cf8 !important;
       border: 1px solid rgba(99, 102, 241, 0.4);
     }
+
     body.dark-mode .nav-btn {
       background: #334155;
       color: #e2e8f0;
@@ -140,13 +187,18 @@ body.dark-mode .lecture-content li,
       justify-content: center;
       transition: all 0.2s ease;
     }
+
     body.dark-mode .theme-toggle-btn {
       background: #334155;
       border-color: #475569;
       color: #f8fafc;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: 'Poppins', 'Hind Siliguri', sans-serif;
@@ -189,7 +241,7 @@ body.dark-mode .lecture-content li,
       height: 44px;
       border-radius: 10px;
       object-fit: cover;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     }
 
     .brand-title {
@@ -219,7 +271,8 @@ body.dark-mode .lecture-content li,
       font-family: inherit;
     }
 
-    .nav-btn:hover, .nav-btn.active {
+    .nav-btn:hover,
+    .nav-btn.active {
       background: #4f46e5;
       color: #ffffff;
     }
@@ -483,9 +536,18 @@ body.dark-mode .lecture-content li,
       margin-bottom: 3px;
     }
 
-    .synonyms .section-title { color: var(--syn-color); }
-    .antonyms .section-title { color: var(--ant-color); }
-    .tags { color: #334155; line-height: 1.45; }
+    .synonyms .section-title {
+      color: var(--syn-color);
+    }
+
+    .antonyms .section-title {
+      color: var(--ant-color);
+    }
+
+    .tags {
+      color: #334155;
+      line-height: 1.45;
+    }
 
     /* ICT Lecture View Styles */
     .lecture-container {
@@ -585,7 +647,8 @@ body.dark-mode .lecture-content li,
       font-size: 0.93rem;
     }
 
-    .base-table th, .base-table td {
+    .base-table th,
+    .base-table td {
       border: 1px solid var(--border);
       padding: 10px 14px;
       text-align: left;
@@ -629,29 +692,47 @@ body.dark-mode .lecture-content li,
     }
 
     @media (max-width: 640px) {
-      .nav-container { flex-direction: column; gap: 12px; }
-      .container { padding: 20px 14px; }
-      .hero h1 { font-size: 1.6rem; }
-      .vocab-grid { grid-template-columns: 1fr; }
-      .lecture-card { padding: 18px; }
+      .nav-container {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .container {
+        padding: 20px 14px;
+      }
+
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+
+      .vocab-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lecture-card {
+        padding: 18px;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Navigation -->
   <nav class="navbar">
     <div class="nav-container">
       <div class="brand" onclick="navigateTo('home')">
-        <img src="sambok_logo-removebg-preview.png" alt="SAMBOOK Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/44?text=SB'">
+        <img src="sambok_logo-removebg-preview.png" alt="SAMBOOK Logo" class="brand-logo"
+          onerror="this.src='https://via.placeholder.com/44?text=SB'">
         <div class="brand-title">SAMBOOK</div>
       </div>
-     <div class="nav-links">
+      <div class="nav-links">
         <button class="nav-btn" id="btn-home" onclick="navigateTo('home')">Home</button>
         <button class="nav-btn" id="btn-english" onclick="navigateTo('english')">English</button>
         <button class="nav-btn" id="btn-ict" onclick="navigateTo('ict')">ICT</button>
         <button class="nav-btn" id="btn-teacher" onclick="navigateTo('teacher')">👨‍🏫 Teacher Portal</button>
-        <button class="theme-toggle-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">🌙</button>
+        <button class="theme-toggle-btn" id="theme-btn" onclick="toggleTheme()"
+          title="Toggle Dark/Light Mode">🌙</button>
       </div>
     </div>
   </nav>
@@ -760,34 +841,34 @@ body.dark-mode .lecture-content li,
     }
 
     function renderBreadcrumb(parts) {
-  const bc = document.getElementById('breadcrumb');
-  if (!bc) return;
-  bc.innerHTML = parts.map((p, idx) => {
-    const isLast = idx === parts.length - 1;
-    return isLast
-      ? `<span class="active-crumb">${p.name}</span>`
-      : `<span onclick="navigateTo('${p.route}')">${p.name}</span> <span>/</span>`;
-  }).join('');
-}
-function toggleAnswer(ansId, btn) {
-  const ansEl = document.getElementById(ansId);
-  if (ansEl.style.display === 'none' || ansEl.style.display === '') {
-    ansEl.style.display = 'block';
-    btn.innerText = 'উত্তর লুকান ▲';
-    btn.style.background = '#e2e8f0';
-    btn.style.color = '#334155';
-  } else {
-    ansEl.style.display = 'none';
-    btn.innerText = 'উত্তর দেখুন ▼';
-    btn.style.background = '#4f46e5';
-    btn.style.color = '#ffffff';
-  }
-}
+      const bc = document.getElementById('breadcrumb');
+      if (!bc) return;
+      bc.innerHTML = parts.map((p, idx) => {
+        const isLast = idx === parts.length - 1;
+        return isLast
+          ? `<span class="active-crumb">${p.name}</span>`
+          : `<span onclick="navigateTo('${p.route}')">${p.name}</span> <span>/</span>`;
+      }).join('');
+    }
+    function toggleAnswer(ansId, btn) {
+      const ansEl = document.getElementById(ansId);
+      if (ansEl.style.display === 'none' || ansEl.style.display === '') {
+        ansEl.style.display = 'block';
+        btn.innerText = 'উত্তর লুকান ▲';
+        btn.style.background = '#e2e8f0';
+        btn.style.color = '#334155';
+      } else {
+        ansEl.style.display = 'none';
+        btn.innerText = 'উত্তর দেখুন ▼';
+        btn.style.background = '#4f46e5';
+        btn.style.color = '#ffffff';
+      }
+    }
     function navigateTo(route, addToHistory = true) {
-  if (addToHistory) {
-    history.pushState({ route: route }, '', '#' + route);
-  }
-  const app = document.getElementById('app-view');
+      if (addToHistory) {
+        history.pushState({ route: route }, '', '#' + route);
+      }
+      const app = document.getElementById('app-view');
 
       if (route === 'home') {
         setActiveNav('home');
@@ -819,7 +900,7 @@ function toggleAnswer(ansId, btn) {
             </div>
           </div>
         `;
-      } 
+      }
       else if (route === 'english') {
         setActiveNav('english');
         renderBreadcrumb([
@@ -866,7 +947,7 @@ function toggleAnswer(ansId, btn) {
         ]);
         renderEnglishLesson1();
       }
-else if (route === 'english-lec1-exam') {
+      else if (route === 'english-lec1-exam') {
         setActiveNav('english');
         renderBreadcrumb([
           { name: 'Home', route: 'home' },
@@ -905,7 +986,7 @@ else if (route === 'english-lec1-exam') {
         ]);
         renderEnglish2ndLesson1();
       }
-else if (route === 'ict-lec3') {
+      else if (route === 'ict-lec3') {
         setActiveNav('ict');
         renderBreadcrumb([
           { name: 'Home', route: 'home' },
@@ -972,7 +1053,7 @@ else if (route === 'ict-lec3') {
           </div>
         `;
       }
-      
+
       else if (route === 'ict-ch3-lecture-1') {
         setActiveNav('ict');
         renderBreadcrumb([
@@ -1228,14 +1309,14 @@ else if (route === 'ict-lec3') {
         `;
       }
       else if (route === 'teacher') {
-      setActiveNav('teacher');
-      renderBreadcrumb([
-        { name: 'Home', route: 'home' },
-        { name: 'Teacher Portal', route: 'teacher' }
-      ]);
-      app.innerHTML = `<div id="teacher-portal-view" style="max-width: 700px; margin: 0 auto; padding: 10px;"></div>`;
-      renderTeacherDashboard();
-    }
+        setActiveNav('teacher');
+        renderBreadcrumb([
+          { name: 'Home', route: 'home' },
+          { name: 'Teacher Portal', route: 'teacher' }
+        ]);
+        app.innerHTML = `<div id="teacher-portal-view" style="max-width: 700px; margin: 0 auto; padding: 10px;"></div>`;
+        renderTeacherDashboard();
+      }
     }
 
     function renderVocabList(items) {
@@ -1269,7 +1350,7 @@ else if (route === 'ict-lec3') {
 
     function handleVocabSearch(query) {
       const q = query.trim().toLowerCase();
-      const filtered = vocabData.filter(item => 
+      const filtered = vocabData.filter(item =>
         item.word.toLowerCase().includes(q) ||
         item.meaning.toLowerCase().includes(q) ||
         item.syn.toLowerCase().includes(q) ||
@@ -1279,20 +1360,20 @@ else if (route === 'ict-lec3') {
     }
 
     // Initialize Home
-  navigateTo('home');
+    navigateTo('home');
 
-  window.addEventListener('popstate', function (event) {
-    if (event.state && event.state.route) {
-      navigateTo(event.state.route, false);
-    } else {
-      navigateTo('home', false);
-    }
-  });
-function renderEnglishLectures() {
-  const app = document.getElementById('app-view');
-  if (!app) return;
+    window.addEventListener('popstate', function (event) {
+      if (event.state && event.state.route) {
+        navigateTo(event.state.route, false);
+      } else {
+        navigateTo('home', false);
+      }
+    });
+    function renderEnglishLectures() {
+      const app = document.getElementById('app-view');
+      if (!app) return;
 
-  app.innerHTML = `
+      app.innerHTML = `
     <div class="hero">
       <h1>English 1st Paper</h1>
       <p>HSC English 1st Paper Interactive Lectures & Comprehensive Study Materials</p>
@@ -1310,15 +1391,19 @@ function renderEnglishLectures() {
             <p style="margin: 4px 0 0 0; font-size: 0.88rem; color: var(--text-muted);">The Parrot's Tale – Complete 72 Vocabularies, Synonyms & Antonyms</p>
           </div>
         </div>
-        <div style="display: flex; gap: 10px; align-items: center;">
-          <button onclick="navigateTo('english-lec1')" style="background: #4f46e5; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.88rem; font-family: inherit; transition: 0.2s;">
-            View Lesson →
-          </button>
-          <button onclick="navigateTo('english-lec1-exam')" style="background: #ec4899; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.88rem; font-family: inherit; transition: 0.2s; box-shadow: 0 2px 8px rgba(236,72,153,0.3);">
-            📝 Exam (20 MCQs)
-          </button>
-        </div>
-      </div>
+        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <button onclick="navigateTo('english-lec1')" style="background: #4f46e5; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                  View Lesson &rarr;
+                </button>
+             <button onclick="navigateTo('english-lec1-exam')" style="background: #3b82f6; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                  📖 Self Practice
+                </button>
+                <button onclick="startGoalExam('goal1')" style="background: #ec4899; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                  🎯 Goal 1 Exam (30 Min)
+                </button>
+              </div>
+            </div>
+          </div>
 
       <!-- Lecture 02 Card -->
       <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 22px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); flex-wrap: wrap; gap: 15px;">
@@ -1340,13 +1425,13 @@ function renderEnglishLectures() {
 
     </div>
   `;
-}
+    }
 
-function renderEnglishLesson1() {
-  const app = document.getElementById('app-view');
-  if (!app) return;
+    function renderEnglishLesson1() {
+      const app = document.getElementById('app-view');
+      if (!app) return;
 
-  app.innerHTML = `
+      app.innerHTML = `
     <div class="hero">
       <h1>The Parrot's Tale</h1>
       <p>Unit One: Education and Life – Lesson 2 (Complete 72 Vocabularies)</p>
@@ -1360,107 +1445,107 @@ function renderEnglishLesson1() {
     </div>
     <div class="vocab-grid" id="vocabGridContainer"></div>
   `;
-  renderVocabList(vocabData);
-}
-let currentExamScore = 0;
-/* --- SMART VOCABULARY MCQ EXAM ENGINE (GOAL & ERROR-TARGETED RETAKE) --- */
+      renderVocabList(vocabData);
+    }
+    let currentExamScore = 0;
+    /* --- SMART VOCABULARY MCQ EXAM ENGINE (GOAL & ERROR-TARGETED RETAKE) --- */
 
-let examCurrentBatchIndex = 0; // 0: 1-20, 1: 21-40, 2: 41-60, 3: 61-72
-let examActiveQuestions = [];
-let examWrongQuestions = [];
-let examScore = 0;
-let examAnsweredCount = 0;
-let isRetakeMode = false;
+    let examCurrentBatchIndex = 0; // 0: 1-20, 1: 21-40, 2: 41-60, 3: 61-72
+    let examActiveQuestions = [];
+    let examWrongQuestions = [];
+    let examScore = 0;
+    let examAnsweredCount = 0;
+    let isRetakeMode = false;
 
-// Goal Batches Configuration
-const examBatches = [
-  { name: "Goal 1", rangeText: "Words 01 - 20", start: 0, end: 20 },
-  { name: "Goal 2", rangeText: "Words 21 - 40", start: 20, end: 40 },
-  { name: "Goal 3", rangeText: "Words 41 - 60", start: 40, end: 60 },
-  { name: "Goal 4", rangeText: "Words 61 - 72", start: 60, end: 72 }
-];
+    // Goal Batches Configuration
+    const examBatches = [
+      { name: "Goal 1", rangeText: "Words 01 - 20", start: 0, end: 20 },
+      { name: "Goal 2", rangeText: "Words 21 - 40", start: 20, end: 40 },
+      { name: "Goal 3", rangeText: "Words 41 - 60", start: 40, end: 60 },
+      { name: "Goal 4", rangeText: "Words 61 - 72", start: 60, end: 72 }
+    ];
 
-function startVocabExam(batchIdx = 0, customQuestionList = null) {
-  examCurrentBatchIndex = batchIdx;
-  const batch = examBatches[batchIdx];
+    function startVocabExam(batchIdx = 0, customQuestionList = null) {
+      examCurrentBatchIndex = batchIdx;
+      const batch = examBatches[batchIdx];
 
-  if (customQuestionList) {
-    examActiveQuestions = customQuestionList;
-    isRetakeMode = true;
-  } else {
-    isRetakeMode = false;
-    const targetWords = vocabData.slice(batch.start, batch.end);
-    examActiveQuestions = [];
+      if (customQuestionList) {
+        examActiveQuestions = customQuestionList;
+        isRetakeMode = true;
+      } else {
+        isRetakeMode = false;
+        const targetWords = vocabData.slice(batch.start, batch.end);
+        examActiveQuestions = [];
 
-    // Prottek word-er jonno 1ta Synonym ebong 1ta Antonym banano
-    targetWords.forEach((item, i) => {
-      // 1. Synonym Question
-      if (item.syn && item.syn !== "N/A") {
-        const correctSyn = item.syn.split(',')[0].trim();
-        const otherWords = vocabData.filter(v => v.word !== item.word && v.syn && v.syn !== "N/A");
-        const shuffledOthers = [...otherWords].sort(() => 0.5 - Math.random());
-        const w1 = shuffledOthers[0].syn.split(',')[0].trim();
-        const w2 = shuffledOthers[1] ? shuffledOthers[1].syn.split(',')[0].trim() : "Trivial";
-        const w3 = item.ant && item.ant !== "N/A" ? item.ant.split(',')[0].trim() : "Ordinary";
-        const optionsSyn = [correctSyn, w1, w2, w3].sort(() => 0.5 - Math.random());
+        // Prottek word-er jonno 1ta Synonym ebong 1ta Antonym banano
+        targetWords.forEach((item, i) => {
+          // 1. Synonym Question
+          if (item.syn && item.syn !== "N/A") {
+            const correctSyn = item.syn.split(',')[0].trim();
+            const otherWords = vocabData.filter(v => v.word !== item.word && v.syn && v.syn !== "N/A");
+            const shuffledOthers = [...otherWords].sort(() => 0.5 - Math.random());
+            const w1 = shuffledOthers[0].syn.split(',')[0].trim();
+            const w2 = shuffledOthers[1] ? shuffledOthers[1].syn.split(',')[0].trim() : "Trivial";
+            const w3 = item.ant && item.ant !== "N/A" ? item.ant.split(',')[0].trim() : "Ordinary";
+            const optionsSyn = [correctSyn, w1, w2, w3].sort(() => 0.5 - Math.random());
 
-        examActiveQuestions.push({
-          qId: `q-${i}-syn`,
-          word: item.word,
-          meaning: item.meaning,
-          type: "Synonym",
-          correctAns: correctSyn,
-          options: optionsSyn
+            examActiveQuestions.push({
+              qId: `q-${i}-syn`,
+              word: item.word,
+              meaning: item.meaning,
+              type: "Synonym",
+              correctAns: correctSyn,
+              options: optionsSyn
+            });
+          }
+
+          // 2. Antonym Question
+          if (item.ant && item.ant !== "N/A") {
+            const correctAnt = item.ant.split(',')[0].trim();
+            const otherWords = vocabData.filter(v => v.word !== item.word && v.ant && v.ant !== "N/A");
+            const shuffledOthers = [...otherWords].sort(() => 0.5 - Math.random());
+            const w1 = shuffledOthers[0].ant.split(',')[0].trim();
+            const w2 = shuffledOthers[1] ? shuffledOthers[1].ant.split(',')[0].trim() : "Significant";
+            const w3 = item.syn && item.syn !== "N/A" ? item.syn.split(',')[0].trim() : "Genuine";
+            const optionsAnt = [correctAnt, w1, w2, w3].sort(() => 0.5 - Math.random());
+
+            examActiveQuestions.push({
+              qId: `q-${i}-ant`,
+              word: item.word,
+              meaning: item.meaning,
+              type: "Antonym",
+              correctAns: correctAnt,
+              options: optionsAnt
+            });
+          }
         });
+
+        // Randomize all questions order
+        examActiveQuestions = examActiveQuestions.sort(() => 0.5 - Math.random());
       }
 
-      // 2. Antonym Question
-      if (item.ant && item.ant !== "N/A") {
-        const correctAnt = item.ant.split(',')[0].trim();
-        const otherWords = vocabData.filter(v => v.word !== item.word && v.ant && v.ant !== "N/A");
-        const shuffledOthers = [...otherWords].sort(() => 0.5 - Math.random());
-        const w1 = shuffledOthers[0].ant.split(',')[0].trim();
-        const w2 = shuffledOthers[1] ? shuffledOthers[1].ant.split(',')[0].trim() : "Significant";
-        const w3 = item.syn && item.syn !== "N/A" ? item.syn.split(',')[0].trim() : "Genuine";
-        const optionsAnt = [correctAnt, w1, w2, w3].sort(() => 0.5 - Math.random());
+      examScore = 0;
+      examAnsweredCount = 0;
+      examWrongQuestions = [];
 
-        examActiveQuestions.push({
-          qId: `q-${i}-ant`,
-          word: item.word,
-          meaning: item.meaning,
-          type: "Antonym",
-          correctAns: correctAnt,
-          options: optionsAnt
-        });
-      }
-    });
+      renderExamUI();
+    }
 
-    // Randomize all questions order
-    examActiveQuestions = examActiveQuestions.sort(() => 0.5 - Math.random());
-  }
+    function renderExamUI() {
+      const app = document.getElementById('app-view');
+      if (!app) return;
 
-  examScore = 0;
-  examAnsweredCount = 0;
-  examWrongQuestions = [];
+      const currentBatch = examBatches[examCurrentBatchIndex];
+      const totalQuestions = examActiveQuestions.length;
 
-  renderExamUI();
-}
-
-function renderExamUI() {
-  const app = document.getElementById('app-view');
-  if (!app) return;
-
-  const currentBatch = examBatches[examCurrentBatchIndex];
-  const totalQuestions = examActiveQuestions.length;
-
-  // Batch Switcher Tabs
-  const tabsHTML = examBatches.map((b, idx) => `
+      // Batch Switcher Tabs
+      const tabsHTML = examBatches.map((b, idx) => `
     <button onclick="startVocabExam(${idx})" style="flex: 1; min-width: 130px; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border); font-family: inherit; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: 0.2s; background: ${idx === examCurrentBatchIndex ? '#4f46e5' : 'var(--card-bg)'}; color: ${idx === examCurrentBatchIndex ? '#ffffff' : 'var(--text-main)'};">
       ${b.name}<br><span style="font-size: 0.76rem; opacity: 0.85;">${b.rangeText}</span>
     </button>
   `).join('');
 
-  app.innerHTML = `
+      app.innerHTML = `
     <div class="hero">
       <h1>🎯 Vocabulary Mastery Exam</h1>
       <p>Unit 1 (Lesson 2): Synonym & Antonym Rapid Practice (Complete 72 Words)</p>
@@ -1513,80 +1598,80 @@ function renderExamUI() {
     <div id="exam-result-box" style="display: none; max-width: 850px; margin: 30px auto; padding: 28px; border-radius: 16px; text-align: center; background: var(--card-bg); border: 2px solid #4f46e5; box-shadow: var(--shadow-md);">
     </div>
   `;
-}
-
-function handleOptionSelect(btn, qId, chosenRaw, answerRaw) {
-  const chosen = decodeURIComponent(chosenRaw);
-  const correct = decodeURIComponent(answerRaw);
-  const card = document.getElementById(`card-${qId}`);
-  const feed = document.getElementById(`feed-${qId}`);
-
-  // Disable all buttons in this card
-  const allBtns = card.querySelectorAll(`.exam-btn-${qId}`);
-  allBtns.forEach(b => {
-    b.disabled = true;
-    b.style.cursor = 'default';
-  });
-
-  examAnsweredCount++;
-  const matchedQuestion = examActiveQuestions.find(q => q.qId === qId);
-
-  if (chosen.toLowerCase() === correct.toLowerCase()) {
-    examScore++;
-    btn.style.background = '#10b981';
-    btn.style.color = '#ffffff';
-    btn.style.borderColor = '#10b981';
-    feed.innerText = '✓ চমৎকার! সঠিক উত্তর।';
-    feed.style.background = '#ecfdf5';
-    feed.style.color = '#065f46';
-  } else {
-    btn.style.background = '#ef4444';
-    btn.style.color = '#ffffff';
-    btn.style.borderColor = '#ef4444';
-
-    // Highlight correct answer
-    allBtns.forEach(b => {
-      if (b.innerText.trim().toLowerCase() === correct.toLowerCase()) {
-        b.style.background = '#10b981';
-        b.style.color = '#ffffff';
-        b.style.borderColor = '#10b981';
-      }
-    });
-
-    feed.innerText = `✗ ভুল উত্তর! সঠিক উত্তর: "${correct}"`;
-    feed.style.background = '#fef2f2';
-    feed.style.color = '#991b1b';
-
-    // Save for targeted retake
-    if (matchedQuestion) {
-      examWrongQuestions.push(matchedQuestion);
     }
-  }
 
-  feed.style.display = 'block';
+    function handleOptionSelect(btn, qId, chosenRaw, answerRaw) {
+      const chosen = decodeURIComponent(chosenRaw);
+      const correct = decodeURIComponent(answerRaw);
+      const card = document.getElementById(`card-${qId}`);
+      const feed = document.getElementById(`feed-${qId}`);
 
-  // Update Live Score
-  const scoreBadge = document.getElementById('live-score-badge');
-  if (scoreBadge) {
-    scoreBadge.innerText = `Score: ${examScore} / ${examActiveQuestions.length}`;
-  }
+      // Disable all buttons in this card
+      const allBtns = card.querySelectorAll(`.exam-btn-${qId}`);
+      allBtns.forEach(b => {
+        b.disabled = true;
+        b.style.cursor = 'default';
+      });
 
-  // Check if exam completed
-  if (examAnsweredCount === examActiveQuestions.length) {
-    displayBatchResult();
-  }
-}
+      examAnsweredCount++;
+      const matchedQuestion = examActiveQuestions.find(q => q.qId === qId);
 
-function displayBatchResult() {
-  const resBox = document.getElementById('exam-result-box');
-  if (!resBox) return;
+      if (chosen.toLowerCase() === correct.toLowerCase()) {
+        examScore++;
+        btn.style.background = '#10b981';
+        btn.style.color = '#ffffff';
+        btn.style.borderColor = '#10b981';
+        feed.innerText = '✓ চমৎকার! সঠিক উত্তর।';
+        feed.style.background = '#ecfdf5';
+        feed.style.color = '#065f46';
+      } else {
+        btn.style.background = '#ef4444';
+        btn.style.color = '#ffffff';
+        btn.style.borderColor = '#ef4444';
 
-  const total = examActiveQuestions.length;
-  const isAllCorrect = examScore === total;
-  const hasNextGoal = examCurrentBatchIndex < examBatches.length - 1;
+        // Highlight correct answer
+        allBtns.forEach(b => {
+          if (b.innerText.trim().toLowerCase() === correct.toLowerCase()) {
+            b.style.background = '#10b981';
+            b.style.color = '#ffffff';
+            b.style.borderColor = '#10b981';
+          }
+        });
 
-  resBox.style.display = 'block';
-  resBox.innerHTML = `
+        feed.innerText = `✗ ভুল উত্তর! সঠিক উত্তর: "${correct}"`;
+        feed.style.background = '#fef2f2';
+        feed.style.color = '#991b1b';
+
+        // Save for targeted retake
+        if (matchedQuestion) {
+          examWrongQuestions.push(matchedQuestion);
+        }
+      }
+
+      feed.style.display = 'block';
+
+      // Update Live Score
+      const scoreBadge = document.getElementById('live-score-badge');
+      if (scoreBadge) {
+        scoreBadge.innerText = `Score: ${examScore} / ${examActiveQuestions.length}`;
+      }
+
+      // Check if exam completed
+      if (examAnsweredCount === examActiveQuestions.length) {
+        displayBatchResult();
+      }
+    }
+
+    function displayBatchResult() {
+      const resBox = document.getElementById('exam-result-box');
+      if (!resBox) return;
+
+      const total = examActiveQuestions.length;
+      const isAllCorrect = examScore === total;
+      const hasNextGoal = examCurrentBatchIndex < examBatches.length - 1;
+
+      resBox.style.display = 'block';
+      resBox.innerHTML = `
     <div style="font-size: 3.2rem; margin-bottom: 8px;">${isAllCorrect ? '🏆' : '🎯'}</div>
     <h2 style="color: var(--text-main); margin-bottom: 6px;">
       ${isAllCorrect ? 'অসাধারণ! ১০০% পারফেক্ট স্কোর!' : 'পরীক্ষা সম্পন্ন হয়েছে!'}
@@ -1595,9 +1680,9 @@ function displayBatchResult() {
       প্রাপ্ত স্কোর: ${examScore} / ${total}
     </p>
     <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 22px;">
-      ${isAllCorrect 
-        ? 'তুমি এই সেকশনের সবগুলো সিনোনিম ও অ্যান্টনিম নিখুঁতভাবে আয়ত্ত করে ফেলেছ।' 
-        : `তোমার মোট ${examWrongQuestions.length} টি উত্তরে ভুল হয়েছিল। ভুলগুলো আবার প্র্যাকটিস করে ১০০% করে নাও!`}
+      ${isAllCorrect
+          ? 'তুমি এই সেকশনের সবগুলো সিনোনিম ও অ্যান্টনিম নিখুঁতভাবে আয়ত্ত করে ফেলেছ।'
+          : `তোমার মোট ${examWrongQuestions.length} টি উত্তরে ভুল হয়েছিল। ভুলগুলো আবার প্র্যাকটিস করে ১০০% করে নাও!`}
     </p>
 
     <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
@@ -1623,19 +1708,19 @@ function displayBatchResult() {
     </div>
   `;
 
-  resBox.scrollIntoView({ behavior: 'smooth' });
-}
+      resBox.scrollIntoView({ behavior: 'smooth' });
+    }
 
-function retakeWrongQuestionsOnly() {
-  if (examWrongQuestions.length === 0) return;
-  const listToRetake = [...examWrongQuestions];
-  startVocabExam(examCurrentBatchIndex, listToRetake);
-}
-function renderEnglishLesson2() {
-  const app = document.getElementById('app-view');
-  if (!app) return;
+    function retakeWrongQuestionsOnly() {
+      if (examWrongQuestions.length === 0) return;
+      const listToRetake = [...examWrongQuestions];
+      startVocabExam(examCurrentBatchIndex, listToRetake);
+    }
+    function renderEnglishLesson2() {
+      const app = document.getElementById('app-view');
+      if (!app) return;
 
-  app.innerHTML = `
+      app.innerHTML = `
     <div class="hero">
       <h1>Myths of Bengal</h1>
       <p>Unit One: Myths & Literature – Lesson 1 (Complete Teaching Material & Analysis)</p>
@@ -1811,12 +1896,12 @@ function renderEnglishLesson2() {
 
     </div>
   `;
-}
-function renderICTCh3Lecture2() { 
-  const app = document.getElementById('app-view');
-  if (!app) return;
+    }
+    function renderICTCh3Lecture2() {
+      const app = document.getElementById('app-view');
+      if (!app) return;
 
-  app.innerHTML = `
+      app.innerHTML = `
     <div class="hero">
       <h1>অধ্যায় ৩: সংখ্যা পদ্ধতি ও ডিজিটাল ডিভাইস</h1>
       <p>লেকচার ০২: বাইনারি ক্রম, ম্যাজিক ট্রিকস এবং ডেসিমাল হতে হেক্সাডেসিমেল রূপান্তর</p>
@@ -1969,14 +2054,14 @@ function renderICTCh3Lecture2() {
       </div>
     </div>
   `;
-}
-/* --- ENGLISH 2ND PAPER LOGIC --- */
+    }
+    /* --- ENGLISH 2ND PAPER LOGIC --- */
 
-function renderEnglish2ndLectures() {
-  const app = document.getElementById('app-view');
-  if (!app) return;
+    function renderEnglish2ndLectures() {
+      const app = document.getElementById('app-view');
+      if (!app) return;
 
-  app.innerHTML = `
+      app.innerHTML = `
     <div class="hero">
       <h1>English 2nd Paper</h1>
       <p>HSC English Grammar Mastery & Contextual Application</p>
@@ -1999,13 +2084,13 @@ function renderEnglish2ndLectures() {
 
     </div>
   `;
-}
+    }
 
-function renderEnglish2ndLesson1() {
-  const app = document.getElementById('app-view');
-  if (!app) return;
+    function renderEnglish2ndLesson1() {
+      const app = document.getElementById('app-view');
+      if (!app) return;
 
-  app.innerHTML = `
+      app.innerHTML = `
     <div class="hero">
       <h1>English 2nd Paper : Grammar</h1>
       <p>Lecture 01: Master Parts of Speech through Sentence Breakdown</p>
@@ -2134,140 +2219,140 @@ function renderEnglish2ndLesson1() {
 
     </div>
   `;
-}
-/* --- HOMEWORK ANSWER UNLOCK & SCHEDULE LOGIC --- */
-
-// আনলক সময় লোড করা (ডিফল্ট: আগামীকাল সকাল ১০:০০)
-function getHwUnlockTime() {
-  const saved = localStorage.getItem('sambook_hw_unlock_time');
-  if (saved) return new Date(saved);
-  
-  // ডিফল্ট আগামীকাল সকাল ১০:০০ টা
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  tomorrow.setHours(10, 0, 0, 0);
-  return tomorrow;
-}
-
-// বাটন ক্লিকে চেক করবে সময় হয়েছে কি না
-function toggleHwAnswerWithLock() {
-  const unlockTime = getHwUnlockTime();
-  const now = new Date();
-  const ansBox = document.getElementById('hw-parts-ans');
-  const lockNotice = document.getElementById('hw-lock-notice');
-
-  if (now < unlockTime) {
-    // সময় হয়নি — স্টুডেন্টকে সতর্কবার্তা দেখাবে
-    const dateFormatted = unlockTime.toLocaleDateString('bn-BD', { day: 'numeric', month: 'long', year: 'numeric' });
-    const timeFormatted = unlockTime.toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit', hour12: true });
-
-    if (ansBox) ansBox.style.display = 'none';
-    if (lockNotice) {
-      lockNotice.innerHTML = `🔒 <strong>হোমওয়ার্কের সমাধান এখনো লক করা আছে!</strong><br>এটি <strong>${dateFormatted}, ${timeFormatted}</strong>-এ স্বয়ংক্রিয়ভাবে উন্মুক্ত হবে। ততক্ষণ পর্যন্ত নিজে সমাধান করার চেষ্টা করো!`;
-      lockNotice.style.display = lockNotice.style.display === 'none' ? 'block' : 'none';
     }
-  } else {
-    // সময় পার হয়েছে — সমাধান উন্মুক্ত
-    if (lockNotice) lockNotice.style.display = 'none';
-    if (ansBox) {
-      ansBox.style.display = ansBox.style.display === 'none' ? 'block' : 'none';
+    /* --- HOMEWORK ANSWER UNLOCK & SCHEDULE LOGIC --- */
+
+    // আনলক সময় লোড করা (ডিফল্ট: আগামীকাল সকাল ১০:০০)
+    function getHwUnlockTime() {
+      const saved = localStorage.getItem('sambook_hw_unlock_time');
+      if (saved) return new Date(saved);
+
+      // ডিফল্ট আগামীকাল সকাল ১০:০০ টা
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      tomorrow.setHours(10, 0, 0, 0);
+      return tomorrow;
     }
-  }
-}
-  /* --- TEACHER PANEL & STUDENT REPORT CARD LOGIC --- */
-const TEACHER_AUTH = {
-  user: "kh sami",
-  pass: "Secret26"
-};
 
-// LocalStorage theke homework dates load kora, na thakle default 10-10-26
-// LocalStorage theke homework data load kora (date ebong status soho)
-function getSavedHomeworkDates() {
-  const saved = localStorage.getItem('sambook_hw_data_v2');
-  if (saved) {
-    try { return JSON.parse(saved); } catch(e) {}
-  }
-  return [
-    { date: "10-10-26", status: "pending" }
-  ];
-}
+    // বাটন ক্লিকে চেক করবে সময় হয়েছে কি না
+    function toggleHwAnswerWithLock() {
+      const unlockTime = getHwUnlockTime();
+      const now = new Date();
+      const ansBox = document.getElementById('hw-parts-ans');
+      const lockNotice = document.getElementById('hw-lock-notice');
 
-function saveHomeworkDates(dataList) {
-  localStorage.setItem('sambook_hw_data_v2', JSON.stringify(dataList));
-}
+      if (now < unlockTime) {
+        // সময় হয়নি — স্টুডেন্টকে সতর্কবার্তা দেখাবে
+        const dateFormatted = unlockTime.toLocaleDateString('bn-BD', { day: 'numeric', month: 'long', year: 'numeric' });
+        const timeFormatted = unlockTime.toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit', hour12: true });
 
-function addNewHomeworkDate() {
-  const input = document.getElementById('new-hw-date-input');
-  if (!input || !input.value.trim()) return;
+        if (ansBox) ansBox.style.display = 'none';
+        if (lockNotice) {
+          lockNotice.innerHTML = `🔒 <strong>হোমওয়ার্কের সমাধান এখনো লক করা আছে!</strong><br>এটি <strong>${dateFormatted}, ${timeFormatted}</strong>-এ স্বয়ংক্রিয়ভাবে উন্মুক্ত হবে। ততক্ষণ পর্যন্ত নিজে সমাধান করার চেষ্টা করো!`;
+          lockNotice.style.display = lockNotice.style.display === 'none' ? 'block' : 'none';
+        }
+      } else {
+        // সময় পার হয়েছে — সমাধান উন্মুক্ত
+        if (lockNotice) lockNotice.style.display = 'none';
+        if (ansBox) {
+          ansBox.style.display = ansBox.style.display === 'none' ? 'block' : 'none';
+        }
+      }
+    }
+    /* --- TEACHER PANEL & STUDENT REPORT CARD LOGIC --- */
+    const TEACHER_AUTH = {
+      user: "kh sami",
+      pass: "Secret26"
+    };
 
-  const rawDate = input.value.trim();
-  let formattedDate = rawDate;
+    // LocalStorage theke homework dates load kora, na thakle default 10-10-26
+    // LocalStorage theke homework data load kora (date ebong status soho)
+    function getSavedHomeworkDates() {
+      const saved = localStorage.getItem('sambook_hw_data_v2');
+      if (saved) {
+        try { return JSON.parse(saved); } catch (e) { }
+      }
+      return [
+        { date: "10-10-26", status: "pending" }
+      ];
+    }
 
-  if (rawDate.includes('-') && rawDate.split('-')[0].length === 4) {
-    const parts = rawDate.split('-');
-    formattedDate = `${parts[2]}-${parts[1]}-${parts[0].slice(-2)}`;
-  }
+    function saveHomeworkDates(dataList) {
+      localStorage.setItem('sambook_hw_data_v2', JSON.stringify(dataList));
+    }
 
-  const currentList = getSavedHomeworkDates();
-  const exists = currentList.some(item => item.date === formattedDate);
-  if (!exists) {
-    currentList.unshift({ date: formattedDate, status: "pending" });
-    saveHomeworkDates(currentList);
-    renderTeacherDashboard();
-  } else {
-    alert('Ei date ti already list-e ache!');
-  }
-}
+    function addNewHomeworkDate() {
+      const input = document.getElementById('new-hw-date-input');
+      if (!input || !input.value.trim()) return;
 
-function deleteHomeworkDate(dateStr) {
-  if (!confirm(`${dateStr} tarikh-er record ti delete korte chan?`)) return;
-  let currentList = getSavedHomeworkDates();
-  currentList = currentList.filter(item => item.date !== dateStr);
-  saveHomeworkDates(currentList);
-  renderTeacherDashboard();
-}
+      const rawDate = input.value.trim();
+      let formattedDate = rawDate;
 
-function setHWStatus(dateStr, newStatus) {
-  let currentList = getSavedHomeworkDates();
-  const target = currentList.find(item => item.date === dateStr);
-  if (target) {
-    target.status = newStatus;
-    saveHomeworkDates(currentList);
-  }
-  renderTeacherDashboard();
-  generateHWStatus(newStatus, dateStr);
-}
+      if (rawDate.includes('-') && rawDate.split('-')[0].length === 4) {
+        const parts = rawDate.split('-');
+        formattedDate = `${parts[2]}-${parts[1]}-${parts[0].slice(-2)}`;
+      }
 
-function handleTeacherLogin(e) {
-  e.preventDefault();
-  const u = document.getElementById('tp-username').value.trim().toLowerCase();
-  const p = document.getElementById('tp-password').value.trim();
-  const err = document.getElementById('tp-login-error');
+      const currentList = getSavedHomeworkDates();
+      const exists = currentList.some(item => item.date === formattedDate);
+      if (!exists) {
+        currentList.unshift({ date: formattedDate, status: "pending" });
+        saveHomeworkDates(currentList);
+        renderTeacherDashboard();
+      } else {
+        alert('Ei date ti already list-e ache!');
+      }
+    }
 
-  if (u === TEACHER_AUTH.user && p === TEACHER_AUTH.pass) {
-    localStorage.setItem('sambook_teacher_logged', 'true');
-    renderTeacherDashboard();
-  } else {
-    if (err) err.style.display = 'block';
-  }
-}
+    function deleteHomeworkDate(dateStr) {
+      if (!confirm(`${dateStr} tarikh-er record ti delete korte chan?`)) return;
+      let currentList = getSavedHomeworkDates();
+      currentList = currentList.filter(item => item.date !== dateStr);
+      saveHomeworkDates(currentList);
+      renderTeacherDashboard();
+    }
 
-function logoutTeacher() {
-  localStorage.removeItem('sambook_teacher_logged');
-  renderTeacherDashboard();
-}
+    function setHWStatus(dateStr, newStatus) {
+      let currentList = getSavedHomeworkDates();
+      const target = currentList.find(item => item.date === dateStr);
+      if (target) {
+        target.status = newStatus;
+        saveHomeworkDates(currentList);
+      }
+      renderTeacherDashboard();
+      generateHWStatus(newStatus, dateStr);
+    }
 
-function renderTeacherDashboard() {
-  const container = document.getElementById('teacher-portal-view');
-  const mainCont = document.getElementById('mainContent') || document.querySelector('.main-content') || document.getElementById('app');
-  if (mainCont) mainCont.style.display = 'none';
-  if (container) container.style.display = 'block';
-  if (!container) return;
+    function handleTeacherLogin(e) {
+      e.preventDefault();
+      const u = document.getElementById('tp-username').value.trim().toLowerCase();
+      const p = document.getElementById('tp-password').value.trim();
+      const err = document.getElementById('tp-login-error');
 
-  const isLogged = localStorage.getItem('sambook_teacher_logged') === 'true';
+      if (u === TEACHER_AUTH.user && p === TEACHER_AUTH.pass) {
+        localStorage.setItem('sambook_teacher_logged', 'true');
+        renderTeacherDashboard();
+      } else {
+        if (err) err.style.display = 'block';
+      }
+    }
 
-  if (!isLogged) {
-    container.innerHTML = `
+    function logoutTeacher() {
+      localStorage.removeItem('sambook_teacher_logged');
+      renderTeacherDashboard();
+    }
+
+    function renderTeacherDashboard() {
+      const container = document.getElementById('teacher-portal-view');
+      const mainCont = document.getElementById('mainContent') || document.querySelector('.main-content') || document.getElementById('app');
+      if (mainCont) mainCont.style.display = 'none';
+      if (container) container.style.display = 'block';
+      if (!container) return;
+
+      const isLogged = localStorage.getItem('sambook_teacher_logged') === 'true';
+
+      if (!isLogged) {
+        container.innerHTML = `
       <div style="max-width: 380px; margin: 40px auto; padding: 28px; background: #ffffff; border-radius: 18px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; border: 1px solid #e2e8f0;">
         <div style="font-size: 2.5rem; margin-bottom: 10px;">🔐</div>
         <h3 style="margin-bottom: 6px; color: #1e293b; font-size: 1.3rem;">Teacher Portal</h3>
@@ -2280,19 +2365,19 @@ function renderTeacherDashboard() {
         </form>
       </div>
     `;
-    return;
-  }
+        return;
+      }
 
- const allData = getSavedHomeworkDates();
-  const historyListHTML = allData.map(item => {
-    let statusBadge = `<span style="background: #f1f5f9; color: #64748b; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">⏳ পেন্ডিং</span>`;
-    if (item.status === 'done') {
-      statusBadge = `<span style="background: #dcfce7; color: #15803d; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">✓ সম্পন্ন (Done)</span>`;
-    } else if (item.status === 'undone') {
-      statusBadge = `<span style="background: #fee2e2; color: #b91c1c; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">✗ অসম্পূর্ণ (Undone)</span>`;
-    }
+      const allData = getSavedHomeworkDates();
+      const historyListHTML = allData.map(item => {
+        let statusBadge = `<span style="background: #f1f5f9; color: #64748b; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">⏳ পেন্ডিং</span>`;
+        if (item.status === 'done') {
+          statusBadge = `<span style="background: #dcfce7; color: #15803d; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">✓ সম্পন্ন (Done)</span>`;
+        } else if (item.status === 'undone') {
+          statusBadge = `<span style="background: #fee2e2; color: #b91c1c; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">✗ অসম্পূর্ণ (Undone)</span>`;
+        }
 
-    return `
+        return `
     <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 16px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
       <div>
         <div style="display: flex; align-items: center; gap: 8px;">
@@ -2314,9 +2399,9 @@ function renderTeacherDashboard() {
       </div>
     </div>
     `;
-  }).join('');
+      }).join('');
 
-  container.innerHTML = `
+      container.innerHTML = `
     <div style="background: #ffffff; border-radius: 20px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); max-width: 680px; margin: 0 auto; border: 1px solid #e2e8f0;">
       
       <!-- Header Area -->
@@ -2342,6 +2427,9 @@ function renderTeacherDashboard() {
         <button id="tab-btn-schedule" onclick="switchTeacherTab('schedule')" style="flex: 1; padding: 10px 14px; border: none; border-radius: 9px; font-weight: 600; font-size: 0.9rem; cursor: pointer; background: transparent; color: #64748b; transition: 0.2s;">
           ⏰ Answer Release Scheduler
         </button>
+       <button id="tab-btn-reports" onclick="switchTeacherTab('reports')" style="flex: 1; padding: 10px 14px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; background: transparent; color: #64748b;">
+            📊 Student Exam Reports
+          </button>
       </div>
 
       <!-- TAB 1: Assignment Tracker Content -->
@@ -2387,68 +2475,88 @@ function renderTeacherDashboard() {
           </div>
         </div>
       </div>
+      <!-- TAB 3: Student Reports Content -->
+        <div id="tp-tab-reports" style="display: none;"></div>
 
       <!-- Result Container (Optional Messages) -->
       <div id="tp-message-box" style="display: none; margin-top: 15px;"></div>
 
     </div>
   `;
-  displayCurrentUnlockLabel();
-}
-/* --- HOMEWORK ANSWER TIME SCHEDULER FUNCTIONS --- */
-function switchTeacherTab(tabName) {
-  const tabTracker = document.getElementById('tp-tab-tracker');
-  const tabSchedule = document.getElementById('tp-tab-schedule');
-  const btnTracker = document.getElementById('tab-btn-tracker');
-  const btnSchedule = document.getElementById('tab-btn-schedule');
+      displayCurrentUnlockLabel();
+    }
+    /* --- HOMEWORK ANSWER TIME SCHEDULER FUNCTIONS --- */
+    function switchTeacherTab(tabName) {
+      const tabTracker = document.getElementById('tp-tab-tracker');
+      const tabSchedule = document.getElementById('tp-tab-schedule');
+      const tabReports = document.getElementById('tp-tab-reports');
+      const btnTracker = document.getElementById('tab-btn-tracker');
+      const btnSchedule = document.getElementById('tab-btn-schedule');
+      const btnReports = document.getElementById('tab-btn-reports');
 
-  if (!tabTracker || !tabSchedule) return;
+      // Reset All Tabs
+      if (tabTracker) tabTracker.style.display = 'none';
+      if (tabSchedule) tabSchedule.style.display = 'none';
+      if (tabReports) tabReports.style.display = 'none';
 
-  if (tabName === 'tracker') {
-    tabTracker.style.display = 'block';
-    tabSchedule.style.display = 'none';
-    btnTracker.style.background = '#ffffff';
-    btnTracker.style.color = '#4f46e5';
-    btnTracker.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
-    btnSchedule.style.background = 'transparent';
-    btnSchedule.style.color = '#64748b';
-    btnSchedule.style.boxShadow = 'none';
-  } else {
-    tabTracker.style.display = 'none';
-    tabSchedule.style.display = 'block';
-    btnSchedule.style.background = '#ffffff';
-    btnSchedule.style.color = '#4f46e5';
-    btnSchedule.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
-    btnTracker.style.background = 'transparent';
-    btnTracker.style.color = '#64748b';
-    btnTracker.style.boxShadow = 'none';
-    displayCurrentUnlockLabel();
-  }
-}
-function saveNewHwUnlockTime() {
-  const input = document.getElementById('hw-unlock-input');
-  if (!input || !input.value) {
-    alert('অনুগ্রহ করে সঠিক তারিখ ও সময় নির্বাচন করুন।');
-    return;
-  }
-  localStorage.setItem('sambook_hw_unlock_time', new Date(input.value).toISOString());
-  displayCurrentUnlockLabel();
-  alert('হোমওয়ার্ক সমাধান আনলক করার সময় সফলভাবে আপডেট হয়েছে!');
-}
+      // Reset All Button Styles
+      [btnTracker, btnSchedule, btnReports].forEach(btn => {
+        if (btn) {
+          btn.style.background = 'transparent';
+          btn.style.color = '#64748b';
+          btn.style.boxShadow = 'none';
+        }
+      });
 
-function displayCurrentUnlockLabel() {
-  const label = document.getElementById('hw-current-unlock-label');
-  if (!label) return;
-  const current = getHwUnlockTime();
-  const dStr = current.toLocaleDateString('bn-BD', { day: 'numeric', month: 'long', year: 'numeric' });
-  const tStr = current.toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit', hour12: true });
-  label.innerHTML = `📌 বর্তমান আনলক সময়: <strong>${dStr}, ${tStr}</strong>`;
-}
-function renderIctChapter3Lesson3() {
-  const container = document.getElementById('app-view') || document.getElementById('mainContent') || document.getElementById('app');
-  if (!container) return;
+      if (tabName === 'tracker') {
+        if (tabTracker) tabTracker.style.display = 'block';
+        if (btnTracker) {
+          btnTracker.style.background = '#ffffff';
+          btnTracker.style.color = '#4f46e5';
+          btnTracker.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
+        }
+      } else if (tabName === 'schedule') {
+        if (tabSchedule) tabSchedule.style.display = 'block';
+        if (btnSchedule) {
+          btnSchedule.style.background = '#ffffff';
+          btnSchedule.style.color = '#4f46e5';
+          btnSchedule.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
+        }
+        displayCurrentUnlockLabel();
+      } else if (tabName === 'reports') {
+        if (tabReports) tabReports.style.display = 'block';
+        if (btnReports) {
+          btnReports.style.background = '#ffffff';
+          btnReports.style.color = '#4f46e5';
+          btnReports.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
+        }
+        renderTeacherStudentReports();
+      }
+    }
+    function saveNewHwUnlockTime() {
+      const input = document.getElementById('hw-unlock-input');
+      if (!input || !input.value) {
+        alert('অনুগ্রহ করে সঠিক তারিখ ও সময় নির্বাচন করুন।');
+        return;
+      }
+      localStorage.setItem('sambook_hw_unlock_time', new Date(input.value).toISOString());
+      displayCurrentUnlockLabel();
+      alert('হোমওয়ার্ক সমাধান আনলক করার সময় সফলভাবে আপডেট হয়েছে!');
+    }
 
-  container.innerHTML = `
+    function displayCurrentUnlockLabel() {
+      const label = document.getElementById('hw-current-unlock-label');
+      if (!label) return;
+      const current = getHwUnlockTime();
+      const dStr = current.toLocaleDateString('bn-BD', { day: 'numeric', month: 'long', year: 'numeric' });
+      const tStr = current.toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit', hour12: true });
+      label.innerHTML = `📌 বর্তমান আনলক সময়: <strong>${dStr}, ${tStr}</strong>`;
+    }
+    function renderIctChapter3Lesson3() {
+      const container = document.getElementById('app-view') || document.getElementById('mainContent') || document.getElementById('app');
+      if (!container) return;
+
+      container.innerHTML = `
     <div style="max-width: 850px; margin: 0 auto; padding: 24px; font-family: inherit; color: var(--text-main, #1e293b);">
       
       <!-- Header -->
@@ -2575,25 +2683,554 @@ function renderIctChapter3Lesson3() {
 
     </div>
   `;
+    }
+    /* ========================================================
+       ENGLISH 1ST PAPER: GOAL-BASED EXAM & REPORT ENGINE
+    ======================================================== */
+
+// --- Complete Goal-wise Vocabulary Dataset (The Parrot's Tale) ---
+const goalVocabularyData = {
+  goal1: {
+    id: "goal1",
+    title: "Goal 1: Complete Vocabulary, Synonyms & Antonyms Exam",
+    subject: "English 1st Paper",
+    lecture: "Lecture 01 : Unit 1 (Lesson 2)",
+    timeLimitSeconds: 1800, // 30 Minutes
+    words: [
+      { word: "Barbaric", syn: "Savage, Cruel, Uncivilized", ant: "Civilized, Humane, Polite", meaning: "বর্বর / অসভ্য" },
+      { word: "Ignorant", syn: "Illiterate, Uneducated, Unaware", ant: "Educated, Knowledgeable, Aware", meaning: "অজ্ঞ / অশিক্ষিত" },
+      { word: "Prosperity", syn: "Affluence, Wealth, Opulence", ant: "Poverty, Hardship, Adversity", meaning: "সমৃদ্ধি" },
+      { word: "Gilded", syn: "Gold-plated, Ornate, Luxurious", ant: "Plain, Bare, Unadorned", meaning: "সোনার জলে মোড়ানো" },
+      { word: "Clamour", syn: "Uproar, Noise, Commotion", ant: "Silence, Quiet, Calm", meaning: "কোলাহল / শোরগোল" },
+      { word: "Flourish", syn: "Thrive, Prosper, Bloom", ant: "Decline, Deteriorate, Wither", meaning: "বিকশিত হওয়া / বৃদ্ধি পাওয়া" },
+      { word: "Fault-finder", syn: "Critic, Caviler, Censurer", ant: "Supporter, Praiser, Admirer", meaning: "ছিদ্রান্বেষী / খুঁতখুঁতে" },
+      { word: "Munificent", syn: "Generous, Bountiful, Liberal", ant: "Stingy, Miserly, Niggardly", meaning: "উদার / দানশীল" },
+      { word: "Cram", syn: "Pack, Stuff, Squeeze", ant: "Empty, Drain, Release", meaning: "ঠাসাঠাসি করে ভরা" },
+      { word: "Perish", syn: "Die, Expire, Cease", ant: "Survive, Live, Endure", meaning: "ধ্বংস হওয়া / মারা যাওয়া" },
+      { word: "Pundit", syn: "Scholar, Expert, Savant", ant: "Ignoramus, Amateur", meaning: "পণ্ডিত / বিদগ্ধ ব্যক্তি" },
+      { word: "Scribe", syn: "Copyist, Writer, Clerk", ant: "Author, Creator", meaning: "লেখক / নকলনবিশ" },
+      { word: "Admonish", syn: "Scold, Reprimand, Chide", ant: "Praise, Applaud, Commend", meaning: "তিরস্কার করা / সতর্ক করা" },
+      { word: "Inapt", syn: "Unsuitable, Incompetent, Clumsy", ant: "Skilful, Competent, Apt", meaning: "অনুপযুক্ত / অপটু" },
+      { word: "Magnificent", syn: "Splendid, Glorious, Grand", ant: "Modest, Poor, Shabby", meaning: "মহিমান্বিত / চমৎকার" }
+    ]
+  },
+  goal2: {
+    id: "goal2",
+    title: "Goal 2: Complete Vocabulary, Synonyms & Antonyms Exam",
+    subject: "English 1st Paper",
+    lecture: "Lecture 01 : Unit 1 (Lesson 2)",
+    timeLimitSeconds: 1800,
+    words: [
+      { word: "Tender", syn: "Soft, Fragile, Delicate", ant: "Hard, Harsh, Rough", meaning: "কোমল / নরম" },
+      { word: "Tremble", syn: "Shiver, Quiver, Shake", ant: "Steady, Calm", meaning: "কাঁপা / শিহরিত হওয়া" },
+      { word: "Flutter", syn: "Flap, Beat, Hover", ant: "Remain still, Steady", meaning: "ডানা ঝাপটানো" },
+      { word: "Snarl", syn: "Growl, Bark, Complain", ant: "Purr, Soothe, Praise", meaning: "গর্জন করা / খিঁচানো" },
+      { word: "Distress", syn: "Anguish, Suffering, Agony", ant: "Comfort, Solace, Relief", meaning: "চরম কষ্ট / দুর্ভোগ" },
+      { word: "Superfluous", syn: "Extra, Redundant, Excess", ant: "Essential, Necessary, Vital", meaning: "অপ্রয়োজনীয় / অতিরিক্ত" },
+      { word: "Subtle", syn: "Delicate, Elusive, Ingenious", ant: "Crude, Obvious, Harsh", meaning: "সূক্ষ্ম / চতুর" },
+      { word: "Lament", syn: "Mourn, Grieve, Weep", ant: "Rejoice, Celebrate", meaning: "বিলাপ করা / শোক প্রকাশ করা" }
+    ]
+  }
+};
+
+// Shuffler Helper
+function shuffleArray(arr) {
+  return arr.map(a => [Math.random(), a]).sort((a, b) => a[0] - b[0]).map(a => a[1]);
 }
-function generateHWStatus(status, dateStr) {
-  const box = document.getElementById('tp-message-box');
-  if (!box) return;
 
-  const motivationalQuotes = [
-    "প্রতিটি দিনের ছোট ছোট নিয়মিত প্রচেষ্টাই ভবিষ্যতে বড় সফলতায় রূপান্তরিত হয়।",
-    "সাফল্য কোনো কাকতালীয় ঘটনা নয়; এটি কঠোর পরিশ্রম ও শেখার প্রতি ভালোবাসার ফল।",
-    "আজকের অনুশীলনই আগামীকালের আত্মবিশ্বাস তৈরি করে। এগিয়ে চলো!",
-    "ধারাবাহিকতাই মেধার চেয়ে বেশি শক্তিশালী। তোমার এই অগ্রগতি ধরে রাখো!"
-  ];
-  const randomQuote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+// Auto generate MCQs for each Word (Both Synonym & Antonym)
+function generateGoalExamQuestions(goalId) {
+  const goal = goalVocabularyData[goalId];
+  if (!goal) return [];
 
-  if (status === 'done') {
-    const studentDoneMsg = `অভিনন্দন তাসফিয়া লিয়ানা! 🎉\nতুমি আজকের (${dateStr}) হোমওয়ার্ক সময়মতো সম্পন্ন করেছো।\n\n🌱 নীতিবাক্য: "${randomQuote}"\n\n— SAMBOOK পোর্টাল`;
+  const allWords = goal.words;
+  const questions = [];
+  let qId = 1;
 
-    const guardianDoneMsg = `আসসালামু আলাইকুম। সম্মানিত অভিভাবক, আনন্দের সাথে জানাচ্ছি যে আজ (${dateStr}) আপনার সন্তান তাসফিয়া লিয়ানা তার নির্ধারিত পড়া এবং বাড়ির কাজ অত্যন্ত আন্তরিকতার সাথে সম্পন্ন করেছে।\n\n🌱 নীতিবাক্য: "${randomQuote}"\n\nপড়াশোনায় তার এই ধারাবাহিকতা বজায় রাখতে আপনার সহযোগিতা ও দোয়া কাম্য। ধন্যবাদ।\n— SAMBOOK স্টাডি পোর্টাল`;
+  allWords.forEach(wObj => {
+    const primarySyn = wObj.syn.split(',')[0].trim();
+    const primaryAnt = wObj.ant.split(',')[0].trim();
 
-    box.innerHTML = `
+    // 1. Synonym Question
+    const distractorPoolSyn = allWords.filter(w => w.word !== wObj.word).map(w => w.ant.split(',')[0].trim());
+    const synOptions = shuffleArray([
+      primarySyn,
+      distractorPoolSyn[0] || "Irrelevant",
+      distractorPoolSyn[1] || "Contrary",
+      distractorPoolSyn[2] || "Opposite"
+    ]);
+
+    questions.push({
+      id: qId++,
+      question: `What is the SYNONYM of '${wObj.word}'? (${wObj.meaning})`,
+      options: synOptions,
+      correct: synOptions.indexOf(primarySyn),
+      explanation: `'${wObj.word}' অর্থ: ${wObj.meaning}। এর সঠিক Synonym হলো '${primarySyn}'।`
+    });
+
+    // 2. Antonym Question
+    const distractorPoolAnt = allWords.filter(w => w.word !== wObj.word).map(w => w.syn.split(',')[0].trim());
+    const antOptions = shuffleArray([
+      primaryAnt,
+      distractorPoolAnt[0] || "Identical",
+      distractorPoolAnt[1] || "Similar",
+      distractorPoolAnt[2] || "Parallel"
+    ]);
+
+    questions.push({
+      id: qId++,
+      question: `What is the ANTONYM of '${wObj.word}'? (${wObj.meaning})`,
+      options: antOptions,
+      correct: antOptions.indexOf(primaryAnt),
+      explanation: `'${wObj.word}' অর্থ: ${wObj.meaning}। এর বিপরীত শব্দ (Antonym) হলো '${primaryAnt}'।`
+    });
+  });
+
+  return shuffleArray(questions);
+}
+
+// Current active exam container
+let currentExamActiveObj = null;
+
+    let activeExamTimer = null;
+    let examRemainingSeconds = 1800;
+    let isExamInProgress = false;
+
+    // Check if Goal 1 is completed
+    function isGoal1Passed() {
+      const reports = JSON.parse(localStorage.getItem('sambook_student_reports') || '[]');
+      return reports.some(r => r.goalId === 'goal1' && r.scorePercentage >= 50);
+    }
+
+    // Render English Lecture 1 Navigation Actions
+    function getEnglishLecture1ActionsHtml() {
+      const goal1Passed = isGoal1Passed();
+      return `
+    <div style="display: flex; gap: 12px; margin: 20px 0; flex-wrap: wrap;">
+      <!-- Renamed old Exam button to Self Practice -->
+      <button onclick="renderEnglishSelfPractice()" style="background: #3b82f6; color: white; padding: 10px 18px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+        📖 Self Practice
+      </button>
+
+      <!-- New Goal-Based Official Exam Buttons -->
+      <button onclick="startGoalExam('goal1')" style="background: #4f46e5; color: white; padding: 10px 18px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+        🎯 Start Goal 1 Exam (30 Min)
+      </button>
+
+      <button onclick="${goal1Passed ? "startGoalExam('goal2')" : "alert('Goal 1 Exam-e ontoto ৫০% mark peye pass korte hobe Goal 2 unlock korar jonno!')"}" 
+              style="background: ${goal1Passed ? '#059669' : '#94a3b8'}; color: white; padding: 10px 18px; border: none; border-radius: 8px; font-weight: 600; cursor: ${goal1Passed ? 'pointer' : 'not-allowed'}; display: inline-flex; align-items: center; gap: 6px;">
+        ${goal1Passed ? '🔓' : '🔒'} Goal 2 Exam ${goal1Passed ? '' : '(Locked)'}
+      </button>
+    </div>
+  `;
+    }
+
+    // Start 30 Min Exam with Anti-Cheat
+    function startGoalExam(goalId) {
+      const goalMeta = goalVocabularyData[goalId];
+  if (!goalMeta) return;
+
+  const exam = {
+    id: goalId,
+    title: goalMeta.title,
+    subject: goalMeta.subject,
+    lecture: goalMeta.lecture,
+    timeLimitSeconds: goalMeta.timeLimitSeconds,
+    questions: generateGoalExamQuestions(goalId)
+  };
+  currentExamActiveObj = exam;
+      if (!exam) return;
+
+      if (goalId === 'goal2' && !isGoal1Passed()) {
+        alert("Goal 1 exam complete na kora porjonto Goal 2-te jawa jabe na!");
+        return;
+      }
+
+      isExamInProgress = true;
+      examRemainingSeconds = exam.timeLimitSeconds;
+
+      const app = document.getElementById('app-view') || document.getElementById('mainContent') || document.getElementById('app');
+      if (!app) return;
+
+      // Window blur / Tab switch anti-cheat detection
+      window.onblur = function () {
+        if (isExamInProgress) {
+          alert("⚠️ Warning: Tumi exam tab theke ber hoye geso! Exam cancel hoye bortoman answer submit hoye jabe!");
+          submitGoalExam(goalId, true);
+        }
+      };
+
+      // Render Exam View
+      app.innerHTML = `
+    <div style="max-width: 800px; margin: 0 auto; padding: 24px; font-family: inherit;">
+      <div style="background: white; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px; box-shadow: 0 4px 14px rgba(0,0,0,0.05); margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <span style="font-size: 0.8rem; background: #e0e7ff; color: #4338ca; padding: 3px 8px; border-radius: 6px; font-weight: 600;">${exam.subject} • ${exam.lecture}</span>
+          <h2 style="margin: 8px 0 0 0; font-size: 1.35rem; color: #1e1b4b;">${exam.title}</h2>
+        </div>
+        <div class="exam-timer-badge" id="examTimerBadge">
+          ⏱️ <span id="examTimerText">30:00</span>
+        </div>
+      </div>
+
+      <div style="background: #fffbeb; border: 1px solid #fef3c7; color: #92400e; padding: 12px 16px; border-radius: 10px; font-size: 0.88rem; margin-bottom: 20px;">
+        ⚠️ <strong>Exam Niyomaboli:</strong> 30 minute somoy pabe। Exam cholakalin eikhan theke back korle ba tab switch korle exam auto-cancel hoye jabe ebong shudhu jototuku answer korecho tar upor mark count hobe।
+      </div>
+
+      <form id="goalExamForm">
+        ${exam.questions.map((q, idx) => `
+          <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; margin-bottom: 16px;">
+            <div style="font-weight: 600; font-size: 1rem; color: #1e293b; margin-bottom: 12px;">
+              ${idx + 1}.${q.question}
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              ${q.options.map((opt, optIdx) => `
+                <label style="display: flex; align-items: center; gap: 10px; background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 14px; border-radius: 8px; cursor: pointer;">
+                  <input type="radio" name="q_${q.id}" value="${optIdx}">
+                  <span style="font-size: 0.92rem; color: #334155;">${opt}</span>
+                </label>
+              `).join('')}
+            </div>
+          </div>
+        `).join('')}
+
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+          <button type="button" onclick="cancelExamWithPenalty('${goalId}')" style="background: #ef4444; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
+            Cancel / Leave Exam
+          </button>
+          <button type="button" onclick="submitGoalExam('${goalId}', false)" style="background: #10b981; color: white; padding: 10px 24px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
+            Submit Final Answers
+          </button>
+        </div>
+      </form>
+    </div>
+  `;
+
+      // Start Countdown
+      clearInterval(activeExamTimer);
+      activeExamTimer = setInterval(() => {
+        examRemainingSeconds--;
+        const mins = Math.floor(examRemainingSeconds / 60);
+        const secs = examRemainingSeconds % 60;
+        const timeDisplay = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+        const label = document.getElementById('examTimerText');
+        if (label) label.innerText = timeDisplay;
+
+        if (examRemainingSeconds <= 0) {
+          clearInterval(activeExamTimer);
+          alert("⏰ Somoy sesh! Tomar exam submit hoye geche.");
+          submitGoalExam(goalId, false);
+        }
+      }, 1000);
+    }
+
+    // Cancel / Back Penalty
+    function cancelExamWithPenalty(goalId) {
+      if (confirm("Tumi ki sotti exam cancel korte chao? Ekhon cancel korle jototuku answer korecho tar upor report joma hobe!")) {
+        submitGoalExam(goalId, true);
+      }
+    }
+    // Self Practice View (Non-timed, Interactive Practice)
+function renderEnglishSelfPractice() {
+  const app = document.getElementById('app-view') || document.getElementById('mainContent') || document.getElementById('app');
+  if (!app) return;
+
+  const goal = goalVocabularyData['goal1'];
+  const practiceQuestions = generateGoalExamQuestions('goal1');
+
+  app.innerHTML = `
+    <div style="max-width: 800px; margin: 0 auto; padding: 24px; font-family: inherit;">
+      <div style="background: white; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px; box-shadow: 0 4px 14px rgba(0,0,0,0.05); margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <span style="font-size: 0.8rem; background: #dbeafe; color: #1e40af; padding: 3px 8px; border-radius: 6px; font-weight: 600;">Self Practice Mode</span>
+          <h2 style="margin: 8px 0 0 0; font-size: 1.35rem; color: #1e1b4b;">📖 The Parrot's Tale - Vocabulary Practice</h2>
+          <p style="margin: 4px 0 0 0; font-size: 0.85rem; color: #64748b;">কোনো নির্দিষ্ট সময়সীমা নেই। নিজে নিজে উত্তর মিলিয়ে প্র্যাকটিস করো।</p>
+        </div>
+        <button onclick="navigateTo('english-1st')" style="background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+          &larr; Back
+        </button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        ${practiceQuestions.map((q, idx) => `
+          <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px;">
+            <div style="font-weight: 600; font-size: 1rem; color: #1e293b; margin-bottom: 12px;">
+              ${idx + 1}.${q.question}
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              ${q.options.map((opt, optIdx) => `
+                <button onclick="checkPracticeAnswer(this, ${optIdx === q.correct}, '${encodeURIComponent(q.explanation)}')" 
+                        style="text-align: left; background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 14px; border-radius: 8px; cursor: pointer; font-size: 0.92rem; color: #334155; transition: 0.2s;">
+                  ${opt}
+                </button>
+              `).join('')}
+            </div>
+            <div class="practice-feedback" style="display: none; margin-top: 10px; padding: 10px; border-radius: 8px; font-size: 0.88rem;"></div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+// Instant Feedback Helper for Practice Mode
+function checkPracticeAnswer(btn, isCorrect, encodedExp) {
+  const parent = btn.parentElement;
+  const feedback = parent.nextElementSibling;
+  const explanation = decodeURIComponent(encodedExp);
+
+  Array.from(parent.children).forEach(b => {
+    b.disabled = true;
+    b.style.cursor = 'default';
+  });
+
+  if (isCorrect) {
+    btn.style.background = '#dcfce7';
+    btn.style.borderColor = '#86efac';
+    btn.style.color = '#15803d';
+    btn.style.fontWeight = 'bold';
+    feedback.style.display = 'block';
+    feedback.style.background = '#f0fdf4';
+    feedback.style.color = '#166534';
+    feedback.style.border = '1px solid #bbf7d0';
+    feedback.innerHTML = `✅ সঠিক উত্তর! ${explanation}`;
+  } else {
+    btn.style.background = '#fee2e2';
+    btn.style.borderColor = '#fca5a5';
+    btn.style.color = '#b91c1c';
+    feedback.style.display = 'block';
+    feedback.style.background = '#fef2f2';
+    feedback.style.color = '#991b1b';
+    feedback.style.border = '1px solid #fecaca';
+    feedback.innerHTML = `❌ ভুল উত্তর। সঠিক ব্যাখ্যা: ${explanation}`;
+  }
+}
+
+    // Calculate, Save to LocalStorage Report
+    function submitGoalExam(goalId, wasCancelled) {
+      if (!isExamInProgress) return;
+      isExamInProgress = false;
+      clearInterval(activeExamTimer);
+      window.onblur = null;
+
+      const goalMeta = goalVocabularyData[goalId];
+  if (!goalMeta) return;
+
+  const exam = {
+    id: goalId,
+    title: goalMeta.title,
+    subject: goalMeta.subject,
+    lecture: goalMeta.lecture,
+    timeLimitSeconds: goalMeta.timeLimitSeconds,
+    questions: generateGoalExamQuestions(goalId)
+  };
+  currentExamActiveObj = exam;
+      const form = document.getElementById('goalExamForm');
+      let score = 0;
+      const questionBreakdown = [];
+
+      exam.questions.forEach((q) => {
+        const selected = form ? form.querySelector(`input[name="q_${q.id}"]:checked`) : null;
+        const studentAnsIndex = selected ? parseInt(selected.value) : null;
+        const isCorrect = (studentAnsIndex === q.correct);
+
+        if (isCorrect) score++;
+
+        questionBreakdown.push({
+          question: q.question,
+          studentAnswer: studentAnsIndex !== null ? q.options[studentAnsIndex] : "Not Answered",
+          correctAnswer: q.options[q.correct],
+          isCorrect: isCorrect,
+          explanation: q.explanation
+        });
+      });
+
+      const timeSpentSecs = exam.timeLimitSeconds - examRemainingSeconds;
+      const percentage = Math.round((score / exam.questions.length) * 100);
+
+      const reportData = {
+        id: 'REP-' + Date.now(),
+        studentName: localStorage.getItem('sambook_current_student_name') || 'Tasfiya Liana',
+        goalId: goalId,
+        examTitle: exam.title,
+        subject: exam.subject,
+        lecture: exam.lecture,
+        totalQuestions: exam.questions.length,
+        score: score,
+        scorePercentage: percentage,
+        wasCancelledEarly: wasCancelled,
+        timeTaken: `${Math.floor(timeSpentSecs / 60)}m ${timeSpentSecs % 60}s`,
+        timestamp: new Date().toLocaleString('bn-BD'),
+        breakdown: questionBreakdown
+      };
+
+      // Save to Student Reports Array in localStorage
+      const existingReports = JSON.parse(localStorage.getItem('sambook_student_reports') || '[]');
+      existingReports.unshift(reportData);
+      localStorage.setItem('sambook_student_reports', JSON.stringify(existingReports));
+
+      // Render Result Screen
+      renderExamResultScreen(reportData);
+    }
+
+    // Result Screen with Review
+    function renderExamResultScreen(report) {
+      const app = document.getElementById('app-view') || document.getElementById('mainContent') || document.getElementById('app');
+      if (!app) return;
+
+      const passed = report.scorePercentage >= 50;
+
+      app.innerHTML = `
+    <div style="max-width: 750px; margin: 30px auto; padding: 24px; background: white; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center;">
+      <div style="font-size: 3rem; margin-bottom: 10px;">${passed ? '🎉' : '⚠️'}</div>
+      <h2 style="margin: 0; color: #1e1b4b; font-size: 1.5rem;">${report.examTitle} Result</h2>
+      <p style="color: #64748b; font-size: 0.9rem; margin: 6px 0 20px 0;">${report.subject} • ${report.lecture}</p>
+
+      ${report.wasCancelledEarly ? '<div style="background: #fef2f2; color: #991b1b; padding: 8px 14px; border-radius: 8px; display: inline-block; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px;">Exam Majhpothe Cancel / Exit Kora Hoyechilo</div>' : ''}
+
+      <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 24px;">
+        <div style="background: #f8fafc; padding: 14px 24px; border-radius: 12px; border: 1px solid #e2e8f0;">
+          <div style="font-size: 0.85rem; color: #64748b;">Marks Obtained</div>
+          <div style="font-size: 1.6rem; font-weight: 700; color: #4f46e5;">${report.score} / ${report.totalQuestions}</div>
+        </div>
+        <div style="background: #f8fafc; padding: 14px 24px; border-radius: 12px; border: 1px solid #e2e8f0;">
+          <div style="font-size: 0.85rem; color: #64748b;">Percentage</div>
+          <div style="font-size: 1.6rem; font-weight: 700; color: ${passed ? '#10b981' : '#ef4444'};">${report.scorePercentage}%</div>
+        </div>
+        <div style="background: #f8fafc; padding: 14px 24px; border-radius: 12px; border: 1px solid #e2e8f0;">
+          <div style="font-size: 0.85rem; color: #64748b;">Time Taken</div>
+          <div style="font-size: 1.6rem; font-weight: 700; color: #0284c7;">${report.timeTaken}</div>
+        </div>
+      </div>
+
+      <p style="color: #475569; font-size: 0.95rem; margin-bottom: 20px;">
+        ${passed ? 'Shabash! Tumi Goal 1 safallobhabe complete korecho. Goal 2 ekhon unlock hoyeche!' : 'Tomar score ৫০% er niche chilo. Goal 2 unlock korte abar chesta koro!'}
+      </p>
+
+      <button onclick="navigateTo('english')" style="background: #4f46e5; color: white; padding: 10px 24px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
+        Back to Lecture
+      </button>
+    </div>
+  `;
+    }
+    // Render Reports inside Teacher Dashboard
+function renderTeacherStudentReports() {
+  const container = document.getElementById('tp-tab-reports');
+  if (!container) return;
+
+  const reports = JSON.parse(localStorage.getItem('sambook_student_reports') || '[]');
+
+  if (reports.length === 0) {
+    container.innerHTML = `
+      <div style="padding: 40px; text-align: center; color: #94a3b8; background: white; border-radius: 14px; border: 1px solid #e2e8f0; margin-top: 10px;">
+        এখনো কোনো শিক্ষার্থী পরীক্ষায় অংশগ্রহণ করেনি।
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = `
+    <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 10px;">
+      ${reports.map((rep) => `
+        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                <span style="font-weight: 700; font-size: 1.1rem; color: #0f172a;">👤 ${rep.studentName}</span>
+                <span style="background: #e0e7ff; color: #4338ca; padding: 2px 8px; border-radius: 6px; font-size: 0.78rem; font-weight: 600;">${rep.subject}</span>
+                <span style="background: #f1f5f9; color: #475569; padding: 2px 8px; border-radius: 6px; font-size: 0.78rem;">${rep.lecture}</span>
+              </div>
+              <div style="font-size: 0.95rem; color: #334155; font-weight: 600;">${rep.examTitle}</div>
+              <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 3px;">
+                তারিখ: ${rep.timestamp} | সময় লেগেছে: ${rep.timeTaken}${rep.wasCancelledEarly ? '<span style="color:#dc2626; font-weight:700;">(Early Cancelled)</span>' : ''}
+              </div>
+            </div>
+
+            <!-- WhatsApp Message Trigger -->
+            <button onclick="sendGuardianWhatsApp('${rep.id}')" style="background: #25D366; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.88rem;">
+              💬 Guardian-কে WhatsApp পাঠান
+            </button>
+          </div>
+
+          <!-- Score Banner -->
+          <div style="background: #f8fafc; border: 1px solid #f1f5f9; border-radius: 10px; padding: 12px 16px; margin: 14px 0; display: flex; gap: 24px;">
+            <div>মোট নম্বর: <strong>${rep.score} / ${rep.totalQuestions}</strong> (${rep.scorePercentage}%)</div>
+            <div>স্থিতি: <span style="font-weight: 700; color: ${rep.scorePercentage >= 50 ? '#16a34a' : '#dc2626'};">${rep.scorePercentage >= 50 ? 'PASSED (Goal 2 Unlocked)' : 'NEEDS RETAKE'}</span></div>
+          </div>
+
+          <!-- Question Breakdown Accordion -->
+          <details style="font-size: 0.88rem; color: #475569;">
+            <summary style="cursor: pointer; font-weight: 600; color: #4f46e5;">🔍 ভুল ও সঠিক উত্তরের বিস্তারিত তালিকা (${rep.breakdown.filter(b=>!b.isCorrect).length} টি ভুল)</summary>
+            <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+              ${rep.breakdown.map((item, qIdx) => `
+                <div style="padding: 10px 14px; border-radius: 8px; border: 1px solid ${item.isCorrect ? '#bbf7d0' : '#fecaca'}; background: ${item.isCorrect ? '#f0fdf4' : '#fef2f2'};">
+                  <div><strong>Q${qIdx+1}:</strong> ${item.question}</div>
+                  <div style="margin-top: 4px; font-size: 0.84rem;">
+                    শিক্ষার্থীর উত্তর: <strong style="color: ${item.isCorrect ? '#15803d' : '#b91c1c'};">${item.studentAnswer}</strong> | সঠিক উত্তর: <strong>${item.correctAnswer}</strong>
+                  </div>
+                  ${!item.isCorrect ? `<div style="font-size: 0.8rem; color: #64748b; margin-top: 3px;">💡 ব্যাখ্যা: ${item.explanation}</div>` : ''}
+                </div>
+              `).join('')}
+            </div>
+          </details>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+// Format and Open WhatsApp with Formatted Message
+function sendGuardianWhatsApp(reportId) {
+  const reports = JSON.parse(localStorage.getItem('sambook_student_reports') || '[]');
+  const rep = reports.find(r => r.id === reportId);
+  if (!rep) return;
+
+  const wrongCount = rep.breakdown.filter(b => !b.isCorrect).length;
+  const wrongQuestions = rep.breakdown.filter(b => !b.isCorrect).map((w, i) => `${i+1}. ${w.question} (শিক্ষার্থীর ভুল উত্তর: ${w.studentAnswer})`).join('\n');
+
+  const guardianMsg = `আসসালামু আলাইকুম।
+সম্মানিত অভিভাবক,
+SAMBOOK ডিজিটাল স্টাডি পোর্টাল থেকে আপনার সন্তানের আজকের পরীক্ষার ফলাফল পাঠানো হলো:
+
+👤 শিক্ষার্থী: ${rep.studentName}
+📚 বিষয়: ${rep.subject}
+📖 অধ্যায় ও লেকচার: ${rep.lecture}
+🎯 পরীক্ষার টপিক: ${rep.examTitle}
+⏱️ নির্ধারিত সময়: ৩০ মিনিট (ব্যবহৃত: ${rep.timeTaken})
+
+📊 পরীক্ষার ফলাফল:
+• প্রাপ্ত নম্বর: ${rep.score} / ${rep.totalQuestions}
+• শতকরা হার: ${rep.scorePercentage}%
+• বর্তমান স্থিতি: ${rep.scorePercentage >= 50 ? 'সফলভাবে উত্তীর্ণ হয়েছে (পরবর্তী Goal আনলক হয়েছে)' : 'আরেকটু প্রস্তুতি প্রয়োজন'}
+${rep.wasCancelledEarly ? '⚠️ সতর্কতা: শিক্ষার্থী পরীক্ষা চলাকালীন মাঝপথে ব্যাক বা অন্য উইন্ডোতে যাওয়ার কারণে তাৎক্ষণিক খাতা জমা হয়েছে।' : ''}
+
+${wrongCount > 0 ? `❌ যেসব প্রশ্নে ভুল হয়েছিল:\n${wrongQuestions}\n\nশিক্ষার্থীকে এই ভুলগুলো রিভিশন দেওয়ার নির্দেশ দেওয়া হয়েছে।` : '🌟 চমৎকার পারফরম্যান্স! সবগুলো প্রশ্নের উত্তর সঠিক হয়েছে।'}
+
+ধন্যবাদান্তে,
+শিক্ষক / SAMBOOK পোর্টাল এডমিন`;
+
+  const encodedUrl = `https://wa.me/?text=${encodeURIComponent(guardianMsg)}`;
+  window.open(encodedUrl, '_blank');
+}
+    function generateHWStatus(status, dateStr) {
+      const box = document.getElementById('tp-message-box');
+      if (!box) return;
+
+      const motivationalQuotes = [
+        "প্রতিটি দিনের ছোট ছোট নিয়মিত প্রচেষ্টাই ভবিষ্যতে বড় সফলতায় রূপান্তরিত হয়।",
+        "সাফল্য কোনো কাকতালীয় ঘটনা নয়; এটি কঠোর পরিশ্রম ও শেখার প্রতি ভালোবাসার ফল।",
+        "আজকের অনুশীলনই আগামীকালের আত্মবিশ্বাস তৈরি করে। এগিয়ে চলো!",
+        "ধারাবাহিকতাই মেধার চেয়ে বেশি শক্তিশালী। তোমার এই অগ্রগতি ধরে রাখো!"
+      ];
+      const randomQuote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+
+      if (status === 'done') {
+        const studentDoneMsg = `অভিনন্দন তাসফিয়া লিয়ানা! 🎉\nতুমি আজকের (${dateStr}) হোমওয়ার্ক সময়মতো সম্পন্ন করেছো।\n\n🌱 নীতিবাক্য: "${randomQuote}"\n\n— SAMBOOK পোর্টাল`;
+
+        const guardianDoneMsg = `আসসালামু আলাইকুম। সম্মানিত অভিভাবক, আনন্দের সাথে জানাচ্ছি যে আজ (${dateStr}) আপনার সন্তান তাসফিয়া লিয়ানা তার নির্ধারিত পড়া এবং বাড়ির কাজ অত্যন্ত আন্তরিকতার সাথে সম্পন্ন করেছে।\n\n🌱 নীতিবাক্য: "${randomQuote}"\n\nপড়াশোনায় তার এই ধারাবাহিকতা বজায় রাখতে আপনার সহযোগিতা ও দোয়া কাম্য। ধন্যবাদ।\n— SAMBOOK স্টাডি পোর্টাল`;
+
+        box.innerHTML = `
       <!-- Student Card -->
       <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 12px; padding: 16px; margin-bottom: 14px;">
         <div style="font-weight: 700; color: #065f46; font-size: 0.95rem; margin-bottom: 8px;">🎉 স্টুডেন্ট মেসেজ (Student Update):</div>
@@ -2614,12 +3251,12 @@ function generateHWStatus(status, dateStr) {
         </div>
       </div>
     `;
-  } else {
-    const studentAlertMsg = `সতর্কবার্তা: তাসফিয়া লিয়ানা!\nতুমি আজকের (${dateStr}) নির্ধারিত হোমওয়ার্কটি সম্পন্ন করোনি, যা কাম্য নয়।\n\nপড়াশোনায় ফাঁকি দিলে কিন্তু নিজের লক্ষ্য অর্জন কঠিন হয়ে পড়বে। কালকের ক্লাসের আগে অবশ্যই এটি শেষ করে আমাকে দেখাবে! নিজের ভালোর জন্য পড়াশোনায় নিয়মিত হও।\n— শিক্ষক (KH SAMI)`;
+      } else {
+        const studentAlertMsg = `সতর্কবার্তা: তাসফিয়া লিয়ানা!\nতুমি আজকের (${dateStr}) নির্ধারিত হোমওয়ার্কটি সম্পন্ন করোনি, যা কাম্য নয়।\n\nপড়াশোনায় ফাঁকি দিলে কিন্তু নিজের লক্ষ্য অর্জন কঠিন হয়ে পড়বে। কালকের ক্লাসের আগে অবশ্যই এটি শেষ করে আমাকে দেখাবে! নিজের ভালোর জন্য পড়াশোনায় নিয়মিত হও।\n— শিক্ষক (KH SAMI)`;
 
-    const guardianMsg = `আসসালামু আলাইকুম।\nতাসফিয়া লিয়ানার অভিভাবকের অবগতির জন্য জানানো যাচ্ছে যে, সে আজকের (${dateStr}) নির্ধারিত হোমওয়ার্কটি সম্পন্ন করেনি।\n\nপড়াশোনার নিয়মিত অগ্রগতি এবং কাঙ্ক্ষিত ফলাফলের স্বার্থে প্রতিদিনের পড়া নিয়মিত রাখা অত্যন্ত জরুরি। বাসায় ওকে একটু তদারকি করার জন্য বিনীত অনুরোধ করা হলো।\n— শিক্ষক (KH SAMI)`;
+        const guardianMsg = `আসসালামু আলাইকুম।\nতাসফিয়া লিয়ানার অভিভাবকের অবগতির জন্য জানানো যাচ্ছে যে, সে আজকের (${dateStr}) নির্ধারিত হোমওয়ার্কটি সম্পন্ন করেনি।\n\nপড়াশোনার নিয়মিত অগ্রগতি এবং কাঙ্ক্ষিত ফলাফলের স্বার্থে প্রতিদিনের পড়া নিয়মিত রাখা অত্যন্ত জরুরি। বাসায় ওকে একটু তদারকি করার জন্য বিনীত অনুরোধ করা হলো।\n— শিক্ষক (KH SAMI)`;
 
-    box.innerHTML = `
+        box.innerHTML = `
       <!-- Student Alert -->
       <div style="background: #fff1f2; border: 1px solid #fecdd3; border-radius: 12px; padding: 16px; margin-top: 15px;">
         <div style="font-weight: 700; color: #9f1239; font-size: 0.95rem; margin-bottom: 8px;">⚠️ ১. স্টুডেন্ট অ্যালার্ট মেসেজ (Warning)</div>
@@ -2640,50 +3277,51 @@ function generateHWStatus(status, dateStr) {
         </div>
       </div>
     `;
-  }
+      }
 
-  box.style.display = 'block';
-  box.scrollIntoView({ behavior: 'smooth' });
-}
+      box.style.display = 'block';
+      box.scrollIntoView({ behavior: 'smooth' });
+    }
 
-function copyToClipboard(elementId, btn) {
-  const text = document.getElementById(elementId).innerText;
-  navigator.clipboard.writeText(text).then(() => {
-    const originalText = btn.innerText;
-    btn.innerText = '✓ Copied!';
-    setTimeout(() => {
-      btn.innerText = originalText;
-    }, 2000);
-  });
-}
+    function copyToClipboard(elementId, btn) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerText;
+        btn.innerText = '✓ Copied!';
+        setTimeout(() => {
+          btn.innerText = originalText;
+        }, 2000);
+      });
+    }
 
-function sendToWhatsApp(elementId) {
-  const text = document.getElementById(elementId).innerText;
-  const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
-  window.open(url, '_blank');
-}
-function toggleTheme() {
-  const isDark = document.body.classList.toggle('dark-mode');
-  localStorage.setItem('sambook_theme', isDark ? 'dark' : 'light');
-  updateThemeIcon(isDark);
-}
+    function sendToWhatsApp(elementId) {
+      const text = document.getElementById(elementId).innerText;
+      const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+    }
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle('dark-mode');
+      localStorage.setItem('sambook_theme', isDark ? 'dark' : 'light');
+      updateThemeIcon(isDark);
+    }
 
-function updateThemeIcon(isDark) {
-  const btn = document.getElementById('theme-btn');
-  if (btn) {
-    btn.innerText = isDark ? '☀️' : '🌙';
-  }
-}
+    function updateThemeIcon(isDark) {
+      const btn = document.getElementById('theme-btn');
+      if (btn) {
+        btn.innerText = isDark ? '☀️' : '🌙';
+      }
+    }
 
-// Page Load-e ager saved theme check kora
-(function initTheme() {
-  const savedTheme = localStorage.getItem('sambook_theme');
-  const isDark = savedTheme === 'dark';
-  if (isDark) {
-    document.body.classList.add('dark-mode');
-  }
-  updateThemeIcon(isDark);
-})();
-</script>
+    // Page Load-e ager saved theme check kora
+    (function initTheme() {
+      const savedTheme = localStorage.getItem('sambook_theme');
+      const isDark = savedTheme === 'dark';
+      if (isDark) {
+        document.body.classList.add('dark-mode');
+      }
+      updateThemeIcon(isDark);
+    })();
+  </script>
 </body>
+
 </html>
