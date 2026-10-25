@@ -986,6 +986,16 @@
         ]);
         renderEnglish2ndLesson1();
       }
+      else if (route === 'eng2-lec2') {
+        setActiveNav('english');
+        renderBreadcrumb([
+          { name: 'Home', route: 'home' },
+          { name: 'English', route: 'english' },
+          { name: 'English 2nd Paper', route: 'english-2nd' },
+          { name: 'Lecture 02', route: 'eng2-lec2' }
+        ]);
+        renderEnglish2ndLecture2();
+      }
       else if (route === 'ict-lec3') {
         setActiveNav('ict');
         renderBreadcrumb([
@@ -2097,6 +2107,21 @@
         </div>
         <div style="color: #059669; font-weight: 600; font-size: 0.95rem;">লেকচার দেখুন →</div>
       </div>
+      <!-- Lecture 02 Card -->
+          <div onclick="navigateTo('eng2-lec2')" style="background: var(--card-bg, #ffffff); border: 1px solid var(--border, #e2e8f0); border-radius: 16px; padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 16px; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+            <div style="display: flex; align-items: center; gap: 16px;">
+              <div style="background: #eef2ff; color: #4f46e5; width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem;">
+                02
+              </div>
+              <div>
+                <h3 style="margin: 0; font-size: 1.15rem; color: var(--text-main, #1e1b4b);">Lecture 02 : Classifications of Noun</h3>
+                <p style="margin: 4px 0 0 0; font-size: 0.88rem; color: var(--text-muted, #64748b);">Proper, Common, Collective, Material & Abstract Noun </p>
+              </div>
+            </div>
+            <div style="color: #4f46e5; font-weight: 600; font-size: 0.95rem;">
+              View Lesson &rarr;
+            </div>
+          </div>
 
     </div>
   `;
@@ -2236,6 +2261,241 @@
     </div>
   `;
     }
+// Render English 2nd Paper - Lecture 02 (Noun Classification)
+function renderEnglish2ndLecture2() {
+  const app = document.getElementById('app-view') || document.getElementById('mainContent') || document.getElementById('app');
+  if (!app) return;
+
+  app.innerHTML = `
+    <div style="max-width: 900px; margin: 30px auto; padding: 24px; font-family: inherit;">
+      <!-- Top Navigation -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <button onclick="navigateTo('english-2nd')" style="background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+          &larr; Back to English 2nd Paper
+        </button>
+        <span style="background: #dbeafe; color: #1e40af; padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; font-weight: 600;">HSC English 2nd Paper • Grammar</span>
+      </div>
+
+      <!-- Title Header -->
+      <div style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+        <h1 style="margin: 0 0 8px 0; font-size: 1.6rem; color: #1e1b4b;">Lecture 02 : Classification of Noun</h1>
+        <p style="margin: 0; color: #64748b; font-size: 0.95rem;">বিশেষ্য পদের প্রকারভেদ: Proper, Common, Collective, Material ও Abstract Noun (চিত্র ও নোটসহ)</p>
+      </div>
+
+      <!-- Noun Cards List -->
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+
+        <!-- 1. Proper Noun -->
+        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 22px; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+            <span style="background: #e0e7ff; color: #4338ca; font-weight: 700; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">1</span>
+            <h3 style="margin: 0; color: #1e1b4b; font-size: 1.25rem;">Proper Noun (নামবাচক বিশেষ্য)</h3>
+          </div>
+          <p style="margin: 0 0 14px 0; color: #334155; line-height: 1.7; font-size: 0.95rem;">
+            কোনো নির্দিষ্ট ব্যক্তি, স্থান, পত্রিকা, বই বা প্রতিষ্ঠানের নিজস্ব ও স্বতন্ত্র নামকে <strong>Proper Noun</strong> বলে। এটি বাক্যের শুরুতে, মাঝে কিংবা শেষে যেখানেই বসুক না কেন—সবসময় <strong>Capital Letter</strong> দিয়ে শুরু হয়।
+          </p>
+
+          <!-- Highlight Note -->
+          <div style="background: #fffbeb; border-left: 4px solid #f59e0b; padding: 10px 14px; border-radius: 0 8px 8px 0; margin-bottom: 16px; font-size: 0.88rem; color: #92400e;">
+            💡 <strong>Special Note:</strong> Proper Noun-এর পূর্বে সাধারণত কোনো Article (a, an, the) বসে না। তবে নদী, সাগর, পর্বতমালা, সংবাদপত্র, পবিত্র ধর্মগ্রন্থ ও জাহাজের নামের পূর্বে অবশ্যই 'The' বসে (যেমন: <em>The Daily Star, The Padma</em>)।
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 14px; margin-bottom: 14px;">
+            <strong style="color: #4f46e5;">Examples:</strong> Dhaka, Sami, The Daily Star
+          </div>
+
+          <!-- Images Grid -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;">
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; background: #f8fafc; text-align: center;">
+              <img src="city.png" alt="Dhaka City" style="width: 100%; height: 160px; object-fit: contain; background: #fff; display: block;" />
+              <div style="padding: 8px; font-weight: 600; font-size: 0.85rem; color: #475569;">Dhaka (City Name)</div>
+            </div>
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; background: #f8fafc; text-align: center;">
+              <img src="sami.png" alt="Sami" style="width: 100%; height: 160px; object-fit: contain; background: #fff; display: block;" />
+              <div style="padding: 8px; font-weight: 600; font-size: 0.85rem; color: #475569;">Sami (Person Name)</div>
+            </div>
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; background: #f8fafc; text-align: center;">
+              <img src="newspaper.png" alt="Newspaper" style="width: 100%; height: 160px; object-fit: contain; background: #fff; display: block;" />
+              <div style="padding: 8px; font-weight: 600; font-size: 0.85rem; color: #475569;">The Daily Star (Newspaper)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Common Noun -->
+        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 22px; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+            <span style="background: #e0e7ff; color: #4338ca; font-weight: 700; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">2</span>
+            <h3 style="margin: 0; color: #1e1b4b; font-size: 1.25rem;">Common Noun (জাতিবাচক বিশেষ্য)</h3>
+          </div>
+          <p style="margin: 0 0 14px 0; color: #334155; line-height: 1.7; font-size: 0.95rem;">
+            কোনো নির্দিষ্ট ব্যক্তি, বস্তু বা প্রাণীর নাম না বুঝিয়ে একই জাতীয় সকলকে সাধারণভাবে বা সামগ্রিকভাবে বোঝানোর নামকে <strong>Common Noun</strong> বলে।
+          </p>
+
+          <!-- Highlight Note -->
+          <div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 10px 14px; border-radius: 0 8px 8px 0; margin-bottom: 16px; font-size: 0.88rem; color: #065f46;">
+            💡 <strong>Special Note:</strong> Common Noun-কে Singular ও Plural দুই রূপেই ব্যবহার করা যায় (Boy &rarr; Boys)। Singular Common Noun বাক্যে একা বসতে পারে না; এর আগে Determiner বা Article (a/an/the) বসাতে হয়।
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 14px; margin-bottom: 14px;">
+            <strong style="color: #4f46e5;">Examples:</strong> Boy, City, Newspaper / Press
+          </div>
+
+          <!-- Images Grid -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;">
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; background: #f8fafc; text-align: center;">
+              <img src="boy.png" alt="Boy" style="width: 100%; height: 160px; object-fit: contain; background: #fff; display: block;" />
+              <div style="padding: 8px; font-weight: 600; font-size: 0.85rem; color: #475569;">Boy (Common Noun)</div>
+            </div>
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; background: #f8fafc; text-align: center;">
+              <img src="city_common.png" alt="City Common" style="width: 100%; height: 160px; object-fit: contain; background: #fff; display: block;" />
+              <div style="padding: 8px; font-weight: 600; font-size: 0.85rem; color: #475569;">City (Common Noun)</div>
+            </div>
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; background: #f8fafc; text-align: center;">
+              <img src="press.png" alt="Press / Newspaper" style="width: 100%; height: 160px; object-fit: contain; background: #fff; display: block;" />
+              <div style="padding: 8px; font-weight: 600; font-size: 0.85rem; color: #475569;">Newspaper / Press</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Collective Noun -->
+        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 22px; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+            <span style="background: #e0e7ff; color: #4338ca; font-weight: 700; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">3</span>
+            <h3 style="margin: 0; color: #1e1b4b; font-size: 1.25rem;">Collective Noun (সমষ্টিবাচক বিশেষ্য)</h3>
+          </div>
+          <p style="margin: 0 0 14px 0; color: #334155; line-height: 1.7; font-size: 0.95rem;">
+            কোনো ব্যক্তি, প্রাণী বা বস্তুকে আলাদা আলাদা করে না দেখিয়ে সম্পূর্ণ দলকে যখন একটি অবিভাজ্য একক সমষ্টি হিসেবে বোঝায়, তখন তাকে <strong>Collective Noun</strong> বলে।
+          </p>
+
+          <!-- Highlight Note -->
+          <div style="background: #f5f3ff; border-left: 4px solid #8b5cf6; padding: 10px 14px; border-radius: 0 8px 8px 0; margin-bottom: 16px; font-size: 0.88rem; color: #5b21b6;">
+            💡 <strong>Special Note:</strong> দল যখন ঐক্যবদ্ধ হয়ে একটি কাজ করে, তখন Collective Noun-এর পর <strong>Singular Verb</strong> বসে (যেমন: <em>The team is strong</em>)। কিন্তু দলের সদস্যদের মাঝে মতবিরোধ হলে তাকে Noun of Multitude বলে এবং Plural Verb বসে।
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 14px; margin-bottom: 14px;">
+            <strong style="color: #4f46e5;">Examples:</strong> Team, Army, Flock, Class
+          </div>
+
+          <!-- Images Grid -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;">
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; background: #f8fafc; text-align: center;">
+              <img src="team.png" alt="Team" style="width: 100%; height: 160px; object-fit: contain; background: #fff; display: block;" />
+              <div style="padding: 8px; font-weight: 600; font-size: 0.85rem; color: #475569;">Team (খেলোয়াড়দের দল)</div>
+            </div>
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; background: #f8fafc; text-align: center;">
+              <img src="army.png" alt="Army" style="width: 100%; height: 160px; object-fit: contain; background: #fff; display: block;" />
+              <div style="padding: 8px; font-weight: 600; font-size: 0.85rem; color: #475569;">Army (সেনাবাহিনী)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Material Noun -->
+        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 22px; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+            <span style="background: #e0e7ff; color: #4338ca; font-weight: 700; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">4</span>
+            <h3 style="margin: 0; color: #1e1b4b; font-size: 1.25rem;">Material Noun (বস্তুবাচক বিশেষ্য)</h3>
+          </div>
+          <p style="margin: 0 0 14px 0; color: #334155; line-height: 1.7; font-size: 0.95rem;">
+            যেসব বস্তু বা উপাদানকে ১, ২, ৩ করে গণনা করা যায় না, কিন্তু ওজন বা পরিমাপ করা যায় এবং যা দিয়ে অন্যান্য নতুন দ্রব্য তৈরি করা যায়, তাকে <strong>Material Noun</strong> বলে।
+          </p>
+
+          <!-- Highlight Note -->
+          <div style="background: #eff6ff; border-left: 4px solid #3b82f6; padding: 10px 14px; border-radius: 0 8px 8px 0; margin-bottom: 16px; font-size: 0.88rem; color: #1e40af;">
+            💡 <strong>Special Note:</strong> Material Noun হলো Uncountable Noun; তাই এদের পূর্বে সরাসরি সংখ্যা (One, Two) বা Article (A/An) বসে না এবং এদের Plural রূপ হয় না (যেমন: Waters বা Golds হয় না)।
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 14px; margin-bottom: 14px;">
+            <strong style="color: #4f46e5;">Examples:</strong> Water, Gold, Wood, Milk
+          </div>
+
+          <!-- Images Grid -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;">
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; background: #f8fafc; text-align: center;">
+              <img src="water.png" alt="Water" style="width: 100%; height: 160px; object-fit: contain; background: #fff; display: block;" />
+              <div style="padding: 8px; font-weight: 600; font-size: 0.85rem; color: #475569;">Water (পানি)</div>
+            </div>
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; background: #f8fafc; text-align: center;">
+              <img src="gold.png" alt="Gold" style="width: 100%; height: 160px; object-fit: contain; background: #fff; display: block;" />
+              <div style="padding: 8px; font-weight: 600; font-size: 0.85rem; color: #475569;">Gold (স্বর্ণ)</div>
+            </div>
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; background: #f8fafc; text-align: center;">
+              <img src="wood.png" alt="Wood" style="width: 100%; height: 160px; object-fit: contain; background: #fff; display: block;" />
+              <div style="padding: 8px; font-weight: 600; font-size: 0.85rem; color: #475569;">Wood (কাঠ)</div>
+            </div>
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; background: #f8fafc; text-align: center;">
+              <img src="milk.png" alt="Milk" style="width: 100%; height: 160px; object-fit: contain; background: #fff; display: block;" />
+              <div style="padding: 8px; font-weight: 600; font-size: 0.85rem; color: #475569;">Milk (দুধ)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Abstract Noun -->
+        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 22px; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+            <span style="background: #e0e7ff; color: #4338ca; font-weight: 700; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">5</span>
+            <h3 style="margin: 0; color: #1e1b4b; font-size: 1.25rem;">Abstract Noun (গুণবাচক বিশেষ্য)</h3>
+          </div>
+          <p style="margin: 0 0 14px 0; color: #334155; line-height: 1.7; font-size: 0.95rem;">
+            যে নাম বাহ্যিকভাবে দেখা যায় না, ধরা বা ছোঁয়া যায় না; কেবল পঞ্চেন্দ্রিয় বা হৃদয়ানুভূতি দিয়ে উপলব্ধি করতে হয়—এমন গুণ, অবস্থা, কাজের ধরন বা অনুভূতির নামকে <strong>Abstract Noun</strong> বলে।
+          </p>
+
+          <!-- Highlight Note -->
+          <div style="background: #fdf2f8; border-left: 4px solid #ec4899; padding: 10px 14px; border-radius: 0 8px 8px 0; margin-bottom: 16px; font-size: 0.88rem; color: #9d174d;">
+            💡 <strong>Special Note:</strong> শব্দের শেষে সাধারণত <em>-tion, -sion, -ness, -hood, -ship, -ment, -ty, -ce, -cy, -dom</em> প্রত্যয় (suffixes) যুক্ত থাকলে তা Abstract Noun হয় (যেমন: <em>Childhood, Freedom, Kindness</em>)।
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 14px; margin-bottom: 14px;">
+            <strong style="color: #4f46e5;">Examples:</strong> Love, Honesty, Bravery, Freedom
+          </div>
+
+          <!-- Images Grid -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;">
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; background: #f8fafc; text-align: center;">
+              <img src="love.png" alt="Love" style="width: 100%; height: 160px; object-fit: contain; background: #fff; display: block;" />
+              <div style="padding: 8px; font-weight: 600; font-size: 0.85rem; color: #475569;">Love (ভালোবাসা / অনুভূতি)</div>
+            </div>
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; background: #f8fafc; text-align: center;">
+              <img src="honesty.png" alt="Honesty" style="width: 100%; height: 160px; object-fit: contain; background: #fff; display: block;" />
+              <div style="padding: 8px; font-weight: 600; font-size: 0.85rem; color: #475569;">Honesty (সততা / চারিত্রিক গুণ)</div>
+            </div>
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; background: #f8fafc; text-align: center;">
+              <img src="bravery.png" alt="Bravery" style="width: 100%; height: 160px; object-fit: contain; background: #fff; display: block;" />
+              <div style="padding: 8px; font-weight: 600; font-size: 0.85rem; color: #475569;">Bravery (বীরত্ব / সাহস)</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Homework Task Card -->
+      <div style="background: white; border: 2px dashed #4f46e5; border-radius: 16px; padding: 24px; margin-top: 30px; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.05);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+          <h3 style="margin: 0; color: #1e1b4b; font-size: 1.3rem;">📝 Homework Task : Identify The Nouns</h3>
+          <span style="background: #e0e7ff; color: #4338ca; font-weight: 700; font-size: 0.82rem; padding: 4px 12px; border-radius: 20px;">10 Sentence Challenge</span>
+        </div>
+        <p style="margin: 0 0 18px 0; color: #475569; font-size: 0.92rem; line-height: 1.6;">
+          নিচের প্রতিটি বাক্যের <strong>আন্ডারলাইন বা বোল্ড করা শব্দগুলো</strong> পর্যবেক্ষণ করো এবং কোনটি কোন প্রকার Noun (Proper, Common, Collective, Material নাকি Abstract) তা খাতায় লিখে আনবে:
+        </p>
+
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px;">
+          <ol style="margin: 0; padding-left: 20px; line-height: 2.1; color: #1e293b; font-size: 0.95rem;">
+            <li><strong>Sami</strong> is reading the morning news.</li>
+            <li>The <strong>boy</strong> won the first prize in the competition.</li>
+            <li>Our cricket <strong>team</strong> played exceptionally well yesterday.</li>
+            <li><strong>Honesty</strong> is recognized as the best policy in life.</li>
+            <li>Pure <strong>water</strong> is completely essential for good health.</li>
+            <li><strong>Dhaka</strong> is the bustling capital city of Bangladesh.</li>
+            <li>The fierce <strong>army</strong> marched bravely towards the battlefield.</li>
+            <li>She bought an expensive necklace made of <strong>gold</strong>.</li>
+            <li>The soldiers fought with great <strong>bravery</strong> for their motherland.</li>
+            <li>We read a famous English <strong>newspaper</strong> every single day.</li>
+          </ol>
+        </div>
+      </div>
+
+    </div>
+  `;
+}
     /* --- HOMEWORK ANSWER UNLOCK & SCHEDULE LOGIC --- */
 
     // আনলক সময় লোড করা (ডিফল্ট: আগামীকাল সকাল ১০:০০)
