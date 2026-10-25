@@ -1050,6 +1050,12 @@
           <p>পূর্ণাংশ ও ভগ্নাংশ রূপান্তর (বাইনারি, অক্টাল, হেক্সাডেসিমেল) এবং ১০টি লাইভ প্র্যাকটিস অঙ্ক</p>
           <div class="card-badge">Lecture 3 • Live Task</div>
         </div>
+        <div class="select-card" onclick="navigateTo('ict-ch3-lecture-4')">
+            <div class="card-icon">🔢</div>
+            <h3>Lecture 4: যে কোনো ভিত্তি থেকে দশমিক রূপান্তর ও ১০টি HW</h3>
+            <p>বাইনারি, অক্টাল ও হেক্সাডেসিমেল পূর্ণসংখ্যার রূপান্তর এবং ১০টি প্র্যাকটিস অংক</p>
+            <div class="card-badge">Lecture 4 • Homework Sheet</div>
+          </div>
           </div>
         `;
       }
@@ -1286,6 +1292,16 @@
           { name: 'Lecture 3', route: 'ict-ch3-lecture-3' }
         ]);
         renderIctChapter3Lesson3();
+      }
+      else if (route === 'ict-ch3-lecture-4') {
+        setActiveNav('ict');
+        renderBreadcrumb([
+          { name: 'Home', route: 'home' },
+          { name: 'ICT', route: 'ict' },
+          { name: 'Chapter 3', route: 'ict-chapter-3' },
+          { name: 'Lecture 4', route: 'ict-ch3-lecture-4' }
+        ]);
+        renderIctLecture4();
       }
       else if (route.startsWith('ict-chapter-')) {
         const chNum = parseInt(route.replace('ict-chapter-', ''));
@@ -2684,6 +2700,120 @@
     </div>
   `;
     }
+    // Render ICT Chapter 3 - Lecture 04 Content & Homework
+function renderIctLecture4() {
+  const app = document.getElementById('app-view') || document.getElementById('mainContent') || document.getElementById('app');
+  if (!app) return;
+
+  app.innerHTML = `
+    <div style="max-width: 850px; margin: 30px auto; padding: 24px; font-family: inherit;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <button onclick="navigateTo('ict')" style="background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+          &larr; Back to ICT Lectures
+        </button>
+        <span style="background: #e0e7ff; color: #4338ca; padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; font-weight: 600;">HSC ICT • Chapter 3</span>
+      </div>
+
+      <div style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+        <h1 style="margin: 0 0 8px 0; font-size: 1.6rem; color: #1e1b4b;">Lecture 04 : সংখ্যা পদ্ধতির রূপান্তর</h1>
+        <p style="margin: 0; color: #64748b; font-size: 0.95rem;">যেকোনো ভিত্তি (Base) থেকে দশমিক (Decimal) সংখ্যা পদ্ধতিতে রূপান্তর</p>
+      </div>
+
+      <div style="background: #f8fafc; border-left: 4px solid #4f46e5; border-radius: 0 12px 12px 0; padding: 18px; margin-bottom: 24px;">
+        <h4 style="margin: 0 0 6px 0; color: #1e1b4b; font-size: 1.05rem;">📌 মূল নীতি:</h4>
+        <p style="margin: 0; color: #334155; line-height: 1.6; font-size: 0.92rem;">
+          যেকোনো সংখ্যা পদ্ধতি (বাইনারি, অক্টাল, হেক্সাডেসিমেল) থেকে দশমিকে রূপান্তর করতে হলে সংশ্লিষ্ট ভিত্তির স্থানীয় মান (পাওয়ার) দিয়ে প্রতিটি অঙ্ককে গুণ করে যোগ করতে হয়। পূর্ণসংখ্যার ক্ষেত্রে পাওয়ার যথাক্রমে <strong>0, 1, 2, 3...</strong> আকারে বাড়ে।
+        </p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 20px; margin-bottom: 30px;">
+        
+        <!-- 1. Binary to Decimal -->
+        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px;">
+          <h3 style="margin: 0 0 10px 0; color: #0f172a; font-size: 1.15rem;">১. বাইনারি থেকে দশমিক (Binary to Decimal) [ভিত্তি = ২]</h3>
+          <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 12px;"><strong>পদ্ধতি:</strong> ভিত্তির পাওয়ার হবে 2 (2⁰, 2¹, 2², 2³ ...)</p>
+          <div style="background: #f1f5f9; padding: 14px; border-radius: 10px; font-family: monospace; font-size: 0.92rem; color: #0f172a; line-height: 1.7;">
+            <strong>উদাহরণ:</strong> (11101)₂ কে দশমিকে রূপান্তর<br>
+            <strong>সমাধান:</strong><br>
+            = (1 × 2⁴) + (1 × 2³) + (1 × 2²) + (0 × 2¹) + (1 × 2⁰)<br>
+            = 16 + 8 + 4 + 0 + 1<br>
+            = <strong>(29)₁₀</strong>
+          </div>
+        </div>
+
+        <!-- 2. Octal to Decimal -->
+        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px;">
+          <h3 style="margin: 0 0 10px 0; color: #0f172a; font-size: 1.15rem;">২. অক্টাল থেকে দশমিক (Octal to Decimal) [ভিত্তি = ৮]</h3>
+          <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 12px;"><strong>পদ্ধতি:</strong> ভিত্তির পাওয়ার হবে 8 (8⁰, 8¹, 8², 8³ ...)</p>
+          <div style="background: #f1f5f9; padding: 14px; border-radius: 10px; font-family: monospace; font-size: 0.92rem; color: #0f172a; line-height: 1.7;">
+            <strong>উদাহরণ:</strong> (235)₈ কে দশমিকে রূপান্তর<br>
+            <strong>সমাধান:</strong><br>
+            = (2 × 8²) + (3 × 8¹) + (5 × 8⁰)<br>
+            = (2 × 64) + (3 × 8) + (5 × 1)<br>
+            = 128 + 24 + 5<br>
+            = <strong>(157)₁₀</strong>
+          </div>
+        </div>
+
+        <!-- 3. Hexadecimal to Decimal -->
+        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px;">
+          <h3 style="margin: 0 0 10px 0; color: #0f172a; font-size: 1.15rem;">৩. হেক্সাডেসিমেল থেকে দশমিক (Hexadecimal to Decimal) [ভিত্তি = ১৬]</h3>
+          <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 6px;"><strong>পদ্ধতি:</strong> ভিত্তির পাওয়ার হবে 16 (16⁰, 16¹, 16², 16³ ...)</p>
+          <p style="color: #d97706; font-size: 0.88rem; font-weight: 600; margin-bottom: 12px;">অক্ষরের মান: A=10, B=11, C=12, D=13, E=14, F=15</p>
+          <div style="background: #f1f5f9; padding: 14px; border-radius: 10px; font-family: monospace; font-size: 0.92rem; color: #0f172a; line-height: 1.7;">
+            <strong>উদাহরণ:</strong> (B5D)₁₆ কে দশমিকে রূপান্তর<br>
+            <strong>সমাধান:</strong><br>
+            = (11 × 16²) + (5 × 16¹) + (13 × 16⁰)<br>
+            = (11 × 256) + (5 × 16) + (13 × 1)<br>
+            = 2816 + 80 + 13<br>
+            = <strong>(2909)₁₀</strong>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Homework Section -->
+      <div style="background: white; border: 2px dashed #6366f1; border-radius: 16px; padding: 24px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+          <h3 style="margin: 0; color: #312e81; font-size: 1.25rem;">📝 আজকের বাড়ির কাজ (Homework - 10 Problems)</h3>
+          <span style="background: #e0e7ff; color: #4338ca; font-weight: 700; font-size: 0.8rem; padding: 3px 10px; border-radius: 6px;">HW-04</span>
+        </div>
+        <p style="color: #64748b; font-size: 0.88rem; margin-top: 0;">প্রতিটি সংখ্যাকে দশমিক (Decimal) পদ্ধতিতে রূপান্তর করো:</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 16px;">
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px;">
+            <strong style="color: #4f46e5; display: block; margin-bottom: 8px;">ক. বাইনারি থেকে দশমিক:</strong>
+            <ol style="margin: 0; padding-left: 20px; font-size: 0.9rem; color: #334155; line-height: 1.8;">
+              <li>(1011)₂ = (?)₁₀</li>
+              <li>(11010)₂ = (?)₁₀</li>
+              <li>(100101)₂ = (?)₁₀</li>
+              <li>(111111)₂ = (?)₁₀</li>
+            </ol>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px;">
+            <strong style="color: #0891b2; display: block; margin-bottom: 8px;">খ. অক্টাল থেকে দশমিক:</strong>
+            <ol start="5" style="margin: 0; padding-left: 20px; font-size: 0.9rem; color: #334155; line-height: 1.8;">
+              <li>(47)₈ = (?)₁₀</li>
+              <li>(126)₈ = (?)₁₀</li>
+              <li>(350)₈ = (?)₁₀</li>
+            </ol>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px;">
+            <strong style="color: #ea580c; display: block; margin-bottom: 8px;">গ. হেক্সাডেসিমেল থেকে দশমিক:</strong>
+            <ol start="8" style="margin: 0; padding-left: 20px; font-size: 0.9rem; color: #334155; line-height: 1.8;">
+              <li>(2F)₁₆ = (?)₁₀</li>
+              <li>(A4C)₁₆ = (?)₁₀</li>
+              <li>(1E5)₁₆ = (?)₁₀</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  `;
+}
     /* ========================================================
        ENGLISH 1ST PAPER: GOAL-BASED EXAM & REPORT ENGINE
     ======================================================== */
