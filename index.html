@@ -1073,6 +1073,13 @@
             <p>অক্টাল থেকে বাইনারি (৩-বিট কোড) এবং বাইনারি থেকে অক্টাল গ্রুপিং মেথড</p>
             <div class="card-badge">Lecture 5 • Active Note</div>
           </div>
+          <!-- Lecture 06 Card -->
+          <div class="select-card" onclick="navigateTo('ict-ch3-lecture-6')">
+            <div class="card-icon">🔢</div>
+            <h3>Lecture 6: হেক্সাডেসিমেল, বাইনারি ও অক্টাল রূপান্তর</h3>
+            <p>Hexadecimal &lt;-&gt; Binary (৪-বিট কোড) এবং Octal &rarr; Decimal &rarr; Hexadecimal মেথড</p>
+            <div class="card-badge">Lecture 6 • Active Note</div>
+          </div>
           </div>
         `;
       }
@@ -1329,6 +1336,16 @@
           { name: 'Lecture 05', route: 'ict-ch3-lecture-5' }
         ]);
         renderIctLecture5();
+      }
+      else if (route === 'ict-ch3-lecture-6') {
+        setActiveNav('ict');
+        renderBreadcrumb([
+          { name: 'Home', route: 'home' },
+          { name: 'ICT', route: 'ict' },
+          { name: 'Chapter 3', route: 'ict-ch3' },
+          { name: 'Lecture 06', route: 'ict-ch3-lecture-6' }
+        ]);
+        renderIctLecture6();
       }
       else if (route.startsWith('ict-chapter-')) {
         const chNum = parseInt(route.replace('ict-chapter-', ''));
@@ -3176,6 +3193,153 @@ function renderIctLecture5() {
               011 = 3, &nbsp; 100 = 4<br>
               <div style="margin: 6px 0; border-top: 1px dashed var(--border, #475569);"></div>
               <strong>ফলাফল:</strong> <strong style="color: #38bdf8;">(717.34)₈</strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  `;
+}
+// Render ICT Chapter 3 - Lecture 06 (Hexadecimal <-> Binary & Octal -> Hex) [Dark Mode Compatible]
+function renderIctLecture6() {
+  const app = document.getElementById('app-view') || document.getElementById('mainContent') || document.getElementById('app');
+  if (!app) return;
+
+  app.innerHTML = `
+    <div style="max-width: 900px; margin: 30px auto; padding: 24px; font-family: inherit;">
+      <!-- Top Navigation -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <button onclick="navigateTo('ict')" style="background: var(--card-bg, #f1f5f9); color: var(--text-main, #475569); border: 1px solid var(--border, #cbd5e1); padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+          &larr; Back to ICT Lectures
+        </button>
+        <span style="background: rgba(79, 70, 229, 0.15); color: #818cf8; border: 1px solid rgba(129, 140, 248, 0.3); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; font-weight: 600;">HSC ICT • Chapter 3 (সংখ্যা পদ্ধতি)</span>
+      </div>
+
+      <!-- Title Header -->
+      <div style="background: var(--card-bg, #ffffff); border: 1px solid var(--border, #e2e8f0); border-radius: 16px; padding: 24px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <h1 style="margin: 0 0 8px 0; font-size: 1.6rem; color: var(--text-main, #1e1b4b);">Lecture 06 : হেক্সাডেসিমেল, বাইনারি ও অক্টাল রূপান্তর</h1>
+        <p style="margin: 0; color: var(--text-muted, #64748b); font-size: 0.95rem;">Hexadecimal &lt;-&gt; Binary (৪-বিট কোড) এবং Octal &rarr; Decimal &rarr; Hexadecimal কনভার্সন মেথড</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+
+        <!-- Section 1: Hexadecimal to Binary -->
+        <div style="background: var(--card-bg, #ffffff); border: 1px solid var(--border, #e2e8f0); border-radius: 16px; padding: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+            <span style="background: rgba(79, 70, 229, 0.15); color: #818cf8; font-weight: 700; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">৭</span>
+            <h3 style="margin: 0; color: var(--text-main, #1e1b4b); font-size: 1.25rem;">হেক্সাডেসিমেল থেকে বাইনারি (Hexadecimal to Binary)</h3>
+          </div>
+
+          <div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 16px; font-size: 0.92rem; color: var(--text-main, #1e40af);">
+            📌 <strong>মূল নীতি:</strong> হেক্সাডেসিমেলের ভিত্তি 16 = 2⁴। তাই প্রতিটি হেক্সাডেসিমেল ডিজিটের জন্য সমতুল্য <strong>৪ বিট বাইনারি</strong> লিখতে হবে (৮-৪-২-১ কোড অনুযায়ী)।
+          </div>
+
+          <!-- Example 1 -->
+          <div style="background: rgba(0, 0, 0, 0.03); border: 1px solid var(--border, #e2e8f0); border-radius: 12px; padding: 16px; margin-bottom: 14px;">
+            <strong style="color: var(--text-main, #0f172a);">উদাহরণ ১:</strong> <span style="color: var(--text-muted);">(12A)₁₆ কে বাইনারিতে রূপান্তর</span><br><br>
+            <div style="background: var(--body-bg, #0f172a); color: var(--text-main, #e2e8f0); padding: 14px; border-radius: 8px; border: 1px solid var(--border, #334155); font-family: monospace; font-size: 0.95rem; line-height: 1.7;">
+              1 &rarr; (0001)₂<br>
+              2 &rarr; (0010)₂<br>
+              A (10) &rarr; (1010)₂<br>
+              <div style="margin: 6px 0; border-top: 1px dashed var(--border, #475569);"></div>
+              <strong>ফলাফল:</strong> (000100101010)₂ বা অপ্রয়োজনীয় বামের শূন্য বাদ দিলে <strong style="color: #38bdf8;">(100101010)₂</strong>
+            </div>
+          </div>
+
+          <!-- Example 2 -->
+          <div style="background: rgba(0, 0, 0, 0.03); border: 1px solid var(--border, #e2e8f0); border-radius: 12px; padding: 16px; margin-bottom: 14px;">
+            <strong style="color: var(--text-main, #0f172a);">উদাহরণ ২:</strong> <span style="color: var(--text-muted);">(BABADADA)₁₆ কে বাইনারিতে রূপান্তর</span><br><br>
+            <div style="background: var(--body-bg, #0f172a); color: var(--text-main, #e2e8f0); padding: 14px; border-radius: 8px; border: 1px solid var(--border, #334155); font-family: monospace; font-size: 0.95rem; line-height: 1.7;">
+              B=1011, &nbsp; A=1010, &nbsp; B=1011, &nbsp; A=1010, &nbsp; D=1101, &nbsp; A=1010, &nbsp; D=1101, &nbsp; A=1010<br>
+              <div style="margin: 6px 0; border-top: 1px dashed var(--border, #475569);"></div>
+              <strong>ফলাফল:</strong> <strong style="color: #38bdf8;">(10111010101110101101101011011010)₂</strong>
+            </div>
+          </div>
+
+          <!-- Example 3 -->
+          <div style="background: rgba(0, 0, 0, 0.03); border: 1px solid var(--border, #e2e8f0); border-radius: 12px; padding: 16px;">
+            <strong style="color: var(--text-main, #0f172a);">উদাহরণ ৩ (ভগ্নাংশসহ):</strong> <span style="color: var(--text-muted);">(79AE1.DB3)₁₆ কে বাইনারিতে রূপান্তর</span><br><br>
+            <div style="background: var(--body-bg, #0f172a); color: var(--text-main, #e2e8f0); padding: 14px; border-radius: 8px; border: 1px solid var(--border, #334155); font-family: monospace; font-size: 0.95rem; line-height: 1.7;">
+              পূর্ণসংখ্যা: 7=0111, &nbsp; 9=1001, &nbsp; A=1010, &nbsp; E=1110, &nbsp; 1=0001<br>
+              ভগ্নাংশ: D=1101, &nbsp; B=1011, &nbsp; 3=0011<br>
+              <div style="margin: 6px 0; border-top: 1px dashed var(--border, #475569);"></div>
+              <strong>ফলাফল:</strong> <strong style="color: #38bdf8;">(01111001101011100001.110110110011)₂</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Binary to Hexadecimal -->
+        <div style="background: var(--card-bg, #ffffff); border: 1px solid var(--border, #e2e8f0); border-radius: 16px; padding: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+            <span style="background: rgba(79, 70, 229, 0.15); color: #818cf8; font-weight: 700; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">৮</span>
+            <h3 style="margin: 0; color: var(--text-main, #1e1b4b); font-size: 1.25rem;">বাইনারি থেকে হেক্সাডেসিমেল (Binary to Hexadecimal)</h3>
+          </div>
+
+          <div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 16px; font-size: 0.92rem; color: var(--text-main, #b45309);">
+            📌 <strong>মূল নীতি:</strong> বাইনারি বিটগুলোকে <strong>৪টি করে বিটের গ্রুপ</strong> করতে হবে।<br>
+            • <strong>পয়েন্টের বামে (পূর্ণসংখ্যা):</strong> ডান থেকে বামে ৪টি করে গ্রুপ করতে হবে (কম পড়লে বামে শূন্য যোগ করতে হবে)।<br>
+            • <strong>পয়েন্টের ডানে (ভগ্নাংশ):</strong> বাম থেকে ডানে ৪টি করে গ্রুপ করতে হবে (কম পড়লে ডানে শূন্য বসাতে হবে)।
+          </div>
+
+          <!-- Example -->
+          <div style="background: rgba(0, 0, 0, 0.03); border: 1px solid var(--border, #e2e8f0); border-radius: 12px; padding: 16px;">
+            <strong style="color: var(--text-main, #0f172a);">উদাহরণ:</strong> <span style="color: var(--text-muted);">(11011101.101011)₂ কে হেক্সাডেসিমেলে রূপান্তর</span><br><br>
+            <div style="background: var(--body-bg, #0f172a); color: var(--text-main, #e2e8f0); padding: 14px; border-radius: 8px; border: 1px solid var(--border, #334155); font-family: monospace; font-size: 0.95rem; line-height: 1.7;">
+              <strong>৪ বিটের গ্রুপিং:</strong><br>
+              পূর্ণসংখ্যা (ডান থেকে বামে): (1101) &nbsp; (1101)<br>
+              ভগ্নাংশ (বাম থেকে ডানে): (1010) &nbsp; (1100) [শেষে ২টি শূন্য বসিয়ে ৪ বিট পূর্ণ করা হয়েছে]<br>
+              <div style="margin: 6px 0; border-top: 1px dashed var(--border, #475569);"></div>
+              1101 = 13 = D, &nbsp; 1101 = 13 = D<br>
+              1010 = 10 = A, &nbsp; 1100 = 12 = C<br>
+              <div style="margin: 6px 0; border-top: 1px dashed var(--border, #475569);"></div>
+              <strong>ফলাফল:</strong> <strong style="color: #38bdf8;">(DD.AC)₁₆</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Octal to Hexadecimal (via Decimal Method) -->
+        <div style="background: var(--card-bg, #ffffff); border: 1px solid var(--border, #e2e8f0); border-radius: 16px; padding: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+            <span style="background: rgba(79, 70, 229, 0.15); color: #818cf8; font-weight: 700; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">৯</span>
+            <h3 style="margin: 0; color: var(--text-main, #1e1b4b); font-size: 1.25rem;">অক্টাল থেকে হেক্সাডেসিমেল (Octal to Hexadecimal via Decimal)</h3>
+          </div>
+
+          <div style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid #10b981; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 16px; font-size: 0.92rem; color: var(--text-main, #047857);">
+            📌 <strong>কৌশল ও নিয়ম:</strong><br>
+            <strong>ধাপ ১:</strong> অক্টাল সংখ্যাটিকে প্রথমে স্থানীয় মান (৮-এর পাওয়ার) দিয়ে গুণ করে <strong>Decimal (দশমিক)</strong> মানে রূপান্তর করতে হবে।<br>
+            <strong>ধাপ ২:</strong> এরপর প্রাপ্ত দশমিক সংখ্যাটিকে ১৬ দিয়ে ক্রমাগত ভাগ করে ভাগশেষগুলো নিচ থেকে উপরে সাজিয়ে <strong>Hexadecimal</strong> মান বের করতে হবে।
+          </div>
+
+          <!-- Method Example 1 -->
+          <div style="background: rgba(0, 0, 0, 0.03); border: 1px solid var(--border, #e2e8f0); border-radius: 12px; padding: 16px; margin-bottom: 14px;">
+            <strong style="color: var(--text-main, #0f172a);">উদাহরণ ১:</strong> <span style="color: var(--text-muted);">(127)₈ কে হেক্সাডেসিমেলে রূপান্তর</span><br><br>
+            <div style="background: var(--body-bg, #0f172a); color: var(--text-main, #e2e8f0); padding: 14px; border-radius: 8px; border: 1px solid var(--border, #334155); font-family: monospace; font-size: 0.95rem; line-height: 1.7;">
+              <strong style="color: #a7f3d0;">[ধাপ ১: Octal &rarr; Decimal]</strong><br>
+              (127)₈ = 1 &times; 8² + 2 &times; 8¹ + 7 &times; 8⁰<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 64 + 16 + 7 = <strong>(87)₁₀</strong><br><br>
+              <strong style="color: #a7f3d0;">[ধাপ ২: Decimal &rarr; Hexadecimal]</strong><br>
+              87 &divide; 16 = ভাগফল 5, ভাগশেষ <strong>7</strong> (LSB)<br>
+              5 &divide; 16 &nbsp;= ভাগফল 0, ভাগশেষ <strong>5</strong> (MSB)<br>
+              নিচ থেকে উপরে সাজালে পাই: 5 7<br>
+              <div style="margin: 6px 0; border-top: 1px dashed var(--border, #475569);"></div>
+              <strong>চূড়ান্ত ফলাফল:</strong> (127)₈ = <strong style="color: #38bdf8;">(57)₁₆</strong>
+            </div>
+          </div>
+
+          <!-- Method Example 2 -->
+          <div style="background: rgba(0, 0, 0, 0.03); border: 1px solid var(--border, #e2e8f0); border-radius: 12px; padding: 16px;">
+            <strong style="color: var(--text-main, #0f172a);">উদাহরণ ২:</strong> <span style="color: var(--text-muted);">(345)₈ কে হেক্সাডেসিমেলে রূপান্তর</span><br><br>
+            <div style="background: var(--body-bg, #0f172a); color: var(--text-main, #e2e8f0); padding: 14px; border-radius: 8px; border: 1px solid var(--border, #334155); font-family: monospace; font-size: 0.95rem; line-height: 1.7;">
+              <strong style="color: #a7f3d0;">[ধাপ ১: Octal &rarr; Decimal]</strong><br>
+              (345)₈ = 3 &times; 8² + 4 &times; 8¹ + 5 &times; 8⁰<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 3 &times; 64 + 32 + 5 = 192 + 37 = <strong>(229)₁₀</strong><br><br>
+              <strong style="color: #a7f3d0;">[ধাপ ২: Decimal &rarr; Hexadecimal]</strong><br>
+              229 &divide; 16 = ভাগফল 14, ভাগশেষ <strong>5</strong> (LSB)<br>
+              14 &divide; 16 &nbsp;= ভাগফল 0, &nbsp;ভাগশেষ <strong>14 &equiv; E</strong> (MSB)<br>
+              নিচ থেকে উপরে সাজালে পাই: E 5<br>
+              <div style="margin: 6px 0; border-top: 1px dashed var(--border, #475569);"></div>
+              <strong>চূড়ান্ত ফলাফল:</strong> (345)₈ = <strong style="color: #38bdf8;">(E5)₁₆</strong>
             </div>
           </div>
         </div>
