@@ -1066,6 +1066,13 @@
             <p>বাইনারি, অক্টাল ও হেক্সাডেসিমেল পূর্ণসংখ্যার রূপান্তর এবং ১০টি প্র্যাকটিস অংক</p>
             <div class="card-badge">Lecture 4 • Homework Sheet</div>
           </div>
+          <!-- Lecture 05 Card -->
+          <div class="select-card" onclick="navigateTo('ict-ch3-lecture-5')">
+            <div class="card-icon">⚡</div>
+            <h3>Lecture 5: অক্টাল ও বাইনারি পারস্পরিক রূপান্তর</h3>
+            <p>অক্টাল থেকে বাইনারি (৩-বিট কোড) এবং বাইনারি থেকে অক্টাল গ্রুপিং মেথড</p>
+            <div class="card-badge">Lecture 5 • Active Note</div>
+          </div>
           </div>
         `;
       }
@@ -1312,6 +1319,16 @@
           { name: 'Lecture 4', route: 'ict-ch3-lecture-4' }
         ]);
         renderIctLecture4();
+      }
+      else if (route === 'ict-ch3-lecture-5') {
+        setActiveNav('ict');
+        renderBreadcrumb([
+          { name: 'Home', route: 'home' },
+          { name: 'ICT', route: 'ict' },
+          { name: 'Chapter 3', route: 'ict-ch3' },
+          { name: 'Lecture 05', route: 'ict-ch3-lecture-5' }
+        ]);
+        renderIctLecture5();
       }
       else if (route.startsWith('ict-chapter-')) {
         const chNum = parseInt(route.replace('ict-chapter-', ''));
@@ -3071,6 +3088,99 @@ function renderIctLecture4() {
         </div>
       </div>
 
+    </div>
+  `;
+}
+// Render ICT Chapter 3 - Lecture 05 (Octal <-> Binary) [Dark Mode Compatible]
+function renderIctLecture5() {
+  const app = document.getElementById('app-view') || document.getElementById('mainContent') || document.getElementById('app');
+  if (!app) return;
+
+  app.innerHTML = `
+    <div style="max-width: 900px; margin: 30px auto; padding: 24px; font-family: inherit;">
+      <!-- Top Navigation -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <button onclick="navigateTo('ict')" style="background: var(--card-bg, #f1f5f9); color: var(--text-main, #475569); border: 1px solid var(--border, #cbd5e1); padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+          &larr; Back to ICT Lectures
+        </button>
+        <span style="background: rgba(79, 70, 229, 0.15); color: #818cf8; border: 1px solid rgba(129, 140, 248, 0.3); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; font-weight: 600;">HSC ICT • Chapter 3 (সংখ্যা পদ্ধতি)</span>
+      </div>
+
+      <!-- Title Header -->
+      <div style="background: var(--card-bg, #ffffff); border: 1px solid var(--border, #e2e8f0); border-radius: 16px; padding: 24px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <h1 style="margin: 0 0 8px 0; font-size: 1.6rem; color: var(--text-main, #1e1b4b);">Lecture 05 : অক্টাল ও বাইনারি পারস্পরিক রূপান্তর</h1>
+        <p style="margin: 0; color: var(--text-muted, #64748b); font-size: 0.95rem;">Octal to Binary এবং Binary to Octal রূপান্তরের সহজ ৩-বিট গ্রুপিং মেথড</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+
+        <!-- Section 1: Octal to Binary -->
+        <div style="background: var(--card-bg, #ffffff); border: 1px solid var(--border, #e2e8f0); border-radius: 16px; padding: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+            <span style="background: rgba(79, 70, 229, 0.15); color: #818cf8; font-weight: 700; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">১</span>
+            <h3 style="margin: 0; color: var(--text-main, #1e1b4b); font-size: 1.25rem;">অক্টাল থেকে বাইনারি (Octal to Binary)</h3>
+          </div>
+
+          <!-- Policy Box -->
+          <div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 16px; font-size: 0.92rem; color: var(--text-main, #1e40af);">
+            📌 <strong>মূল নীতি:</strong> অক্টালের ভিত্তি 8 = 2³। তাই অক্টালের প্রতিটি ডিজিটকে সমতুল্য <strong>৩ বিট বাইনারি</strong> মানে রূপান্তর করতে হবে (৪-২-১ কোড অনুযায়ী)।
+          </div>
+
+          <!-- Example 1 -->
+          <div style="background: rgba(0, 0, 0, 0.03); border: 1px solid var(--border, #e2e8f0); border-radius: 12px; padding: 16px; margin-bottom: 14px;">
+            <strong style="color: var(--text-main, #0f172a);">উদাহরণ ১ (পূর্ণসংখ্যা):</strong> <span style="color: var(--text-muted);">(127)₈ কে বাইনারিতে রূপান্তর</span><br><br>
+            <div style="background: var(--body-bg, #0f172a); color: var(--text-main, #e2e8f0); padding: 14px; border-radius: 8px; border: 1px solid var(--border, #334155); font-family: monospace; font-size: 0.95rem; line-height: 1.7;">
+              1 &rarr; (001)₂<br>
+              2 &rarr; (010)₂<br>
+              7 &rarr; (111)₂<br>
+              <div style="margin: 6px 0; border-top: 1px dashed var(--border, #475569);"></div>
+              <strong>ফলাফল:</strong> (001010111)₂ বা অপ্রয়োজনীয় শূন্য বাদ দিলে <strong style="color: #38bdf8;">(1010111)₂</strong>
+            </div>
+          </div>
+
+          <!-- Example 2 -->
+          <div style="background: rgba(0, 0, 0, 0.03); border: 1px solid var(--border, #e2e8f0); border-radius: 12px; padding: 16px;">
+            <strong style="color: var(--text-main, #0f172a);">উদাহরণ ২ (রেডিক্স পয়েন্টসহ):</strong> <span style="color: var(--text-muted);">(2571.531)₈ কে বাইনারিতে রূপান্তর</span><br><br>
+            <div style="background: var(--body-bg, #0f172a); color: var(--text-main, #e2e8f0); padding: 14px; border-radius: 8px; border: 1px solid var(--border, #334155); font-family: monospace; font-size: 0.95rem; line-height: 1.7;">
+              2 = 010, &nbsp; 5 = 101, &nbsp; 7 = 111, &nbsp; 1 = 001<br>
+              পয়েন্টের পর: 5 = 101, &nbsp; 3 = 011, &nbsp; 1 = 001<br>
+              <div style="margin: 6px 0; border-top: 1px dashed var(--border, #475569);"></div>
+              <strong>ফলাফল:</strong> <strong style="color: #38bdf8;">(1010111001.101011001)₂</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Binary to Octal -->
+        <div style="background: var(--card-bg, #ffffff); border: 1px solid var(--border, #e2e8f0); border-radius: 16px; padding: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+            <span style="background: rgba(79, 70, 229, 0.15); color: #818cf8; font-weight: 700; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">২</span>
+            <h3 style="margin: 0; color: var(--text-main, #1e1b4b); font-size: 1.25rem;">বাইনারি থেকে অক্টাল (Binary to Octal)</h3>
+          </div>
+
+          <!-- Policy Box -->
+          <div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 16px; font-size: 0.92rem; color: var(--text-main, #b45309);">
+            📌 <strong>মূল নীতি:</strong> বাইনারি বিটগুলোকে <strong>৩টি করে বিটের গ্রুপ</strong> করতে হবে।<br>
+            • <strong>পূর্ণসংখ্যার ক্ষেত্রে:</strong> ডান থেকে বামে সাজাতে হবে (অপূর্ণ থাকলে বামে শূন্য যোগ করতে হবে)।<br>
+            • <strong>পয়েন্টের পরের ক্ষেত্রে:</strong> বাম থেকে ডানে সাজাতে হবে (অপূর্ণ থাকলে ডানে শূন্য যোগ করতে হবে)।
+          </div>
+
+          <!-- Example -->
+          <div style="background: rgba(0, 0, 0, 0.03); border: 1px solid var(--border, #e2e8f0); border-radius: 12px; padding: 16px;">
+            <strong style="color: var(--text-main, #0f172a);">উদাহরণ:</strong> <span style="color: var(--text-muted);">(111001111.0111)₂ কে অক্টালে রূপান্তর</span><br><br>
+            <div style="background: var(--body-bg, #0f172a); color: var(--text-main, #e2e8f0); padding: 14px; border-radius: 8px; border: 1px solid var(--border, #334155); font-family: monospace; font-size: 0.95rem; line-height: 1.7;">
+              <strong>৩ বিটের গ্রুপিং:</strong><br>
+              পূর্ণসংখ্যা (ডান থেকে বামে): (111) &nbsp; (001) &nbsp; (111)<br>
+              ভগ্নাংশ (বাম থেকে ডানে): (011) &nbsp; (100) [শেষে শূন্য যোগ করে ৩ বিট পূরণ করা হয়েছে]<br>
+              <div style="margin: 6px 0; border-top: 1px dashed var(--border, #475569);"></div>
+              111 = 7, &nbsp; 001 = 1, &nbsp; 111 = 7<br>
+              011 = 3, &nbsp; 100 = 4<br>
+              <div style="margin: 6px 0; border-top: 1px dashed var(--border, #475569);"></div>
+              <strong>ফলাফল:</strong> <strong style="color: #38bdf8;">(717.34)₈</strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   `;
 }
